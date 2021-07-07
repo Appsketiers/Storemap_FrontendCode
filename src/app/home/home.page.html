@@ -1,0 +1,66 @@
+<ion-header class="header1">
+    <ion-toolbar>
+        <ion-title>StoreMapps</ion-title>
+        <ion-buttons slot="start">
+            <ion-menu-button><span class="icon-menu"></span></ion-menu-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" routerLink="/shopping-lists">
+                <div class="list_box_1">
+                    <img src="assets/img/grocery-list.png" alt="">
+                    <h4>Shopping <br/>List
+                    </h4>
+                </div>
+            </ion-col>
+            <ion-col size="6" routerLink="/my-stores">
+                <div class="list_box_1">
+                    <img src="assets/img/my-store.png" alt="">
+                    <h4>My Stores</h4>
+                </div>
+            </ion-col>
+            <ion-col size="6">
+                <div class="list_box_1">
+                    <img src="assets/img/route.png" alt="">
+                    <h4>Route</h4>
+                </div>
+            </ion-col>
+            <ion-col size="6" routerLink="/recommended">
+                <div class="list_box_1">
+                    <img src="assets/img/list.png" alt="">
+                    <h4>Recommended List
+                    </h4>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list>
+        <ion-item>
+            <span slot="start"><img src="assets/img/Body.png" alt=""></span>
+            <ion-label routerLink="/meal-ideas">Meal Ideas</ion-label>
+            <span class="icon-Arrow-right" slot="end"></span>
+        </ion-item>
+        <ion-item routerLink="/buying-habit">
+            <span slot="start"><img src="assets/img/Health.png" alt=""></span>
+            <ion-label>Buying Habits</ion-label>
+            <span class="icon-Arrow-right" slot="end"></span>
+        </ion-item>
+
+        <ion-item routerLink="/safety-awareness">
+            <span slot="start"><img src="assets/img/Reproductive.png" alt=""></span>
+            <ion-label>Safety Awareness</ion-label>
+            <span class="icon-Arrow-right" slot="end"></span>
+        </ion-item>
+        <ion-item routerLink="/saved-meals">
+            <span slot="start"><img src="assets/img/heart.png" alt=""></span>
+            <ion-label>Saved Meals</ion-label>
+            <span class="icon-Arrow-right" slot="end"></span>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,68 @@
+.popup_outer {
+    padding: 40px 15px;
+    background-color: #fff;
+    width: 90%;
+    left: 5%;
+    top: 50%;
+    border: 2px solid #fff;
+    position: relative;
+    border-radius: 5px;
+    transform: translateY(-50%);
+  
+    .closebtn {
+      font-size: 12px;
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 45px;
+      &:before {
+        padding: 10px;
+        color: #848f8f;
+      }
+    }
+  
+    .popupinner {
+      overflow: hidden;
+      clear: both;
+      text-align: center;
+      h4{
+        font-size: 16px;
+        font-weight: bold;
+        margin: 0;
+      }
+      P{
+        margin: 10px 0;
+        font-size: 13px;
+      }
+  
+      .btn{
+          display: flex;
+          ion-button{
+              width: 100%;
+              &.remove{
+                height: 50px;
+                margin: 10px 0;
+                width: 100%;
+                --background: transparent;
+                --box-shadow: none;
+                color: #868686;
+              }
+          }
+          
+      }
+    }
+  }
+  
+  
+  
+  ion-modal {
+      --backdrop-opacity: 0.4 !important;
+      --background: transparent !important;
+  }
+  
+  

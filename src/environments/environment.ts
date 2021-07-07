@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  baseurl:'http://dev9server.com/store-mapps/api/',
+  image_baseurl:"http://dev9server.com/store-mapps/"
 };
 
 /*

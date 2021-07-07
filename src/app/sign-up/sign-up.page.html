@@ -1,0 +1,120 @@
+<!-- <ion-header class="header3 mx-0 px-0">
+  <ion-toolbar class=" mx-0 px-0">
+    <div class="top_head">
+      <h2>Sign Up</h2>
+      <p>Enter your details to sign up</p>
+  </div>
+ 
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content >
+    <div class="top_head" >
+        <h2>Sign Up</h2>
+        <p>Proceed with your Sign-Up on Store Maps</p>
+    </div>
+    <!-- <div class="user_dis">
+        <span > <img src="{{ornamentimage ? ornamentimage :'assets/img/svg/user.svg'}}"></span>
+        <span class="icon-camera"></span>  
+    </div> -->
+    <!-- <div class="user_img" (click)="captureImage()">
+         <span > <img style="height: 79px; width: 77px; border-radius: 21px;" src="{{ornamentimage ? ornamentimage :'assets/img/svg/user.svg'}}"></span>
+      
+        <span class="icon-camera"></span>
+    </div> -->
+    <div class="user_img"  (click)="captureImage()">
+      <span > <img class="{{ornamentimage ? 'image1' :'image2'}}" src="{{ornamentimage ? ornamentimage :'assets/img/svg/user.svg'}}"></span>
+     <!-- <span class="icon-user" ></span> -->
+     <span class="icon-camera"></span>
+  </div>
+    <ion-grid [formGroup]="signupForm">
+        <ion-col size="12" hidden="true">
+            
+            <ion-input  formControlName="image" placeholder="Enter Name"></ion-input>
+          
+        </ion-col>
+        <div *ngIf="getFormControl('image').invalid && submmited"
+        class="my-0 py-0 text-danger" style="font-size: 10px;">
+    
+      <div *ngIf="getFormControl('image').errors.required" class="my-0 py-0 text-danger text-center">
+        Profile image is required.
+      </div>
+    
+    </div>
+        <ion-row >
+            <ion-col size="12">
+                <ion-label>Name</ion-label>
+                <ion-input  formControlName="name" placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
+                <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || getFormControl('name').touched)"
+                class="my-0 py-0 text-danger" style="font-size: 10px;">
+            
+              <div *ngIf="getFormControl('name').errors.required" class="my-0 py-0 text-danger">
+                Name is required.
+              </div>
+            
+            
+            
+            </div>
+            </ion-col>
+        
+            <ion-col size="12">
+                <ion-label>Email Address</ion-label>
+                <ion-input  formControlName="email" placeholder="Enter Email" class="{{submmited && f.email.errors ?'errorclassb':'successclassb'}}"></ion-input>
+           
+                <div *ngIf="getFormControl('email').invalid  && (getFormControl('email').dirty || getFormControl('email').touched)"
+                class="my-0 py-0 text-danger" style="font-size: 10px;">
+                <p *ngIf="getFormControl('email').errors.required" class="my-0 py-0 text-danger">
+                    Email is required.
+                </p>
+                <p *ngIf="(!getFormControl('email').errors.required )&& (getFormControl('email').errors.email)" class="my-0 py-0 text-danger">
+                  Invalid email.
+                  </p>
+                
+                
+                </div>
+             </ion-col>
+        
+            <!-- <ion-col size="12">
+                <ion-label>Phone Number</ion-label>routerLink="/auth/otp-verification"
+                <ion-input placeholder="Enter Phone Number"></ion-input>checked="true"
+            </ion-col> -->
+            <ion-col size="12">
+                <ion-label>Password</ion-label>
+                <ion-input type="password" formControlName="password" placeholder="Enter Password" class="{{submmited && f.password.errors ?'errorclassb':'successclassb'}}"></ion-input>
+                <div *ngIf="getFormControl('password').invalid  && (getFormControl('password').dirty || getFormControl('password').touched)"
+                class="my-0 py-0 text-danger" style="font-size: 10px;">
+                <p *ngIf="getFormControl('password').errors.required" class="my-0 py-0 text-danger">
+                    Password is required.
+                </p>
+                <p *ngIf="(!getFormControl('password').errors.required )&& (getFormControl('password').errors.passwordName)" class="my-0 py-0 text-danger">
+                    Password must be a minimum of 8 characters including number, Upper, Lower And 
+                    one special character.
+                  </p>
+                
+                
+                </div>
+            </ion-col>
+
+        
+            <ion-col size="12">
+                <ion-label class="custom_check">
+                    <ion-checkbox color="danger" (ionChange) = "changeCheckBox($event)" formControlName="checkData" mode="md"  slot="start"></ion-checkbox>
+                    <p class="not_account">I agree to
+                        <ion-text ><span (click)="tandc()"> Terms and Conditions</span></ion-text> and
+                        <ion-text><span (click)="pandp()">  Privacy Policy.</span>
+                        </ion-text>
+                    </p>
+                </ion-label>
+                <div *ngIf="getFormControl('checkData').invalid && submmited"
+                class="my-0 py-0 text-danger" style="font-size: 10px;">
+                <div *ngIf="getFormControl('checkData').errors.required" class="my-0 py-0 text-danger">
+                    Checked is required.
+                  </div>
+                
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-button class="cus_btn"  (click)="signupSubmit()">Sign Up</ion-button>
+    <p class="l_b">Already have an account?<span routerLink="/auth/log-in"> Log In</span></p>
+</ion-content>

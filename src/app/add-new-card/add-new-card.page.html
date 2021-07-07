@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-label>Name on card</ion-label>
+          <ion-input  placeholder="Jamy Kaneth"></ion-input>
+      </ion-col>
+        <ion-col size="12">
+            <ion-label>Card Number</ion-label>
+            <ion-input  placeholder="9034 3842 3482 6054"></ion-input>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>Valid Till</ion-label>
+          <ion-input  placeholder="09/26"></ion-input>
+      </ion-col>
+      <ion-col size="6">
+        <ion-label>CVV</ion-label>
+        <ion-input  placeholder="302"></ion-input>
+    </ion-col>
+      </ion-row>
+    </ion-grid>
+   
+</ion-content>
+<ion-footer>
+  <ion-button class="cus_btn" routerLink="/manage-payments">ADD</ion-button>
+</ion-footer>

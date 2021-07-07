@@ -1,0 +1,101 @@
+ion-header {
+    ion-toolbar {
+        --background: white;
+    }
+    span {
+        color: #00CF09;
+        font-size: 14px;
+    }
+    p {
+        font-size: 14px;
+        color: #7A797B;
+    }
+}
+
+ion-content {
+    .map {
+        img {
+            width: 100%;
+        }
+    }
+    ion-grid {
+        position: relative;
+        h4 {
+            font-size: 13px;
+            color: #4a4a4a;
+            text-align: center;
+        }
+        &:before {
+            position: absolute;
+            content: "";
+            background: #4a4a4a;
+            width: 40px;
+            height: 40px;
+            top: 33%;
+            z-index: -1;
+            left: 0;
+        }
+        &:after {
+            position: absolute;
+            content: "";
+            background: #4a4a4a;
+            width: 40px;
+            height: 40px;
+            top: 33%;
+            z-index: -1;
+            right: 0;
+        }
+        &.other_pro {
+            &:before {
+                top: 50%;
+            }
+            &:after {
+                top: 50%;
+            }
+            ion-row {
+                flex-wrap: inherit;
+                background: white;
+                overflow: scroll;
+            }
+        }
+        ion-row {
+            margin: 0 20px;
+            border-bottom: solid 1px #ddd;
+            padding: 0 0 10px;
+            background: white;
+            ion-col {
+                img {
+                    width: 100%;
+                }
+                .shop_details {
+                    h2 {
+                        font-size: 14px;
+                        color: #4a4a4a;
+                        margin: 0;
+                        font-weight: 600;
+                    }
+                    p {
+                        font-size: 9px;
+                        color: #4a4a4a;
+                        margin: 4px 0 0;
+                    }
+                    h4 {
+                        font-size: 13px;
+                        text-align: left;
+                        color: #4a4a4a;
+                        margin: 10px 0px 0;
+                    }
+                    span {
+                        font-size: 13px;
+                        background: #0076ff;
+                        display: inline-block;
+                        padding: 6px 10px;
+                        margin: 14px 0 0;
+                        color: white;
+                        border-radius: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

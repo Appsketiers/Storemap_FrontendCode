@@ -1,0 +1,45 @@
+ion-content {
+    ion-grid{
+        ion-row{
+            flex-wrap: inherit;
+    overflow: scroll;
+            ion-col{
+                ion-button{
+                    margin: 10px 15px 0 0;
+                    width: 100%;
+                    --background: #F0F0F0;
+                    color: #868686;
+                    &.active{
+                        color: white;
+                        --background: #9D4CDF;
+
+                    }
+                }
+
+            }
+        }
+    }
+ion-list{
+    ion-item{
+        span{
+            margin-right: 10px;
+            img{
+                width: 45px;
+    height: 45px;
+    border-radius: 10px;
+            }
+        }
+        ion-label{
+            white-space: inherit;
+            h4{
+                font-size: 16px;
+                font-weight: 600;
+            }
+            p{
+                font-size: 12px;
+                color: #9D4CDF;
+            }
+        }
+    }
+}
+}

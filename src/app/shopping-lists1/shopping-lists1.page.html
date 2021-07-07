@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Shopping-Lists1</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-label>List Name</ion-label>
+        <ion-searchbar></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item lines="none">
+        <ion-label class="red">All Items</ion-label>
+    </ion-item>
+   <ion-item lines="none">
+        <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <ion-label slot="end" class="added_list">
+         <p>Added</p>
+         <span><ion-icon name="trash-outline"></ion-icon></span>
+        </ion-label>
+    </ion-item>
+   <ion-item lines="none">
+    <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <span class="icon-add" slot="end"></span>
+    </ion-item>
+   <ion-item lines="none">
+    <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <span class="icon-add" slot="end"></span>
+    </ion-item>
+   <ion-item lines="none">
+    <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <ion-label slot="end" class="added_list">
+          <p>Added</p>
+          <span><ion-icon name="trash-outline"></ion-icon></span>
+         </ion-label>>
+    </ion-item>
+   <ion-item lines="none">
+    <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <span class="icon-add" slot="end"></span>
+    </ion-item>
+   <ion-item lines="none">
+    <span slot="start"><img src="assets/img/meal.png" alt=""></span>
+        <ion-label>Bananas</ion-label>
+        <span class="icon-add" slot="end"></span>
+    </ion-item>
+</ion-list>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button class="cus_btn black" routerLink="/shopping-lists">Save</ion-button>
+  <ion-button class="cus_btn" routerLink="/stores-list">Show Store</ion-button>
+</ion-footer>

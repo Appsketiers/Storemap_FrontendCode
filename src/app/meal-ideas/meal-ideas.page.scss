@@ -1,0 +1,82 @@
+ion-content {
+    ion-grid {
+        ion-row {
+            border-bottom: solid 1px #ccc;
+            padding: 0 0 10px;
+            ion-col {
+                .list_box_1 {
+                    position: relative;
+                    img {
+                        width: 100%;
+                    }
+                    h3 {
+                        font-size: 23px;
+                        color: #000;
+                        font-weight: 600;
+                        margin: 10px 0 5px;
+                    }
+                    h4 {
+                        position: absolute;
+                        top: 10px;
+                        left: 8px;
+                        z-index: 9;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 20px;
+                        margin: 0;
+                    }
+                    h5 {
+                        font-size: 15px;
+                        margin: 0;
+                        color: #51ca7b;
+                    }
+                    .rating {
+                        margin: 10px 0 0;
+                        h5 {
+                            font-size: 13px;
+                            color: #000;
+                            margin: 0 0 5px;
+                        }
+                        p {
+                            margin: 0;
+                            font-size: 13px;
+                            color: #8B8B8B;
+                        }
+                    }
+                    .m_b {
+                        display: flex;
+                        align-items: end;
+                        margin: 12px 0;
+                        justify-content: space-between;
+                        span {
+                            font-size: 12px;
+                            color: #007AFF;
+                            img {
+                                width: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ion-list {
+        ion-item {
+            span {
+                color: #8B8B8B;
+                &.green {
+                    font-size: 16px;
+                    color: #8BC34A;
+                }
+            }
+            &.reds {
+                color: #9D4CDF;
+                span {
+                    &::before {
+                        color: #9D4CDF;
+                    }
+                }
+            }
+        }
+    }
+}

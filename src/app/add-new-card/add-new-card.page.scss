@@ -1,0 +1,23 @@
+ion-content {
+
+    ion-grid {
+        padding: 15px 15px 0;
+        ion-row {
+            ion-col {
+                margin-bottom: 15px;
+                ion-label {
+                    font-size: 13px;
+                    color: #000000;
+                    margin-bottom: 10px;
+                    display: block;
+                }
+                ion-input{
+                    border: solid 1px #8C8C8C;
+                    border-radius: 10px;
+                    height: 50px;
+                    color: #8C8C8C;
+                }
+            }
+        }
+    }
+}

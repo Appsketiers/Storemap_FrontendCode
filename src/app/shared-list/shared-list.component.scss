@@ -1,0 +1,33 @@
+
+    ion-list{
+        ion-item{
+           ion-label{
+               font-size: 17px;
+               color: #000000;
+               p{
+                   font-size: 12px;
+                   display: flex;
+                   margin-top: 5px;
+                   span{
+                       margin-right: 5px;
+                       img{
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                       }
+                   }
+               }
+           }
+           .left{
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            ion-icon{
+                margin: 0 5px;
+                &.edit{
+                    color: #9D4CDF;
+                }
+            }
+           }
+        }
+    }

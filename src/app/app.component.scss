@@ -1,0 +1,36 @@
+
+.top{
+    display: flex;
+    background: #9D4CDF;
+    height: 170px;
+    padding: 30px 15px;
+    align-items: center;
+    img {
+        width: 80px;
+        height: 80px;
+        margin-right: 15px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    h4{
+        font-size: 15px;
+        margin: 0 0 8px;
+        color: white;
+    }
+}
+
+ion-list{
+    ion-item{
+        border-bottom: solid 1px #ccc;
+        ion-label{
+            font-size: 15px;
+            color: #000;
+        }
+    }
+}
+ion-menu-toggle{
+  font-size: 15px;
+  color: #9D4CDF;
+  padding: 0 15px;
+}

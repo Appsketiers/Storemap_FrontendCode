@@ -1,0 +1,66 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="user_img"  (click)="captureImage()">
+    <span > <img class="{{ornamentimage ? 'image1' :'image2'}}" src="{{ornamentimage ? ornamentimage :'assets/img/svg/user.svg'}}"></span>
+   <!-- <span class="icon-user" ></span> -->
+   <span class="icon-camera"></span>
+</div>
+  <ion-grid [formGroup]="signupForm">
+  
+      <ion-row >
+          <ion-col size="12">
+              <ion-label>Name</ion-label>
+              <ion-input  formControlName="name" placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
+              <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || getFormControl('name').touched)"
+              class="my-0 py-0 text-danger" style="font-size: 10px;">
+          
+            <div *ngIf="getFormControl('name').errors.required" class="my-0 py-0 text-danger">
+              Name is required.
+            </div>
+          
+          
+          
+          </div>
+          </ion-col>
+      
+          <ion-col size="12">
+              <ion-label>Email</ion-label>
+              <ion-input  formControlName="email" placeholder="Enter Email" class="{{submmited && f.email.errors ?'errorclassb':'successclassb'}}" readonly></ion-input>
+         
+              <div *ngIf="getFormControl('email').invalid  && (getFormControl('email').dirty || getFormControl('email').touched)"
+              class="my-0 py-0 text-danger" style="font-size: 10px;">
+              <p *ngIf="getFormControl('email').errors.required" class="my-0 py-0 text-danger">
+                  Email is required.
+              </p>
+              <p *ngIf="(!getFormControl('email').errors.required )&& (getFormControl('email').errors.email)" class="my-0 py-0 text-danger">
+                Invalid email.
+                </p>
+              
+              
+              </div>
+           </ion-col>
+      
+          <!-- <ion-col size="12">
+              <ion-label>Phone Number</ion-label>routerLink="/auth/otp-verification"
+              <ion-input placeholder="Enter Phone Number"></ion-input>checked="true"
+          </ion-col> -->
+      
+
+      
+         
+      </ion-row>
+  </ion-grid>
+ 
+   
+</ion-content>
+<ion-footer>
+  <ion-button class="cus_btn"  (click)="signupSubmit()">Update</ion-button>
+</ion-footer>

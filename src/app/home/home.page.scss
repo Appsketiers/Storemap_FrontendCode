@@ -1,0 +1,46 @@
+ion-header {
+    --background: #9D4CDF;
+    ion-toolbar {
+        --background: #9D4CDF;
+        border-bottom: solid 1px #ddd;
+    }
+}
+ion-content {
+    ion-grid {
+        ion-row {
+            ion-col {
+                .list_box_1 {
+                    position: relative;
+                    img {
+                        width: 100%;
+                    }
+                    h4 {
+                        position: absolute;
+                        top: 10px;
+                        left: 8px;
+                        z-index: 9;
+                        color: white;
+                        font-weight: bold;
+                        font-size: 21px;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+    ion-list {
+        ion-item {
+            padding: 0;
+            span {
+                margin-inline-end: 20px;
+                img {
+                    width: 20px;
+                }
+            }
+            ion-label {
+                font-size: 17px;
+                color: #000000;
+            }
+        }
+    }
+}

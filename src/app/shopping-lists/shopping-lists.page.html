@@ -1,0 +1,31 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-menu-button><span class="icon-menu"></span></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Shopping Lists</ion-title>
+       
+        <span slot="end" routerLink="/shopping-lists1"> <img src="../../assets/img/svg/add-round.svg" alt=""></span>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="top-hedaer">
+        <ion-segment [(ngModel)]="category" mode="md">
+            <ion-segment-button checked value="MyList">
+                <ion-label>My-List</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="SharedList">
+                <ion-label>Shared-List </ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    
+      </div>
+      <div [ngSwitch]="category">
+        <app-my-list *ngSwitchCase="'MyList'"></app-my-list>
+        <app-shared-list *ngSwitchCase="'SharedList'"></app-shared-list>
+      </div>
+    
+
+</ion-content>

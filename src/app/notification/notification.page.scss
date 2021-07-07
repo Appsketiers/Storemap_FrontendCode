@@ -1,0 +1,32 @@
+ion-content {
+    ion-list {
+        ion-item {
+            border-bottom:solid 1px #ccc ;
+           
+            .name {
+                margin-right: 10px;
+                display: block;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background: #9D4CDF;
+                display: flex;
+                color: white;
+                align-items: center;
+                justify-content: center;
+            }
+            ion-label {
+                white-space: inherit;
+                p {
+                    font-size: 12px;
+                    color: #000;
+                    font-weight: bold;
+                }
+                span {
+                    font-size: 10px;
+                    color: #868686;
+                }
+            }
+        }
+    }
+}

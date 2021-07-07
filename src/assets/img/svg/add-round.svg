@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
+  <g id="Icon" transform="translate(-939.5 -2486.5)">
+    <circle id="Oval" cx="11" cy="11" r="11" transform="translate(940 2487)" fill="none" stroke="#000" stroke-width="1"/>
+    <g id="Plus_Icon" data-name="Plus Icon">
+      <rect id="Line" width="1" height="11" transform="translate(950.5 2492.5)"/>
+      <rect id="Line-2" data-name="Line" width="11" height="1" transform="translate(945.5 2497.5)"/>
+    </g>
+  </g>
+</svg>

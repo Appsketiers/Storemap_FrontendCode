@@ -1,3 +1,49 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <!-- <ion-split-pane contentId="main-content"> -->
+
+
+
+    <ion-menu (ionWillOpen)="onMenuOpen()" (ionDidOpen)="onMenuOpen()" contentId="main-content" swipeGesture="false" type="overlay">
+
+      <ion-content >
+
+        <div class="top" routerLink="/account">
+          <img class="{{userDetail?.profile_image ? 'image1' :'image2'}}" src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" alt="">
+          <div class="user_name">
+          <h4> {{userDetail?.name}}</h4>
+          <h4>{{userDetail?.email}}</h4>
+          </div>
+        </div>
+
+
+        <ion-list class="mt-30 " mode="md" lines="none">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" detail="false">
+              <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
+
+              <ion-label>
+                {{p.title}} <span class="notification" slot="end"></span>
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false" class="p-0 m-0" >
+            <ion-item  detail="false" (click)="logout()" lines="none">
+              <ion-label>
+                Logout
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+
+
+      
+
+
+      </ion-content>
+    </ion-menu>
+
+
+    <ion-router-outlet id="main-content"  ></ion-router-outlet>
+  <!-- </ion-split-pane> -->
+
 </ion-app>

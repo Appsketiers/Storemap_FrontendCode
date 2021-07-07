@@ -1,0 +1,33 @@
+ion-content {
+
+    ion-list {
+        ion-item {
+            span {
+                margin-right: 10px;
+                img {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 10px;
+                }
+            }
+            ion-label {
+                white-space: inherit;
+                h4 {
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                p {
+                    font-size: 12px;
+                    color: #9d4cdf;
+                }
+            }
+        }
+    }
+    .s-content {
+        padding: 0 15px;
+        p {
+            font-size: 12px;
+            color: #868686;
+        }
+    }
+}

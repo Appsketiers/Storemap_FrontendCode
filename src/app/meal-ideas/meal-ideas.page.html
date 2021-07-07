@@ -1,0 +1,80 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Meal-Ideas</ion-title>
+        <span class="icon-search" routerLink="/search" slot="end"></span>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" routerLink="/grocery-list">
+                <div class="list_box_1">
+                    <img src="assets/img/meal.png" alt="">
+                    <!-- <h4>Grocery  List</h4> -->
+                </div>
+            </ion-col>
+            <ion-col size="6">
+                <div class="list_box_1">
+                    <h3>Street Taco</h3>
+                    <h5>Cheap and Quick Meal</h5>
+                    <div class="rating">
+                        <h5>Mexican (Authentic)</h5>
+                        <p><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p>
+                    </div>
+                    <div class="m_b">
+                        <span>115 views today</span>
+                        <span><img src="assets/img/heart.png" alt=""></span>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-list>
+        <ion-item class="reds">
+            <span slot="start" class="icon-Shuffle"></span>
+            <ion-label>All Ingredients</ion-label>
+        </ion-item>
+        <ion-item>
+            <span slot="start">1</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+        <ion-item>
+            <span slot="start">2</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+        <ion-item>
+            <span slot="start">3</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+        <ion-item>
+            <span slot="start">4</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+        <ion-item>
+            <span slot="start">5</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+        <ion-item>
+            <span slot="start">6</span>
+            <ion-label>Bananas</ion-label>
+            <span class="green">1 lbs</span>
+            <span class="icon-add" slot="end"></span>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
