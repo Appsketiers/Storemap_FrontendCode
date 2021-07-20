@@ -4,6 +4,7 @@
             <ion-menu-button><span class="icon-menu"></span></ion-menu-button>
         </ion-buttons>
         <ion-title>Account</ion-title>
+        <ion-icon slot="end" name="create-outline" (click)="editProfile()"></ion-icon>
     </ion-toolbar>
 </ion-header>
 
@@ -11,17 +12,24 @@
     <div class="s_top">
         <img src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" alt="">
 
-        <h4> {{userDetail?.name}}</h4>
+        <h4 style="margin-top: 20px;">{{userDetail?.name}}</h4>
         <h5>{{userDetail?.email}}</h5>
     </div>
     <ion-list>
-        <ion-item lines="none" (click)="editProfile()">
+        <!-- <ion-item lines="none" (click)="editProfile()">
             <ion-label>Edit Profile</ion-label>
             <span class="icon-Arrow-right" slot="end"></span>
-        </ion-item>
+        </ion-item> -->
         <ion-item lines="none" (click)="changePassword()">
             <ion-label>Change Password</ion-label>
             <span class="icon-Arrow-right" slot="end"></span>
+        </ion-item>
+
+        <ion-item  lines="none" >
+            <ion-label class="lable" (click)="notifications()">Notifications
+                <ion-badge >5</ion-badge> </ion-label>
+                
+            <ion-toggle slot="end"  checked></ion-toggle>
         </ion-item>
         
         <!-- <ion-item lines="none" routerLink="/manage-payments">
@@ -44,13 +52,10 @@
             <ion-label>Two - Factor Authentication</ion-label>
             <span class="icon-Arrow-right" slot="end"></span>
         </ion-item> -->
-        <ion-item lines="none">
-            <ion-label>Notifications</ion-label>
-            <ion-toggle slot="end" color="danger" name="blueberry" checked></ion-toggle>
-        </ion-item>
+     
         <ion-item lines="none">
             <ion-label>Two - Factor Authentication</ion-label>
-            <ion-toggle slot="end" (click) = "changeCheckBox($event)" color="danger" [(ngModel)]="two_factor" [ngModelOptions]="{standalone: true}" name="blueberry" ></ion-toggle>
+            <ion-toggle slot="end" (click) = "changeCheckBox($event)" [(ngModel)]="two_factor" [ngModelOptions]="{standalone: true}" ></ion-toggle>
         </ion-item>
     </ion-list>
 

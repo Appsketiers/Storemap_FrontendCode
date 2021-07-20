@@ -212,7 +212,7 @@ export class LogInPage implements OnInit {
        
       }
      
-      this.helper.presentToast(res.message);
+     // this.helper.presentToast(res.message); (two times)
      // debugger
     }, err => {
       console.log(err)

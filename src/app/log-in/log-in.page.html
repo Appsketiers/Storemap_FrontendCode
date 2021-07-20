@@ -2,7 +2,7 @@
   <ion-toolbar class="px-0 mx-0">
     <div class="top_head">
       <h2>Log In</h2>
-      <p>Enter your credentials to proceed</p>
+      <p>Proceed to Log-In to the Application</p>
       </div>
   </ion-toolbar>
 </ion-header>
@@ -42,7 +42,8 @@
     <ion-text routerLink="/auth/forgot-password">Forgot your password? - Get help Signing in.</ion-text>
     <ion-grid class="py-0 my-0" > <ion-row class="py-0 my-0" >
       <ion-col class="py-0 my-0" size="12">
-        <ion-label ><ion-checkbox color="danger" (ionChange) = "changeCheckBox($event)" mode="md"  slot="start"></ion-checkbox> <span style="margin-top: -10px;"> Remember Me.</span></ion-label>
+        <ion-label style="display: flex;
+        align-items: center;" ><ion-checkbox color="danger" (ionChange) = "changeCheckBox($event)" mode="md"  slot="start"></ion-checkbox> <span style="margin-left: 5px;"> Remember Me.</span></ion-label>
         
        
       

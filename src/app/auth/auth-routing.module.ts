@@ -30,13 +30,14 @@ const routes: Routes = [
         path: 'otp-verification',
         loadChildren: () => import('../otp-verification/otp-verification.module').then( m => m.OtpVerificationPageModule)
       },
-      {
-        path: 'questionnaire',
-        loadChildren: () => import('../questionnaire/questionnaire.module').then( m => m.QuestionnairePageModule)
-      },{
+     {
         path: 'reset-password',
         loadChildren: () => import('./../reset-password/reset-password.module').then( m => m.ResetPasswordPageModule)
       },
+      {
+        path: 'account',
+        loadChildren: () => import('./../account/account.module').then( m => m.AccountPageModule)
+      }
     ]
   }
 ];

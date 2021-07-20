@@ -4,7 +4,7 @@ import { HelperService } from './providers/helper.service';
 import { Device } from '@ionic-native/device/ngx';
 import { environment } from './../environments/environment';
 import { BackbuttonhandalService } from './providers/backbuttonhandal.service';
-import { Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AlertController } from '@ionic/angular';
@@ -16,7 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class AppComponent {
   userDetail: any;
   imagebaseurl: any;
-  constructor(private helper: HelperService, private splashScreen: SplashScreen,public alertController: AlertController, private backbuttonhandalService: BackbuttonhandalService, private platform: Platform, private device: Device, private router: Router) {
+  constructor(public menuCtrl:MenuController,private helper: HelperService, private splashScreen: SplashScreen,public alertController: AlertController, private backbuttonhandalService: BackbuttonhandalService, private platform: Platform, private device: Device, private router: Router) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
   }
@@ -114,6 +114,9 @@ export class AppComponent {
   
     })
    
+  }
+  closeMenu(){
+    this.menuCtrl.close()
   }
 }
 

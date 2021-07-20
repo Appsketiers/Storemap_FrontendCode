@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>blank</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="background-color:plum;">
+  <ion-row *ngFor="let item of [].constructor(row) let i = index">
+    <ion-col
+      style="height: 30px"
+      *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''" >
+      <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
+       <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''"/>
+      </div> 
+    </ion-col>
+  </ion-row>
+</div>
+</ion-content>

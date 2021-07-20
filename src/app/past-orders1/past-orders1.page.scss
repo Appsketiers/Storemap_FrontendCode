@@ -1,6 +1,8 @@
 ion-content {
     ion-list {
         ion-item {
+            display: flex;
+            align-items: center;
             border-bottom: solid 1px #ddd;
             margin: 0 15px 15px;
             --padding-start:0;
@@ -26,4 +28,15 @@ ion-content {
             }
         }
     }
+}
+.quantity{
+    color: gray;
+    font-size: 15px;
+    float: right;
+    display: flex;
+    
+}
+
+.price{
+    font-size: 16px;
 }

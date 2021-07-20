@@ -134,4 +134,8 @@ export class AccountPage implements OnInit {
       });
     })
   }
+
+  notifications(){
+     this.router.navigate(['/notification'])
+  }
 }

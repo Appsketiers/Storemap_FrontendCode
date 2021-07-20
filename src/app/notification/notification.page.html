@@ -1,12 +1,15 @@
-<ion-header>
+<ion-header class="header1">
 
   <ion-toolbar>
 
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Notifications</ion-title>
+    <ion-label class="text" slot="end">CLEAR</ion-label>
   </ion-toolbar>
+
+  
 </ion-header>
 
 <ion-content>
@@ -23,7 +26,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">
+        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -39,7 +42,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">
+        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -55,7 +58,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">
+        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -71,7 +74,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">
+        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -87,7 +90,7 @@
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option (click)="unread(item)">
+        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>

@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HelperService } from '../providers/helper.service';
-import { Router } from '@angular/router';
 @Component({
-  selector: 'app-shop',
-  templateUrl: './shop.page.html',
-  styleUrls: ['./shop.page.scss'],
+  selector: 'app-blank',
+  templateUrl: './blank.page.html',
+  styleUrls: ['./blank.page.scss'],
 })
-export class ShopPage implements OnInit {
+export class BlankPage implements OnInit {
   row: any;
   col: any;
   request;
   image_url = environment.image_baseurl
-  constructor(private helper: HelperService, private router: Router) {
+  constructor(private helper: HelperService) {
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res };
       this.helper.getMethod('store-blueprint', body, (res) => {
@@ -23,9 +22,8 @@ export class ShopPage implements OnInit {
         console.log(this.row, this.col);
       });
     });
-   }
-
-   getData(i, j) {
+  }
+  getData(i, j) {
     if(this.request){
       return this.request.arrangement.findIndex((el)=>{
         return (el.row == i && el.col == j)
@@ -49,10 +47,5 @@ export class ShopPage implements OnInit {
       return '';
     } 
   }
-  close(){
-this.router.navigate(['/my-stores'])
-  }
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

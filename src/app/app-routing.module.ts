@@ -147,7 +147,14 @@ const routes: Routes = [
     path: 'payment-sucess',
     loadChildren: () => import('./payment-sucess/payment-sucess.module').then( m => m.PaymentSucessPageModule)
   },
-  
+  {
+    path: 'questionnaire',
+    loadChildren: () => import('./questionnaire/questionnaire.module').then( m => m.QuestionnairePageModule)
+  },
+  {
+    path: 'blank',
+    loadChildren: () => import('./blank/blank.module').then( m => m.BlankPageModule)
+  },
 
 ];
 

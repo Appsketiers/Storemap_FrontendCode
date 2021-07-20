@@ -18,13 +18,15 @@ ion-content {
         }
     }
     ion-textarea {
-        background: #e7e7e7;
+        background: none;
+        border: 1px solid black;
         font-size: 14px;
         color: #686868;
         border-radius: 7px;
         margin-bottom: 30px;
         font-weight: bold;
         --padding-start: 16px;
+  
     }
     .upload_img {
         h4 {

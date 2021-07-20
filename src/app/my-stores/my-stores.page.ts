@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-my-stores',
   templateUrl: './my-stores.page.html',
@@ -9,7 +9,8 @@ import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 })
 export class MyStoresPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController,
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,5 +22,7 @@ export class MyStoresPage implements OnInit {
      
     return await modal.present();
     }
-
+    ratings(){
+this.router.navigate(['/review-rating'])
+    }
 }

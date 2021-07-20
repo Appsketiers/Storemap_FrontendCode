@@ -1,34 +1,10 @@
 <ion-list>
-  <ion-item detail="false" routerLink="/grocery-list" lines="inset">
-    <ion-label>Shopping List </ion-label>
+  <ion-item *ngFor="let item of list " detail="false"  lines="inset">
+    <ion-label (click)="shoping_list(item.id)">{{item.title}} </ion-label>
     <ion-label slot="end" class="left">
-      <ion-icon name="trash-outline"></ion-icon>
+      <ion-icon (click)="remove(item.id)" name="trash-outline"></ion-icon>
       <span class="icon-Arrow-right"></span>
 
     </ion-label>
   </ion-item>
-  <ion-item detail="false" routerLink="/grocery-list" lines="inset">
-    <ion-label>Kitchen List </ion-label>
-    <ion-label slot="end" class="left">
-      <ion-icon name="trash-outline"></ion-icon>
-      <span class="icon-Arrow-right"></span>
-
-    </ion-label>
-  </ion-item>
-  <ion-item detail="false" routerLink="/grocery-list" lines="inset">
-    <ion-label>Store List </ion-label>
-    <ion-label slot="end" class="left">
-      <ion-icon name="trash-outline"></ion-icon>
-      <span class="icon-Arrow-right"></span>
-
-    </ion-label>
-  </ion-item>
-  <ion-item detail="false" routerLink="/grocery-list" lines="inset">
-    <ion-label>Food List </ion-label>
-    <ion-label slot="end" class="left">
-      <ion-icon name="trash-outline"></ion-icon>
-      <span class="icon-Arrow-right"></span>
-
-    </ion-label>
-  </ion-item>
-</ion-list>
+</ion-list> 

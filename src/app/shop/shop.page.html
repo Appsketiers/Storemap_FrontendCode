@@ -1,15 +1,23 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar style="display: flex; align-items: center;">
     <span slot="start">In-Store Shop at </span>
     <ion-title><img src="assets/img/publix.png" alt=""></ion-title>
-    <p slot="end">Exit Shop <span class="icon-close"></span></p>
+    <p slot="end" (click)="close()">Exit Shop <span class="icon-close"></span></p>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <div class="map">
-    <img src="assets/img/shop.png" alt="">
+    <ion-row *ngFor="let item of [].constructor(row) let i = index">
+      <ion-col
+        style="height: 30px"
+        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''" >
+        <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
+         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''"/>
+        </div> 
+      </ion-col>
+    </ion-row>
   </div>
   <ion-grid>
     <ion-row>
@@ -22,7 +30,7 @@
           <h2>Aisle 7 - Back </h2>
           <p>Also see Aisle 7 - End cap</p>
           <h4>Doritos Nacho Cheese Tortilla Chips, Party Size, 15oz Bag</h4>
-          <span routerLink="/payment-sucess">Checkout</span>
+          <span routerLink="/payment-sucess">CHECK OUT</span>
 
         </div>
       </ion-col>

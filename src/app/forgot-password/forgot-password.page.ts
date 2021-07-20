@@ -53,6 +53,7 @@ export class ForgotPasswordPage implements OnInit {
      
       
     }
+    
     this.helper.postMethod('forgot-password', body, async res => {
       console.log(res)
       //alert("test "+JSON.stringify(res));

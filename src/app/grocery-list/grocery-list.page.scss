@@ -1,5 +1,7 @@
+
+
 ion-content {
-    ion-grid {
+        ion-grid {
         ion-row {
             border-bottom: solid 1px #ccc;
             padding: 0 0 10px;
@@ -10,7 +12,7 @@ ion-content {
                         width: 100%;
                     }
                     h3 {
-                        font-size: 23px;
+                        font-size: 20px;
                         color: #000;
                         font-weight: 600;
                     }
@@ -44,5 +46,23 @@ ion-content {
     ion-label.red {
         color: #9D4CDF;
         font-weight: bold;
+        
     }
+
+    .img{
+        height: 40px;
+        width: 40px;
+    }
+
+    ion-icon{
+height: 15px;
+width:15px;
+    }
+
+
+}
+
+.share_btn{
+    margin-right:5px;
+    color: #fff;
 }

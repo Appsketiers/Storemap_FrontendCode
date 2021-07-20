@@ -1,7 +1,7 @@
-<ion-header>
+<ion-header class="header1">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Safety-Awareness</ion-title>
   </ion-toolbar>
@@ -18,15 +18,7 @@
     </ion-label>
   </ion-item>
 </ion-list>
-<div class="s-content">
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
-  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas, dicta, repellat, tempora animi harum dolore fugit iure quod esse consectetur distinctio non magnam. Eaque dignissimos a distinctio officiis magni nesciunt.</p>
+<div class="s-content" [innerHtml]="data">
+  
 </div>  
 </ion-content>

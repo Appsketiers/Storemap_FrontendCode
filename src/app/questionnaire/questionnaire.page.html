@@ -1,53 +1,26 @@
-<ion-header>
+<ion-header class="header1"> 
     <ion-toolbar>
        
         <ion-buttons slot="start">
             <ion-menu-button><span class="icon-menu"></span></ion-menu-button>
         </ion-buttons>
-        <ion-title>Questionnaire</ion-title>
+        <ion-title >Questionnaire</ion-title>
+
+        <ion-label class="text" slot="end" (click)="skip()">SKIP</ion-label>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list>
-        <ion-item>
-            <ion-label>Vegetarian</ion-label>
-            <ion-checkbox mode="md" checked slot="end"></ion-checkbox>
+        <ion-item *ngFor="let list of checkboxlist">
+            <ion-label>{{list.title}}</ion-label>
+            <ion-checkbox (ionChange)="checked($event, list.id)"></ion-checkbox>
         </ion-item>
-        <ion-item>
-            <ion-label>Vegan</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-
-        <ion-item>
-            <ion-label>Allergies</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Gluten</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Inexpensive</ion-label>
-            <ion-checkbox mode="md" checked slot="end"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Quality Products</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Regular diet</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-            <ion-label>Low sodium diet</ion-label>
-            <ion-checkbox mode="md" slot="end"></ion-checkbox>
-        </ion-item>
-    </ion-list>
+       </ion-list>
 
 </ion-content>
 
-<ion-footer>
-    <ion-button class="cus_btn" routerLink="/home">Next</ion-button>
+<ion-footer (click) = "next()">
+    <ion-button class="cus_btn" >Next</ion-button>
 
 </ion-footer>

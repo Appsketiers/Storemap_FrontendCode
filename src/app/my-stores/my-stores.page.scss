@@ -19,11 +19,12 @@ ion-content {
         white-space: inherit;
         margin: 0;
         h5 {
-          font-size: 14px;
+          font-size: 20px;
+          font-weight: bold;
         }
         h6 {
           font-size: 12px;
-          margin: 3px 0 3px;
+          margin: 10px 0 3px;
         }
         p {
           &.loc {

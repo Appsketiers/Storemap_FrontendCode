@@ -7,7 +7,7 @@
 
       <ion-content >
 
-        <div class="top" routerLink="/account">
+        <div class="top" routerLink="/auth/account" (click)="closeMenu()">
           <img class="{{userDetail?.profile_image ? 'image1' :'image2'}}" src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" alt="">
           <div class="user_name">
           <h4> {{userDetail?.name}}</h4>

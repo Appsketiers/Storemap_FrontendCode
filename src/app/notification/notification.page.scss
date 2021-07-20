@@ -8,7 +8,7 @@ ion-content {
                 display: block;
                 width: 45px;
                 height: 45px;
-                border-radius: 50%;
+                border-radius: 30%;
                 background: #9D4CDF;
                 display: flex;
                 color: white;
@@ -29,4 +29,11 @@ ion-content {
             }
         }
     }
+}
+
+.text{
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    
 }

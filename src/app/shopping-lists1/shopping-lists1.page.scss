@@ -1,4 +1,10 @@
 ion-content {
+    .errorclassb{
+        border: solid 1px #ce1818;
+    }
+    .successclassb{
+        border: solid 1px #8C8C8C;
+    }
     ion-grid {
         ion-row {
             ion-col {
@@ -14,6 +20,23 @@ ion-content {
                     margin-top: 12px;
                     --padding-end: 0;
                     color: #000;
+                }
+
+                ion-input{
+                    
+                        color: #000;
+                        --box-shadow: none;
+                        border: solid 1px #ccc;
+                        border-radius: 7px;
+                        --padding-top: 0;
+                        --padding-bottom: 0;
+                        padding: 0 9px;
+                        width: 100%;
+                        margin-top: 12px;
+                        --padding-end: 0;
+                        color: #000;
+                        height: 50px;
+                      
                 }
             }
         }
@@ -63,4 +86,8 @@ ion-footer{
             --background: black;
         }
     }
+}
+
+ion-icon{
+color: #fff;
 }

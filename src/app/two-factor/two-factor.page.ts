@@ -152,8 +152,8 @@ console.log(this.otpForm.controls['checkData'].value);
     this.helper.postMethod('complete-two-factor', body, res => {
       console.log(res)
     if(res.status){
-      
-      this.router.navigate(["/main-home"])
+      debugger
+      this.router.navigate(["/questionnaire"])
     }
    
       this.helper.presentToast(res.message);
