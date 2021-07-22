@@ -22,9 +22,9 @@ export class NotificationPage implements OnInit {
 
   }
 
-  delete_notification(id){
+  delete_notification(id, type){
     this.helper.getByKeynew('storetoken', (res) => {
-      let body: any = { token: res, type:'SINGLE', notification_id: id };
+      let body: any = { token: res, type: type, notification_id: id };
       this.helper.postMethod('delete-notification', body, (res) => {
         console.log(res);
        

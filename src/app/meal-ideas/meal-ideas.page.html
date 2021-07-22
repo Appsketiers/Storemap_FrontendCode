@@ -13,16 +13,16 @@
         <ion-row>
             <ion-col size="6" routerLink="/grocery-list">
                 <div class="list_box_1">
-                    <img src="assets/img/meal.png" alt="">
+                    <img src={{image_url}}{{image}}>
                     <!-- <h4>Grocery  List</h4> -->
                 </div>
             </ion-col>
             <ion-col size="6">
                 <div class="list_box_1">
-                    <h3>Street Taco</h3>
-                    <h5>Cheap and Quick Meal</h5>
+                    <h3>{{title}}</h3>
+                    <h5>{{heading}}</h5>
                     <div class="rating">
-                        <h5>Mexican (Authentic)</h5>
+                        <h5>{{authentic}}</h5>
                         <p><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p>
                     </div>
                     <div class="m_b">
@@ -30,8 +30,9 @@
                         </div>
 
                     <div class="a_b">
-                        <span>https://magicpin.in//taco</span>
-                        <span><img src="assets/img/heart.png" alt=""></span>
+                        <span>{{credit_link}}</span>
+                        <ion-icon *ngIf="!liked" name="heart-outline" (click)="like(1)"></ion-icon>  
+                        <ion-icon style="color: #9D4CDF;" *ngIf="liked" name="heart" (click)="like(0)"></ion-icon> 
                     </div>
                 </div>
             </ion-col>
@@ -41,7 +42,7 @@
             <ion-col size="12">
                 <h6>Description</h6>
                 <p>
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
+                    {{description}} 
                 </p>
             </ion-col>
         </ion-row>
@@ -52,42 +53,13 @@
             <span slot="start" class="icon-Shuffle"></span>
             <ion-label>All Ingredients</ion-label>
         </ion-item>
-        <ion-item>
-            <span slot="start">1</span>
-            <ion-label>Bananas</ion-label>
+        <ion-item *ngFor="let item of ingredient_list let i = index">
+            <span slot="start">{{i+1}}</span>
+            <ion-label>{{item.title}}</ion-label>
             <span class="green">1 lbs</span>
             <span class="icon-add" slot="end"></span>
         </ion-item>
-        <ion-item>
-            <span slot="start">2</span>
-            <ion-label>Bananas</ion-label>
-            <span class="green">1 lbs</span>
-            <span class="icon-add" slot="end"></span>
-        </ion-item>
-        <ion-item>
-            <span slot="start">3</span>
-            <ion-label>Bananas</ion-label>
-            <span class="green">1 lbs</span>
-            <span class="icon-add" slot="end"></span>
-        </ion-item>
-        <ion-item>
-            <span slot="start">4</span>
-            <ion-label>Bananas</ion-label>
-            <span class="green">1 lbs</span>
-            <span class="icon-add" slot="end"></span>
-        </ion-item>
-        <ion-item>
-            <span slot="start">5</span>
-            <ion-label>Bananas</ion-label>
-            <span class="green">1 lbs</span>
-            <span class="icon-add" slot="end"></span>
-        </ion-item>
-        <ion-item>
-            <span slot="start">6</span>
-            <ion-label>Bananas</ion-label>
-            <span class="green">1 lbs</span>
-            <span class="icon-add" slot="end"></span>
-        </ion-item>
+
     </ion-list>
 
 </ion-content>

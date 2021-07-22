@@ -91,3 +91,15 @@ ion-footer{
 ion-icon{
 color: #fff;
 }
+
+.cus1{
+    display: block;
+    --background: #9D4CDF;
+    --border-radius: 10px;
+    --color: white;
+    --box-shadow: none;
+    margin: 10px 15px;
+    font-family: 'SF UI Text Semibold';
+    height: 50px;
+    opacity: 0.5;
+}

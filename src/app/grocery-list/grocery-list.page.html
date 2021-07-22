@@ -33,41 +33,14 @@
             
             <ion-label class="red">All Items</ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item *ngFor="let item of ingredients">
             
             <ion-label>
-                <span slot="start"><img class="img" src="assets/img/cover.png" alt=""></span>
-                Bananas</ion-label>
+                <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} alt=""></span>
+                {{item.name}}</ion-label>
                 <ion-icon slot="end" name="trash-outline"></ion-icon>
         </ion-item>
-        <ion-item>
-            
-            <ion-label>
-                <span slot="start"><img class="img" src="assets/img/cover.png" alt=""></span>
-                Frozen Strawberries</ion-label>
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
-        </ion-item>
-        <ion-item>
-            
-            <ion-label>
-                <span slot="start"><img class="img" src="assets/img/cover.png" alt=""></span>
-                Almond Milk</ion-label>
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
-        </ion-item>
-        <ion-item>
-            
-            <ion-label>
-                <span slot="start"><img class="img" src="assets/img/cover.png" alt=""></span>
-                Spinach</ion-label>
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
-        </ion-item>
-        <ion-item>
-            
-            <ion-label>
-                <span slot="start"><img class="img" src="assets/img/cover.png" alt=""></span>
-                Honey</ion-label>
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
-        </ion-item>
+
        
     </ion-list>
 

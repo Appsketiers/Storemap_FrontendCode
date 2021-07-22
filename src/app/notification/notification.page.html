@@ -1,15 +1,13 @@
 <ion-header class="header1">
-
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Notifications</ion-title>
-    <ion-label class="text" slot="end">CLEAR</ion-label>
+    <ion-label class="text" slot="end" (click)="delete_notification('','ALL')"
+      >CLEAR</ion-label
+    >
   </ion-toolbar>
-
-  
 </ion-header>
 
 <ion-content>
@@ -19,14 +17,13 @@
       <ion-item lines="none">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           <span>22-02-2020 | 12.00 pm</span>
-
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
+        <ion-item-option style="--background: #9d4cdf" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -35,14 +32,13 @@
       <ion-item lines="none">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           <span>22-02-2020 | 12.00 pm</span>
-
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
+        <ion-item-option style="--background: #9d4cdf" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -51,14 +47,13 @@
       <ion-item lines="none">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           <span>22-02-2020 | 12.00 pm</span>
-
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
+        <ion-item-option style="--background: #9d4cdf" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -67,14 +62,13 @@
       <ion-item lines="none">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           <span>22-02-2020 | 12.00 pm</span>
-
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
+        <ion-item-option style="--background: #9d4cdf" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -83,18 +77,16 @@
       <ion-item lines="none">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
           <span>22-02-2020 | 12.00 pm</span>
-
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9D4CDF" (click)="unread(item)">
+        <ion-item-option style="--background: #9d4cdf" (click)="unread(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-
 </ion-content>

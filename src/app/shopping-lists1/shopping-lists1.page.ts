@@ -19,7 +19,8 @@ export class ShoppingLists1Page implements OnInit {
   data: any = [];
   page: any = 1;
   limit: any = 10;
-  image_url=environment.image_baseurl;
+  image_url = environment.image_baseurl;
+  saved: any= false;
   constructor(
     private formBuilder: FormBuilder,
     private helper: HelperService,
@@ -27,7 +28,7 @@ export class ShoppingLists1Page implements OnInit {
   ) {
     this.toggled = false;
   }
-
+ 
   ngOnInit() {
     this.createform();
     this.shoping_item_list(false, '');
@@ -38,16 +39,17 @@ export class ShoppingLists1Page implements OnInit {
       let body: any = {
         token: res,
         limit: this.limit,
-        page: this.page
+        page: this.page,
       };
       this.helper.postMethod('item-list', body, (res) => {
         console.log(res);
         for (let i = 0; i < res.data.data.length; i++) {
           this.data.push(res.data.data[i]);
+          this.data[i].added = false;
         }
         if (isFirstLoad) event.target.complete();
         this.page++;
-        console.log(res);
+        console.log('data',this.data);
       });
     });
   }
@@ -56,9 +58,9 @@ export class ShoppingLists1Page implements OnInit {
     this.shoping_item_list(true, event);
   }
 
-  additem(id) {
-    this.added = true;
-    this.add = false;
+  add_item(id,i) {
+  
+    this.data[i].added=true;
     this.items.push(id);
   }
   createform() {
@@ -66,9 +68,8 @@ export class ShoppingLists1Page implements OnInit {
       name: ['', Validators.required],
     });
   }
-  removeitem(id) {
-    this.added = false;
-    this.add = true;
+  remove_item(id,i) {
+    this.data[i].added=false;
     let index = this.items.findIndex((el) => {
       return el == id;
     });
@@ -97,14 +98,17 @@ export class ShoppingLists1Page implements OnInit {
       let body: any = {
         token: res,
         list_name: this.form.controls['name'].value,
-        ingredients: this.items.toString(),
+        ingredients: JSON.stringify(this.items)
       };
-      debugger;
+      
       this.helper.postMethod('create-shopping-list', body, (res) => {
         console.log(res);
+        if (res.status == true) {
+          this.helper.Alert('Shopping List successfully created.');
+          this.saved = true;
+        }
       });
     });
-    this.router.navigate(['/shopping-lists']);
   }
 
   public toggle(): void {

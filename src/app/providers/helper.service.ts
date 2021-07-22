@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage-angular';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AlertController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class HelperService {
   private _storage: Storage ;
   private user$: BehaviorSubject<any> = new BehaviorSubject(null);
   public userDetail = this.user$.asObservable();
-  constructor(private http: HttpClient, public toastController: ToastController, private router: Router, private nativeStorage: NativeStorage, private storage: Storage, public loadingController: LoadingController) {
+  constructor(private alertCtrl: AlertController,private http: HttpClient, public toastController: ToastController, private router: Router, private nativeStorage: NativeStorage, private storage: Storage, public loadingController: LoadingController) {
     this.init();
   }
   async init() {
@@ -294,4 +295,19 @@ this.nativeStorage.remove('storetoken')
         }
       );
   }
+
+  async Alert(msg: string){
+		let alert = await this.alertCtrl.create({
+		  header: msg,
+		  buttons: [
+			{
+			  text: "Ok",
+			  handler: data => {
+				
+			  }
+			}
+		  ]
+		});
+		alert.present();
+	  }
 }

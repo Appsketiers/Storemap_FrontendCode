@@ -12,14 +12,7 @@ export class MyListComponent implements OnInit {
   constructor(private helper: HelperService, public alertController: AlertController, private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.helper.getByKeynew('storetoken', (res) => {
-      let body: any = { token: res, list_type: 'MY' };
-      this.helper.postMethod('shopping-list', body, (res) => {
-        console.log(res);
-        this.list = res.data;
-        console.log(this.list);
-      });
-    });
+this.shoping_list_items();
   }
 
   remove(id) {
@@ -43,14 +36,11 @@ export class MyListComponent implements OnInit {
                 let body: any = { token: res, shopping_list_id: id };
                 this.helper.postMethod('delete-shopping-list', body, (res) => {
                   console.log(res);
+                  if(res.status==true){
+                    this.shoping_list_items();
+                  }
                 });
-                let body1: any = { token: res, list_type: 'MY' };
-                this.helper.postMethod('shopping-list', body1, (res) => {
-                  console.log(res);
-                  this.list = res.data;
-                  console.log(this.list);
-                });
-
+           
               }
             }
           ]
@@ -71,5 +61,15 @@ export class MyListComponent implements OnInit {
     this.router.navigate(["/grocery-list"],  navigationExtras);
   }
 
+  shoping_list_items(){
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = { token: res, list_type: 'MY' };
+      this.helper.postMethod('shopping-list', body, (res) => {
+        console.log(res);
+        this.list = res.data;
+        console.log(this.list);
+      });
+    });
+  }
 
 }

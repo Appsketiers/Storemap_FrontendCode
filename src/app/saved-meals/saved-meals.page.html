@@ -9,68 +9,32 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item>
-            <ion-label>Meal 1</ion-label>
-            <ion-icon name="chevron-up-outline" slot="end"></ion-icon>
+        <ion-item *ngFor="let item of data let i = index" (click)="open_ingredient(i)">
+            <ion-label>{{item.title}}</ion-label>
+            <ion-icon name="chevron-up-outline" slot="end" *ngIf="open_ingredient_list"></ion-icon>
+            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!open_ingredient_list"></ion-icon>
         </ion-item>
-        <ion-list>
+        <ion-list *ngIf="open_ingredient_list">
             <ion-item class="reds">
                 <span slot="start" class="icon-Shuffle"></span>
                 <ion-label>All Ingredients</ion-label>
             </ion-item>
-            <ion-item>
-                <span slot="start">1</span>
-                <ion-label>Bananas</ion-label>
+            <ion-item *ngFor="let ingredient of ingredient_list let i =index">
+                <span slot="start">{{i+1}}</span>
+                <ion-label>{{ingredient.title}}</ion-label>
                 <span class="green">1 lbs</span>
                 <span class="icon-add" slot="end"></span>
             </ion-item>
-            <ion-item>
-                <span slot="start">2</span>
-                <ion-label>Bananas</ion-label>
-                <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
-            </ion-item>
-            <ion-item>
-                <span slot="start">3</span>
-                <ion-label>Bananas</ion-label>
-                <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
-            </ion-item>
-            <ion-item>
-                <span slot="start">4</span>
-                <ion-label>Bananas</ion-label>
-                <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
-            </ion-item>
-            <ion-item>
-                <span slot="start">5</span>
-                <ion-label>Bananas</ion-label>
-                <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
-            </ion-item>
-            <ion-item>
-                <span slot="start">6</span>
-                <ion-label>Bananas</ion-label>
-                <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
-            </ion-item>
+
         </ion-list>
-        <ion-item>
-            <ion-label>Meal 1</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <ion-label>Meal 1</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <ion-label>Meal 1</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
+
     </ion-list>
 
 
-
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 
 
 

@@ -155,6 +155,10 @@ const routes: Routes = [
     path: 'blank',
     loadChildren: () => import('./blank/blank.module').then( m => m.BlankPageModule)
   },
+  {
+    path: 'meal-ideas-list',
+    loadChildren: () => import('./meal-ideas-list/meal-ideas-list.module').then( m => m.MealIdeasListPageModule)
+  },
 
 ];
 
