@@ -9,6 +9,7 @@ import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,7 @@ export class HelperService {
   private _storage: Storage ;
   private user$: BehaviorSubject<any> = new BehaviorSubject(null);
   public userDetail = this.user$.asObservable();
-  constructor(private alertCtrl: AlertController,private http: HttpClient, public toastController: ToastController, private router: Router, private nativeStorage: NativeStorage, private storage: Storage, public loadingController: LoadingController) {
+  constructor(private alertCtrl: AlertController,private http: HttpClient, public toastController: ToastController, private router: Router, private nativeStorage: NativeStorage, private storage: Storage, public loadingController: LoadingController, private geolocation: Geolocation) {
     this.init();
   }
   async init() {
@@ -296,18 +297,35 @@ this.nativeStorage.remove('storetoken')
       );
   }
 
-  async Alert(msg: string){
+  async Alert(msg: string, url){
 		let alert = await this.alertCtrl.create({
 		  header: msg,
 		  buttons: [
 			{
 			  text: "Ok",
 			  handler: data => {
-				
+          if(url===''){
+
+          }
+          else{
+            this.router.navigate([url]);
+          }
+         
 			  }
 			}
 		  ]
 		});
 		alert.present();
 	  }
+
+    get_location(data){
+       this.geolocation.getCurrentPosition().then((resp) => {
+        // resp.coords.latitude
+        // resp.coords.longitude
+        data(resp)
+       }).catch((error) => {
+         console.log('Error getting location', error);
+       });
+       return 
+    }
 }

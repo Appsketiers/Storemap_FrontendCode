@@ -15,14 +15,13 @@
             <ion-col size="6" routerLink="/grocery-list">
                 <div class="list_box_1">
                     <img src="assets/img/grocery-list.png" alt="">
-                    <h4>Grocery 
-                        <br>List</h4>
+                    <h4>{{title}}</h4>
                 </div>
             </ion-col>
             <ion-col size="6">
                 <div class="list_box_1">
-                    <h3>Grocery List</h3>
-                    <p routerLink="/grocery-list-share"> Search</p>
+                    <h3>{{title}}</h3>
+                    <p routerLink="/search"> Search</p>
                 </div>
             </ion-col>
         </ion-row>
@@ -37,8 +36,8 @@
             
             <ion-label>
                 <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} alt=""></span>
-                {{item.name}}</ion-label>
-                <ion-icon slot="end" name="trash-outline"></ion-icon>
+                {{item.name}} ({{item.quantity}})</ion-label>
+                <ion-icon slot="end" name="trash-outline" (click)="delete_ingredient(item.id)"></ion-icon>
         </ion-item>
 
        
@@ -47,6 +46,6 @@
 </ion-content>
 
 <ion-footer>
-    <ion-button class="cus_btn" routerLink="/stores-list">SHOW STORE</ion-button>
+    <ion-button class="cus_btn" (click)="show_store()">SHOW STORE</ion-button>
 
 </ion-footer>

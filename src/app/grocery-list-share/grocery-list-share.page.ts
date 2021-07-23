@@ -15,25 +15,26 @@ export class GroceryListSharePage implements OnInit {
   page: any = 1;
   public Checked = [];
   list_id: any;
-  constructor(private router: Router, private route: ActivatedRoute,
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private helper: HelperService // private mylist:MyListComponent
   ) {
     // console.log(this.mylist.list);
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.list_id =params["id"];
+    this.route.queryParams.subscribe((params) => {
+      this.list_id = params['id'];
       console.log(this.list_id);
     });
-    
-    this.get_users(false, '');
 
+    this.get_users(false, '');
   }
 
   get_users(isFirstLoad, event) {
     this.helper.getByKeynew('storetoken', (res) => {
-      let body: any = { token: res, limit: this.limit, page:this.page};
+      let body: any = { token: res, limit: this.limit, page: this.page };
       this.helper.postMethod('get-users', body, (res) => {
         console.log(res);
         for (let i = 0; i < res.data.data.length; i++) {
@@ -70,13 +71,26 @@ export class GroceryListSharePage implements OnInit {
     return;
   }
 
-  share(){
+  share() {
+    if(this.Checked.length<1){
+      this.helper.Alert('Please Select Contact','');
+    }
+    else{
     this.helper.getByKeynew('storetoken', (res) => {
-      debugger
-      let body: any = { token: res, shopping_list_id: this.list_id, user_id: JSON.stringify(this.Checked) };
+      let body: any = {
+        token: res,
+        shopping_list_id: this.list_id,
+        user_id: JSON.stringify(this.Checked),
+      };
       this.helper.postMethod('share-shopping-list', body, (res) => {
         console.log(res);
+        if (res.status == true) {
+          this.helper.Alert(res.message, '/shopping-lists');
+        } else {
+          this.helper.Alert('Fail', '');
+        }
       });
     });
+  }
   }
 }

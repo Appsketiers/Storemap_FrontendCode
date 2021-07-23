@@ -9,8 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class GroceryListPage implements OnInit {
   list_id: any;
-  ingredients:any;
+  ingredients:any=[];
   image_url=environment.image_baseurl;
+  title: any;
+  update:any=[];
   constructor(
     private helper: HelperService,
     private router: Router,
@@ -41,8 +43,55 @@ export class GroceryListPage implements OnInit {
       this.helper.postMethod('shopping-list-detail', body, (res) => {
         console.log(res);
         this.ingredients=res.data.ingredients;
-        
+        this.title=res.data.title;
+        for(let i=0; i<this.ingredients.length; i++){
+         this.update.push({
+            product:this.ingredients[i].id,
+            quantity:this.ingredients[i].quantity
+          });
+        }
+        console.log(this.update);
       });
     });
+  }
+
+  delete_ingredient(id){
+    let index = this.update.findIndex((el) => {
+      console.log(el)
+      return el.product == id;
+      
+    });
+
+    console.log(index, id);
+    if (index != -1) {
+      this.update.splice(index, 1);
+    }
+    console.log(this.update);
+
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = {
+        token: res,
+        shopping_list_id:this.list_id,
+        list_name: this.title,
+        ingredients: JSON.stringify(this.update)
+      };
+      
+      this.helper.postMethod('update-shopping-list', body, (res) => {
+        console.log(res);
+        if (res.status == true) {
+          this.helper.Alert('Shopping List successfully updated.', '/grocery-list');
+       
+        }
+      });
+    });
+  }
+
+  show_store(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.list_id,
+      },
+    };
+    this.router.navigate(['/stores-list'], navigationExtras);
   }
 }

@@ -21,6 +21,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { BackbuttonhandalService } from './providers/backbuttonhandal.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -43,6 +44,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
     SplashScreen,
     BackbuttonhandalService,
     NativeStorage,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

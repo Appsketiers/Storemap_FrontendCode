@@ -61,7 +61,11 @@ export class ShoppingLists1Page implements OnInit {
   add_item(id,i) {
   
     this.data[i].added=true;
-    this.items.push(id);
+    this.items.push({
+      product:id,
+      quantity:1
+    });
+    console.log(this.items);
   }
   createform() {
     this.form = this.formBuilder.group({
@@ -71,13 +75,16 @@ export class ShoppingLists1Page implements OnInit {
   remove_item(id,i) {
     this.data[i].added=false;
     let index = this.items.findIndex((el) => {
-      return el == id;
+      console.log(el)
+      return el.product == id;
+      
     });
 
     console.log(index, id);
     if (index != -1) {
       this.items.splice(index, 1);
     }
+    console.log(this.items);
   }
 
   getFormControl(name) {
@@ -104,8 +111,9 @@ export class ShoppingLists1Page implements OnInit {
       this.helper.postMethod('create-shopping-list', body, (res) => {
         console.log(res);
         if (res.status == true) {
-          this.helper.Alert('Shopping List successfully created.');
+          this.helper.Alert('Shopping List successfully created.', '/shopping-lists');
           this.saved = true;
+          
         }
       });
     });
