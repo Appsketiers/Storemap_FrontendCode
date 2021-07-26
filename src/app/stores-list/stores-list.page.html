@@ -1,100 +1,40 @@
 <ion-header class="header1">
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button text="" defaultHref="/"></ion-back-button>
-        </ion-buttons>
-        <ion-title>Store List</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Store List</ion-title>
+    <ion-icon slot="end" style="color: #fff;" name="filter" (click)="filter()"></ion-icon>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item (click)="open_store()" lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon class="heart" name="heart"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-        <ion-item  lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon name="heart-outline"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-        <ion-item  lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon name="heart-outline"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-        <ion-item  lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon class="heart" name="heart"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-        <ion-item  lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon name="heart-outline"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-        <ion-item  lines="none">
-            <ion-thumbnail slot="start">
-                <img src="../../assets/img/meal.png">
-            </ion-thumbnail>
-            <ion-label>Store 1
-                <p class="loc"><span><ion-icon name="location"></ion-icon> 20 Miles Ways</span></p>
-            </ion-label>
-            <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
-            <ion-label slot="end" style="text-align: right;">
-                <ion-icon name="heart-outline"></ion-icon>
-                <p >2 products match</p>
-            </ion-label>
-           
-        </ion-item>
-    </ion-list>
-
+  <ion-list>
+    <ion-item lines="none" *ngFor="let item of data let i = index">
+      <ion-thumbnail slot="start">
+        <img src="{{image_url}}{{item.store_images[0]}}" />
+      </ion-thumbnail>
+      <ion-label (click)="open_store(item.id)"
+        >{{item.store_name}}
+        <p class="loc">
+          <span
+            ><ion-icon name="location"></ion-icon> {{item.distance}} Miles
+            Ways</span
+          >
+        </p>
+      </ion-label>
+      <!--ion-checkbox color="primary" slot="start"></ion-checkbox-->
+      <ion-label slot="end" style="text-align: right">
+        <ion-icon *ngIf="item.is_favourite==0" name="heart-outline" (click)="like(item.id,1, i)"></ion-icon>  
+        <ion-icon class="heart" *ngIf="item.is_favourite==1" name="heart" (click)="like(item.id,0,i)"></ion-icon> 
+        <p>{{item.match_count}} products match</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 
 <!--ion-footer>
