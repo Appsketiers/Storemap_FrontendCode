@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-store-detail',
   templateUrl: './store-detail.page.html',
@@ -11,6 +12,11 @@ list_id:any;
 store_id:any;
 lat: any;
 lng: any;
+store_name: any;
+store_image:any;
+store_distance:any;
+matched_products:any=[];
+image_url = environment.image_baseurl;
   constructor(private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,) { }
@@ -43,6 +49,11 @@ lng: any;
       
       this.helper.postMethod('view-store', body, (res) => {
         console.log(res);
+this.store_name=res.data.store.store_name;
+this.store_image=res.data.store.store_images[0];
+this.store_distance=res.data.store.distance;
+this.matched_products=res.data.matched_products;
+console.log(this.matched_products);
       });
     });
   }

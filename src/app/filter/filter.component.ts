@@ -8,15 +8,17 @@ import { ModalController } from '@ionic/angular';
 export class FilterComponent implements OnInit {
 
   constructor(private modalController: ModalController) { }
-  chk1 = document.getElementById("isChecked1");
- chk2 = document.getElementById("isChecked2");
- chk3 = document.getElementById("isChecked");
+  chk1:boolean=false; 
+ chk2:boolean=false; 
+ chk3:boolean=false; 
   
   ngOnInit() {}
   async closeModal() {
     await this.modalController.dismiss();
     }
-change(){
+    change(){
+this.chk2=false;
+this.chk3=false;
 
 }
 }

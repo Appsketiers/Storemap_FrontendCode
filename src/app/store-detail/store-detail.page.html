@@ -14,20 +14,20 @@
         <ion-row>
             <ion-col size="6" routerLink="/grocery-list-share">
                 <div class="list_box_1">
-                    <img src="assets/img/Nutrition.png" alt="">
+                    <img src={{image_url}}{{store_image}} alt="">
                     <!-- <h4>Grocery  List</h4> -->
                 </div>
             </ion-col>
             <ion-col size="6">
                 <div class="list_box_1">
-                    <h3>Kroger</h3>
+                    <h3>{{store_name}}</h3>
                     <p style="margin-top: 10px;" routerLink="/shop">View Store Steak</p>
                     <div class="rating">
                         <h5>Mexican (Authentic)</h5>
                         <p><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p>
                     </div>
                     <div class="m_b">
-                        <span>0.3 miles away</span>
+                        <span>{{store_distance}} miles away</span>
                     </div>
                 </div>
             </ion-col>
@@ -35,12 +35,12 @@
     </ion-grid>
     <h3>Matched Items</h3>
     <div class="scrolles">
-        <ion-card>
-            <img src="assets/img/pics.png" />
-            <h5>Bananas</h5>
+        <ion-card *ngFor="let item of matched_products">
+            <img src={{image_url}}{{item.images[0]}} />
+            <h5>{{item.name}}</h5>
             <ion-grid>
                 <ion-row>
-                    <ion-col><b>$20</b></ion-col>
+                    <ion-col><b>${{item.price}}</b></ion-col>
                     <ion-col class="ion-text-right">
                         <ion-icon name="remove-circle-outline"></ion-icon>
                         5 kg
@@ -49,43 +49,6 @@
                 </ion-row>
             </ion-grid>
         </ion-card>
-
-        <ion-card>
-            <img src="assets/img/pics.png" />
-            <h5>Bananas</h5>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>dsfds</ion-col>
-                    <ion-col class="ion-text-right">dsfds</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card>
-
-
-        <ion-card>
-            <img src="assets/img/pics.png" />
-            <h5>Bananas</h5>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>dsfds</ion-col>
-                    <ion-col class="ion-text-right">dsfds</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card>
-
-
-        <ion-card>
-            <img src="assets/img/pics.png" />
-            <h5>Bananas</h5>
-            <ion-grid>
-                <ion-row>
-                    <ion-col>dsfds</ion-col>
-                    <ion-col class="ion-text-right">dsfds</ion-col>
-                </ion-row>
-            </ion-grid>
-        </ion-card>
-
-
 
     </div>
     <h3>Categories</h3>

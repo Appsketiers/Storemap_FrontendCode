@@ -328,4 +328,30 @@ this.nativeStorage.remove('storetoken')
        });
        return 
     }
+
+    async confirm(msg: string, callback) {
+      const alert = await this.alertCtrl.create({
+        header: 'Confirm!',
+        message: msg,
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+              callback(false)
+              console.log('Confirm Cancel: blah');
+            }
+          }, {
+            text: 'Okay',
+            handler: () => {
+              callback(true)
+              console.log('Confirm Okay');
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
 }

@@ -13,14 +13,14 @@
     <ion-row>
       <ion-col size="6" routerLink="/grocery-list">
         <div class="list_box_1">
-          <img src="assets/img/list.png" alt="">
-          <h4>Recommended
-            List</h4>
+          <img src={{image_url}}{{thumbnail}} alt="">
+          <!-- <h4>Recommended
+            List</h4> -->
          </div> 
       </ion-col>
       <ion-col size="6">
         <div class="list_box_1">
-          <h3>Recommended</h3>
+          <h3>{{title}}</h3>
           <!-- <p><span class="icon-add"></span> Add All</p> -->
           <div class="r_people">
             <h6><span class="icon-Account"></span>4 people</h6>
@@ -35,36 +35,12 @@
       <span slot="start"></span>
       <ion-label style="color: #9D4CDF;">All Items</ion-label>
     </ion-item>
-    <ion-item>
-      <span slot="start">1</span>
-      <ion-label>Charcoal</ion-label>
+    <ion-item *ngFor="let item of ingredients let i = index">
+      <span slot="start">{{i+1}}</span>
+      <ion-label>{{item.title}}</ion-label>
       <span class="icon-add" slot="end"></span>
     </ion-item>
-    <ion-item>
-      <span slot="start">2</span>
-      <ion-label>CLighter fluid</ion-label>
-      <span class="icon-add" slot="end"></span>
-    </ion-item>
-    <ion-item>
-      <span slot="start">3</span>
-      <ion-label>Flashlight</ion-label>
-      <span class="icon-add" slot="end"></span>
-    </ion-item>
-    <ion-item>
-      <span slot="start">4</span>
-      <ion-label>Batteries</ion-label>
-      <span class="icon-add" slot="end"></span>
-    </ion-item>
-    <ion-item>
-      <span slot="start">5</span>
-      <ion-label>Trail mix</ion-label>
-      <span class="icon-add" slot="end"></span>
-    </ion-item>
-    <ion-item>
-      <span slot="start">6</span>
-      <ion-label>Bug spray</ion-label>
-      <span class="icon-add" slot="end"></span>
-    </ion-item>
+
   </ion-list>
 
 </ion-content>

@@ -152,8 +152,12 @@ console.log(this.otpForm.controls['checkData'].value);
     this.helper.postMethod('complete-two-factor', body, res => {
       console.log(res)
     if(res.status){
-      debugger
-      this.router.navigate(["/questionnaire"])
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          page:'two-factor',
+        },
+      };
+      this.router.navigate(["/questionnaire"],navigationExtras)
     }
    
       this.helper.presentToast(res.message);

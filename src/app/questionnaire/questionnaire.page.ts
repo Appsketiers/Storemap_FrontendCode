@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
-import { Router } from '@angular/router';
+
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 @Component({
   selector: 'app-questionnaire',
   templateUrl: './questionnaire.page.html',
@@ -9,9 +10,14 @@ import { Router } from '@angular/router';
 export class QuestionnairePage implements OnInit {
   public checkboxlist: any;
   public Checked = [];
-  constructor(private helper: HelperService, private router: Router) {}
+  page:any;
+  constructor(private helper: HelperService, private router: Router,private route: ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.page = params['page'];
+      console.log(this.page);
+    });
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res };
       this.helper.getMethod('questionnaire-tag-list', body, (res) => {
