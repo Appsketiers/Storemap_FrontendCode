@@ -15,6 +15,7 @@ lng: any;
 store_name: any;
 store_image:any;
 store_distance:any;
+store_address:any;
 matched_products:any=[];
 image_url = environment.image_baseurl;
   constructor(private router: Router,
@@ -53,6 +54,7 @@ this.store_name=res.data.store.store_name;
 this.store_image=res.data.store.store_images[0];
 this.store_distance=res.data.store.distance;
 this.matched_products=res.data.matched_products;
+this.store_address=res.data.store.address;
 console.log(this.matched_products);
       });
     });

@@ -15,6 +15,7 @@ export class GroceryListSharePage implements OnInit {
   page: any = 1;
   public Checked = [];
   list_id: any;
+  select_all:boolean=false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -92,5 +93,9 @@ export class GroceryListSharePage implements OnInit {
       });
     });
   }
+  }
+
+  all(){
+    this.select_all=true;
   }
 }
