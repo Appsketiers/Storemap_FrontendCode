@@ -23,7 +23,7 @@
     
       </div>
       <div [ngSwitch]="category">
-        <app-my-list *ngSwitchCase="'MyList'"></app-my-list>
+        <app-my-list *ngSwitchCase="'MyList'" [MyList]="list"></app-my-list>
         <app-shared-list *ngSwitchCase="'SharedList'"></app-shared-list>
       </div>
     

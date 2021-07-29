@@ -1,4 +1,4 @@
-<ion-list>
+<ion-list *ngIf="data.length>0">
   <ion-item detail="false" lines="inset" *ngFor="let item of data">
     <ion-label (click)="shoping_list(item.id)"
       >{{ item.title }}
@@ -20,3 +20,7 @@
     </ion-label>
   </ion-item>
 </ion-list>
+
+<ion-item class="plac" *ngIf="data.length<=0"> 
+  <ion-label   class="placeholder">No List Available</ion-label>
+</ion-item>

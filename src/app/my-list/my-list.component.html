@@ -1,5 +1,5 @@
-<ion-list>
-  <ion-item *ngFor="let item of list " detail="false"  lines="inset">
+<ion-list *ngIf="MyList.length>0">
+  <ion-item *ngFor="let item of MyList " detail="false"  lines="inset">
     <ion-label (click)="shoping_list(item.id)">{{item.title}} </ion-label>
     <ion-label slot="end" class="left">
       <ion-icon (click)="remove(item.id)" name="trash-outline"></ion-icon>
@@ -8,3 +8,7 @@
     </ion-label>
   </ion-item>
 </ion-list> 
+
+<ion-item class="plac" *ngIf="MyList.length<=0"> 
+  <ion-label   class="placeholder">No List Available</ion-label>
+</ion-item>

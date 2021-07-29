@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
+import { NavController } from '@ionic/angular';
 @Component({
   selector: 'app-shopping-lists1',
   templateUrl: './shopping-lists1.page.html',
@@ -24,7 +25,8 @@ export class ShoppingLists1Page implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private helper: HelperService,
-    private router: Router
+    private router: Router,
+    public navCtrl:NavController
   ) {
     this.toggled = false;
   }
@@ -111,9 +113,10 @@ export class ShoppingLists1Page implements OnInit {
       this.helper.postMethod('create-shopping-list', body, (res) => {
         console.log(res);
         if (res.status == true) {
-          this.helper.Alert('Shopping List successfully created.', '/shopping-lists');
-          this.saved = true;
+          this.helper.Alert('Shopping List successfully created.',"/shopping-lists");
           
+          this.saved = true;
+          //this.navCtrl.pop();
         }
       });
     });

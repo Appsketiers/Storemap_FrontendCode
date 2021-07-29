@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
 import { AlertController } from '@ionic/angular';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
@@ -8,16 +8,23 @@ import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./my-list.component.scss'],
 })
 export class MyListComponent implements OnInit {
-  list: any;
+  list: any = [];
+  @Input() MyList=[];
   constructor(
     private helper: HelperService,
     public alertController: AlertController,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    //this.shoping_list_items();
+  }
 
   ngOnInit() {
-    this.shoping_list_items();
+    //this.shoping_list_items();
+  }
+
+  ngOnChange(data){
+    console.log(data);
   }
 
   remove(id) {
@@ -42,7 +49,16 @@ export class MyListComponent implements OnInit {
               this.helper.postMethod('delete-shopping-list', body, (res) => {
                 console.log(res);
                 if (res.status == true) {
-                  this.shoping_list_items();
+                  let index = this.MyList.findIndex((el) => {
+                    console.log(el);
+                    return el.id == id;
+                  });
+
+                  console.log(index, id);
+                  if (index != -1) {
+                    this.MyList.splice(index, 1);
+                    console.log(this.MyList);
+                  }
                 }
               });
             },
@@ -74,7 +90,8 @@ export class MyListComponent implements OnInit {
     });
   }
 
-  ionViewWillEnter() {
-    this.shoping_list_items();
-  }
+  // ionViewWillEnter() {
+  //   debugger;
+  //   this.shoping_list_items();
+  // }
 }

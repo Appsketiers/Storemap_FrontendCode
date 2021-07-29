@@ -15,6 +15,7 @@ export class FilterComponent implements OnInit {
     this.chk1=document.getElementById("chk1");
     this.chk2=document.getElementById("chk2");
     this.chk3=document.getElementById("chk3");
+    
   }
   async closeModal() {
     await this.modalController.dismiss();
