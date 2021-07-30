@@ -18,5 +18,13 @@ ion-list {
     }
     ion-icon[slot="end"] {
         color: rgba($color: #000000, $alpha: 0.3);
+        float: right;
     }
+}
+
+.items{
+    font-size: large;
+    align-items: center;
+    margin: 20px;
+    border-bottom: solid 1px #ddd;
 }

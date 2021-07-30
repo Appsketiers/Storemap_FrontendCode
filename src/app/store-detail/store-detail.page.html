@@ -36,7 +36,7 @@
     <h3>Matched Items</h3>
     <div class="scrolles">
         <ion-card *ngFor="let item of matched_products">
-            <img src={{image_url}}{{item.images[0]}} />
+            <img src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'"/>
             <h5>{{item.name}}</h5>
             <ion-grid>
                 <ion-row>
@@ -53,7 +53,7 @@
     </div>
     <h3>Categories</h3>
 
-    <ion-list class="listss">
+    <!-- <ion-list class="listss">
         <ion-item>
             <ion-label>All Items</ion-label>
         </ion-item>
@@ -87,6 +87,8 @@
             <ion-label>Kroger (North Ave)</ion-label>
             <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
         </ion-item>
-    </ion-list>
-
+    </ion-list> -->
+<div class="not-av">
+    <ion-label >Not Available</ion-label>
+</div>
 </ion-content>

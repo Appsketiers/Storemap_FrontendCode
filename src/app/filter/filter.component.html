@@ -8,7 +8,7 @@
     <div>
       <ion-row>
         <ion-col size="2"
-          ><ion-checkbox id="chk1" (ionChange)="change1($event)"></ion-checkbox
+          ><ion-checkbox [checked]="chk1" (ionChange)="change1($event)"></ion-checkbox
         ></ion-col>
         <ion-col size="10">
           <ion-label class="chk_lbl">Most matched products</ion-label>
@@ -17,7 +17,7 @@
 
       <ion-row>
         <ion-col size="2"
-          ><ion-checkbox id="chk2" (ionChange)="change2($event)"></ion-checkbox
+          ><ion-checkbox [checked]="chk2" (ionChange)="change2($event)"></ion-checkbox
         ></ion-col>
         <ion-col size="10">
           <ion-label class="chk_lbl">Farthest to nearest</ion-label>
@@ -26,7 +26,7 @@
 
       <ion-row>
         <ion-col size="2"
-          ><ion-checkbox id="chk3" (ionChange)="change3($event)"></ion-checkbox
+          ><ion-checkbox [checked]="chk3" (ionChange)="change3($event)"></ion-checkbox
         ></ion-col>
         <ion-col size="10">
           <ion-label class="chk_lbl">Nearest to Farthest</ion-label>

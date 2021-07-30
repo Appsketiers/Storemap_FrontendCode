@@ -28,7 +28,7 @@ export class SavedMealsPage implements OnInit {
         }
         if (isFirstLoad) event.target.complete();
         this.page++;
-        console.log(res);
+        console.log(this.data);
       });
     });
   }
@@ -38,8 +38,10 @@ export class SavedMealsPage implements OnInit {
   }
 
   open_ingredient(i) {
-    this.open_ingredient_list = !this.open_ingredient_list;
+    this.data[i].open=!this.data[i].open;
+    // this.open_ingredient_list = !this.open_ingredient_list;
     this.ingredient_list = this.data[i].ingredient_list;
     console.log(this.ingredient_list);
+    
   }
 }

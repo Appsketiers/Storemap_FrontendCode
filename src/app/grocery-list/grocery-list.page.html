@@ -35,7 +35,7 @@
         <ion-item *ngFor="let item of ingredients">
             
             <ion-label>
-                <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} alt=""></span>
+                <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
                 {{item.name}} ({{item.quantity}})</ion-label>
                 <ion-icon slot="end" name="trash-outline" (click)="delete_ingredient(item.id)"></ion-icon>
         </ion-item>

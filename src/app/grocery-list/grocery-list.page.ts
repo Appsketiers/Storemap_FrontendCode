@@ -22,7 +22,9 @@ export class GroceryListPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
+      if(params['id']){
       this.list_id = params['id'];
+      }
       console.log(this.list_id);
     });
     this.shoping_list();

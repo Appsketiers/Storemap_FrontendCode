@@ -38,11 +38,19 @@ export class StoresListPage implements OnInit {
     });
 
     this.helper.get_location((data) => {
+      console.log(data);
       this.lat = data.coords.latitude;
       this.lng = data.coords.longitude;
-      this.store_list(false, '');
+      if(this.lat && this.lng){
+        this.store_list(false, '');
+      }
+
+      else{
+        this.helper.Alert('Check your GPS','');
+      }
+      
     });
-    console.log(this.lat);
+   
   }
   open_store(id) {
     let navigationExtras: NavigationExtras = {
@@ -86,8 +94,12 @@ export class StoresListPage implements OnInit {
       component:FilterComponent ,
       cssClass: 'option_modal',
       });
-       
+      modal.onDidDismiss().then(data=>{
+        console.log(data);
+      });
       return await modal.present();
+
+     
   }
 
   like(id,status,i){

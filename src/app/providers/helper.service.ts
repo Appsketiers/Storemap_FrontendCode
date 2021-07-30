@@ -318,10 +318,17 @@ this.nativeStorage.remove('storetoken')
 		alert.present();
 	  }
 
-    get_location(data){
+  async  get_location(data){
+      const loading = await this.loadingController.create({
+        cssClass: 'my-api-call-loading',
+        message: '',
+        // duration: 2000
+      });
+      await loading.present();
        this.geolocation.getCurrentPosition().then((resp) => {
         // resp.coords.latitude
         // resp.coords.longitude
+        loading.dismiss();
         data(resp)
        }).catch((error) => {
          console.log('Error getting location', error);

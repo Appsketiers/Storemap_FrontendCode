@@ -41,7 +41,7 @@
     </ion-item>
 
     <ion-item lines="none" *ngFor="let item of data let i = index">
-      <span slot="start"><img src={{image_url}}{{item.images[0]}} alt="" /></span>
+      <span slot="start"><img src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt="" /></span>
       <ion-label>{{item.name}}</ion-label>
       <span (click)="add_item(item.id,i)" *ngIf="!item.added" class="icon-add" slot="end"></span>
       <ion-label *ngIf="item.added" slot="end" class="added_list">

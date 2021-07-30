@@ -9,12 +9,12 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let item of data let i = index" (click)="open_ingredient(i)">
+        <div class="items" *ngFor="let item of data let i = index" (click)="open_ingredient(i)">
             <ion-label>{{item.title}}</ion-label>
-            <ion-icon name="chevron-up-outline" slot="end" *ngIf="open_ingredient_list"></ion-icon>
-            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!open_ingredient_list"></ion-icon>
-        </ion-item>
-        <ion-list *ngIf="open_ingredient_list">
+            <ion-icon name="chevron-up-outline" slot="end" *ngIf="data[i].open"></ion-icon>
+            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!data[i].open"></ion-icon>
+        
+        <ion-list *ngIf="data[i].open">
             <ion-item class="reds">
                 <span slot="start" class="icon-Shuffle"></span>
                 <ion-label>All Ingredients</ion-label>
@@ -27,7 +27,7 @@
             </ion-item>
 
         </ion-list>
-
+    </div>
     </ion-list>
 
 

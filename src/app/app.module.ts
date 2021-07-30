@@ -22,6 +22,8 @@ import { BackbuttonhandalService } from './providers/backbuttonhandal.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -45,6 +47,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     BackbuttonhandalService,
     NativeStorage,
     Geolocation,
+    AndroidPermissions,
+    LocationAccuracy,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
