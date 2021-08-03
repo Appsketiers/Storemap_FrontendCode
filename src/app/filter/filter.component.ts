@@ -16,7 +16,7 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {}
   async closeModal() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss(this.filter_value);
   }
   change1(e) {
     if (e.detail.checked) {

@@ -23,6 +23,7 @@ export class StoresListPage implements OnInit {
   MMP:any=false;
   NTF:any=false;
   FTN:any=false;
+  filter_value='MMP';
   constructor(
     public alertController: AlertController,
     private router: Router,
@@ -67,7 +68,7 @@ export class StoresListPage implements OnInit {
       let body: any = {
         token: res,
         shopping_list_id: this.list_id,
-        filter: 'MMP',
+        filter: this.filter_value,
         lat: JSON.stringify(this.lat),
         lng: JSON.stringify(this.lng),
         limit: this.limit,
@@ -94,9 +95,16 @@ export class StoresListPage implements OnInit {
       component:FilterComponent ,
       cssClass: 'option_modal',
       });
+
+      
       modal.onDidDismiss().then(data=>{
         console.log(data);
+        this.filter_value=data.data;
+        console.log(this.filter_value);
+        this.store_list(false, '');
       });
+
+      
       return await modal.present();
 
      

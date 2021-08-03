@@ -61,7 +61,7 @@ export class MealIdeasPage implements OnInit {
       let body: any = { token: res, meal_id: this.list_id, status:status};
       this.helper.postMethod('like-dislike-meal', body, (res) => {
         console.log(res);
-        this.helper.Alert(res.message,'');
+        //this.helper.Alert(res.message,'');
       });
     });
   }

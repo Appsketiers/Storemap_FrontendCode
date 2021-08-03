@@ -8,6 +8,7 @@ import { StoresListPageRoutingModule } from './stores-list-routing.module';
 
 import { StoresListPage } from './stores-list.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

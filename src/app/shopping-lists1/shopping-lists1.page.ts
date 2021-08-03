@@ -126,8 +126,40 @@ export class ShoppingLists1Page implements OnInit {
     this.toggled = !this.toggled;
   }
 
-  searchThis(ev) {}
+  searchThis(ev) {
+    console.log(ev.target.value.length);
+    if(ev.target.value.length>=3){
+      let search_string = ev.target.value;
+      this.helper.getByKeynew('storetoken', (res) => {
+        let body: any = {
+          token: res,
+          limit: this.limit,
+          search: this.RemoveDoubleQuotes(search_string),
+          page: this.page,
+        };
+        this.helper.postMethod('item-list', body, (res) => {
+          console.log(res);
+          for (let i = 0; i < res.data.data.length; i++) {
+            this.data.push(res.data.data[i]);
+            this.data[i].added = false;
+          }
+          this.page++;
+          console.log('data',this.data);
+        });
+      });
+    }
+  }
 
+   RemoveDoubleQuotes(a) {
+    var fIndex = a.indexOf('"');
+    var lIndex = a.lastIndexOf('"');
+    if(fIndex >= 0 && lIndex >= 0){
+      a = a.substring(fIndex+1, lIndex+1);
+    }
+    debugger
+    return a;
+    
+}
   cancelSearch(ev) {
     this.toggle();
   }

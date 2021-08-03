@@ -18,7 +18,7 @@
       <ion-row>
         <ion-col size="2"
           ><ion-checkbox [checked]="chk2" (ionChange)="change2($event)"></ion-checkbox
-        ></ion-col>
+          ></ion-col>
         <ion-col size="10">
           <ion-label class="chk_lbl">Farthest to nearest</ion-label>
         </ion-col>
@@ -35,7 +35,7 @@
     </div>
     <div class="btn">
       <ion-button class="remove" (click)="closeModal()">CANCEL</ion-button>
-      <ion-button class="cus_btn">APPLY</ion-button>
+      <ion-button class="cus_btn" (click)="closeModal()">APPLY</ion-button>
     </div>
   </div>
 </div>
