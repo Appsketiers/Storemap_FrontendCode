@@ -8,9 +8,10 @@
   </ion-toolbar>
   <ion-searchbar *ngIf="toggled"
   [(ngModel)]="someValue"
-  (ionInput)="searchThis($event)"
+  (ionInput)="search2($event)"
   (ionCancel)="cancelSearch($event)"
   (ionClear) ="cancelSearch($event)"
+  (keyup.enter)="searchThis($event)"
   ></ion-searchbar>
 </ion-header>
 
@@ -43,17 +44,17 @@
     <ion-item lines="none" *ngFor="let item of data let i = index">
       <span slot="start"><img src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt="" /></span>
       <ion-label>{{item.name}}</ion-label>
-      <span (click)="add_item(item.id,i)" *ngIf="!item.added" class="icon-add" slot="end"></span>
-      <ion-label *ngIf="item.added" slot="end" class="added_list">
+      <span (click)="add_item(item.id,i)" *ngIf="!checkForItem(item.id)" class="icon-add" slot="end"></span>
+      <ion-label *ngIf="checkForItem(item.id)" slot="end" class="added_list">
         <p>Added</p>
-        <span (click)="remove_item(item.id,i)" *ngIf="item.added"><ion-icon name="trash-outline"></ion-icon></span>
+        <span (click)="remove_item(item.id,i)"><ion-icon name="trash-outline"></ion-icon></span>
       </ion-label>
     </ion-item>
 
 
   </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="LoadMore">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>

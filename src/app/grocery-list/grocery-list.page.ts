@@ -14,6 +14,7 @@ export class GroceryListPage implements OnInit {
   title: any;
   update: any = [];
   default_src='../../assets/img/item_placeholder.png';
+  public toggled: boolean = false;
   constructor(
     private helper: HelperService,
     private router: Router,
@@ -37,6 +38,10 @@ export class GroceryListPage implements OnInit {
       },
     };
     this.router.navigate(['/grocery-list-share'], navigationExtras);
+  }
+
+  public toggle(): void {
+    this.toggled = !this.toggled;
   }
 
   shoping_list() {
@@ -103,5 +108,16 @@ export class GroceryListPage implements OnInit {
   default(){
     let src;
     return src='../../assets/img/item_placeholder.png'
+  }
+
+  search2(ev){
+    
+    if(ev.srcElement.value == ""){
+      // this.shoping_item_list(true,'');
+    }
+  }
+
+  cancelSearch(ev) {
+    this.toggle();
   }
 }

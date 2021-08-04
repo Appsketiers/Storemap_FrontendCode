@@ -122,7 +122,7 @@ export class StoresListPage implements OnInit {
       let body: any = { token: res, store_id: id, status:status};
       this.helper.postMethod('like-dislike-store', body, (res) => {
         console.log(res);
-        this.helper.Alert(res.message,'');
+       // this.helper.Alert(res.message,'');
       });
     });
   }

@@ -22,6 +22,7 @@ export class ShoppingLists1Page implements OnInit {
   limit: any = 10;
   image_url = environment.image_baseurl;
   saved: any= false;
+  LoadMore;
   constructor(
     private formBuilder: FormBuilder,
     private helper: HelperService,
@@ -36,6 +37,15 @@ export class ShoppingLists1Page implements OnInit {
     this.shoping_item_list(false, '');
   }
 
+
+  checkForItem(id){
+    if(id){ 
+      return this.items.findIndex((el)=>{
+       return el.product == id 
+     }) != -1 ? true : false;
+    }
+    return false;
+  }
   shoping_item_list(isFirstLoad, event) {
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
@@ -45,12 +55,26 @@ export class ShoppingLists1Page implements OnInit {
       };
       this.helper.postMethod('item-list', body, (res) => {
         console.log(res);
-        for (let i = 0; i < res.data.data.length; i++) {
-          this.data.push(res.data.data[i]);
-          this.data[i].added = false;
+        if(this.page == 1){
+          this.data = [];
         }
-        if (isFirstLoad) event.target.complete();
-        this.page++;
+        this.data = [...this.data,...res.data.data];
+          console.log(this.data,"this.data");
+        // for (let i = 0; i < res.data.data.length; i++) {
+        //   this.data.push(res.data.data[i]);
+        //   this.data[i].added = false;
+        // }
+        if (!isFirstLoad) event.target.complete();
+        if(res.data.current_page == res.data.last_page){
+          this.LoadMore = false;
+        }else{
+          this.LoadMore = true;
+          this.page++;
+        }  
+        // if(res.data.from == 1){
+        //   this.page = 1;
+        // }
+        
         console.log('data',this.data);
       });
     });
@@ -62,7 +86,7 @@ export class ShoppingLists1Page implements OnInit {
 
   add_item(id,i) {
   
-    this.data[i].added=true;
+    // this.data[i].added=true;
     this.items.push({
       product:id,
       quantity:1
@@ -127,39 +151,50 @@ export class ShoppingLists1Page implements OnInit {
   }
 
   searchThis(ev) {
-    console.log(ev.target.value.length);
+    this.page=1;
+    
+    console.log(ev.srcElement.value);
     if(ev.target.value.length>=3){
       let search_string = ev.target.value;
       this.helper.getByKeynew('storetoken', (res) => {
         let body: any = {
           token: res,
           limit: this.limit,
-          search: this.RemoveDoubleQuotes(search_string),
-          page: this.page,
+          search: ev.srcElement.value,
+          page: 1,
         };
-        this.helper.postMethod('item-list', body, (res) => {
+        this.helper.postMethod('item-list', body, (res) => {  
           console.log(res);
-          for (let i = 0; i < res.data.data.length; i++) {
-            this.data.push(res.data.data[i]);
-            this.data[i].added = false;
-          }
+          this.data = [];
+          this.data = [...this.data,...res.data.data];
+          console.log(this.data,"this.data");
+          // for (let i = 0; i < res.data.data.length; i++) {
+          //   this.data.push(res.data.data[i]);
+          //   this.data[i].added = false;
+          // } 
+        if(res.data.current_page == res.data.last_page){
+          this.LoadMore = false;
+        }else{
+          this.LoadMore = true;
           this.page++;
+        }  
+        // if(res.data.from == 1){
+        //   this.page = 1;
+        // }
           console.log('data',this.data);
         });
       });
     }
   }
 
-   RemoveDoubleQuotes(a) {
-    var fIndex = a.indexOf('"');
-    var lIndex = a.lastIndexOf('"');
-    if(fIndex >= 0 && lIndex >= 0){
-      a = a.substring(fIndex+1, lIndex+1);
-    }
-    debugger
-    return a;
+  
+  search2(ev){
     
-}
+    if(ev.srcElement.value == ""){
+      this.shoping_item_list(true,'');
+    }
+  }
+
   cancelSearch(ev) {
     this.toggle();
   }

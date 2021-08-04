@@ -7,6 +7,14 @@
         <ion-title></ion-title>
         <ion-icon class="share_btn" slot="end" name="arrow-redo" (click)="share_list()"></ion-icon>
     </ion-toolbar>
+
+    <!-- <ion-searchbar *ngIf="toggled"
+    [(ngModel)]="someValue"
+    (ionInput)="search2($event)"
+    (ionCancel)="cancelSearch($event)"
+    (ionClear) ="cancelSearch($event)"
+    (keyup.enter)="searchThis($event)"
+    ></ion-searchbar> -->
 </ion-header>
 
 <ion-content>
@@ -21,7 +29,7 @@
             <ion-col size="6">
                 <div class="list_box_1">
                     <h3>{{title}}</h3>
-                    <p routerLink="/search"> Search</p>
+                    <p *ngIf="!toggled" (click)="toggle()"> Search</p>
                 </div>
             </ion-col>
         </ion-row>
