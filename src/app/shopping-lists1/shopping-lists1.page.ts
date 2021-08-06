@@ -64,7 +64,7 @@ export class ShoppingLists1Page implements OnInit {
         //   this.data.push(res.data.data[i]);
         //   this.data[i].added = false;
         // }
-        if (!isFirstLoad) event.target.complete();
+        if (isFirstLoad) event.target.complete();
         if(res.data.current_page == res.data.last_page){
           this.LoadMore = false;
         }else{
@@ -161,7 +161,7 @@ export class ShoppingLists1Page implements OnInit {
           token: res,
           limit: this.limit,
           search: ev.srcElement.value,
-          page: 1,
+          page: this.page,
         };
         this.helper.postMethod('item-list', body, (res) => {  
           console.log(res);
@@ -197,5 +197,6 @@ export class ShoppingLists1Page implements OnInit {
 
   cancelSearch(ev) {
     this.toggle();
+    this.shoping_item_list(false,'');
   }
 }

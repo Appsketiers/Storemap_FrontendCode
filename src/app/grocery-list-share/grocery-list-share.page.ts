@@ -105,6 +105,6 @@ export class GroceryListSharePage implements OnInit {
   }
 
   all(){
-    this.select_all=true;
+    this.select_all=!this.select_all;
   }
 }

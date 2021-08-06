@@ -8,13 +8,13 @@
         <ion-icon class="share_btn" slot="end" name="arrow-redo" (click)="share_list()"></ion-icon>
     </ion-toolbar>
 
-    <!-- <ion-searchbar *ngIf="toggled"
+    <ion-searchbar *ngIf="toggled"
     [(ngModel)]="someValue"
     (ionInput)="search2($event)"
     (ionCancel)="cancelSearch($event)"
     (ionClear) ="cancelSearch($event)"
     (keyup.enter)="searchThis($event)"
-    ></ion-searchbar> -->
+    ></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -40,16 +40,22 @@
             
             <ion-label class="red">All Items</ion-label>
         </ion-item>
-        <ion-item *ngFor="let item of ingredients">
+        <ion-item *ngFor="let item of ingredients let i = index">
             
             <ion-label>
                 <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
                 {{item.name}} ({{item.quantity}})</ion-label>
-                <ion-icon slot="end" name="trash-outline" (click)="delete_ingredient(item.id)"></ion-icon>
+                <span (click)="add_item(item.id,i)" *ngIf="!checkForItem(item.id)" class="icon-add" slot="end"></span>
+                <ion-icon slot="end" name="trash-outline" (click)="delete_ingredient(item.id)" *ngIf="checkForItem(item.id)"></ion-icon>
         </ion-item>
 
        
     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="LoadMore && pagination">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 
 </ion-content>
 

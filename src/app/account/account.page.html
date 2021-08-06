@@ -10,7 +10,7 @@
 
 <ion-content>
     <div class="s_top">
-        <img src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" alt="">
+        <img src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" onerror="this.src='../../assets/img/svg/user.svg'" alt="">
 
         <h4 style="margin-top: 20px;">{{userDetail?.name}}</h4>
         <h5>{{userDetail?.email}}</h5>

@@ -8,7 +8,7 @@
       <ion-content >
 
         <div class="top" routerLink="/auth/account" (click)="closeMenu()">
-          <img class="{{userDetail?.profile_image ? 'image1' :'image2'}}" src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.svg'}}" alt="">
+          <img class="{{userDetail?.profile_image ? 'image1' :'image2'}}" src="{{ userDetail?.profile_image ? imagebaseurl+userDetail?.profile_image : 'assets/img/svg/user.png'}}" onerror="this.src='../../assets/img/default-image.png'" alt="">
           <div class="user_name">
           <h4> {{userDetail?.name}}</h4>
           <h4>{{userDetail?.email}}</h4>
@@ -17,7 +17,7 @@
 
 
         <ion-list class="mt-30 " mode="md" lines="none">
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">  
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" detail="false">
               <!-- <ion-icon slot="start" [name]="p.icon"></ion-icon> -->
 
@@ -34,10 +34,6 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-
-
-      
-
 
       </ion-content>
     </ion-menu>

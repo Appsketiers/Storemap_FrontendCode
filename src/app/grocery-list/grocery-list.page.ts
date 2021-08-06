@@ -14,7 +14,13 @@ export class GroceryListPage implements OnInit {
   title: any;
   update: any = [];
   default_src='../../assets/img/item_placeholder.png';
+  someValue: any;
   public toggled: boolean = false;
+  page: any = 1;
+  limit: any = 10;
+  LoadMore;
+  pagination = false;
+  search_string;
   constructor(
     private helper: HelperService,
     private router: Router,
@@ -45,6 +51,8 @@ export class GroceryListPage implements OnInit {
   }
 
   shoping_list() {
+    this.ingredients=[];
+    this.update=[];
     this.helper.getByKeynew('storetoken', (res) => {
       console.log(res);
       let body: any = { token: res, list_id: this.list_id };
@@ -63,6 +71,27 @@ export class GroceryListPage implements OnInit {
     });
   }
 
+  add_item(id,i) {
+  
+    // this.data[i].added=true;
+    this.update.push({
+      product:id,
+      quantity:1
+    });
+    console.log(this.update);
+
+    this.update_list();
+  }
+
+  checkForItem(id){
+    if(id){ 
+      return this.update.findIndex((el)=>{
+       return el.product == id 
+     }) != -1 ? true : false;
+    }
+    return false;
+  }
+
   delete_ingredient(id) {
     let index = this.update.findIndex((el) => {
       console.log(el);
@@ -76,6 +105,10 @@ export class GroceryListPage implements OnInit {
     }
     console.log(this.update);
     console.log(this.ingredients);
+  this.update_list();
+  }
+
+  update_list(){
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
         token: res,
@@ -113,11 +146,59 @@ export class GroceryListPage implements OnInit {
   search2(ev){
     
     if(ev.srcElement.value == ""){
-      // this.shoping_item_list(true,'');
+      this.shoping_list();
+      this.pagination=false;
     }
   }
 
   cancelSearch(ev) {
     this.toggle();
+    this.shoping_list();
+  }
+
+  searchThis(ev) {
+    this.page=1;
+    
+    console.log(ev);
+    if(ev.target.value.length>=3){
+      this.search_string = ev.target.value;
+      this.helper.getByKeynew('storetoken', (res) => {
+        let body: any = {
+          token: res,
+          limit: this.limit,
+          search: this.search_string,
+          page: 1,
+        };
+        this.helper.postMethod('item-list', body, (res) => {  
+          console.log(res);
+          this.ingredients = [];
+          this.ingredients = [...this.ingredients,...res.data.data];
+          if(this.ingredients.length>0){
+            this.pagination=true;
+          }
+          console.log(this.ingredients,"this.data");
+          // for (let i = 0; i < res.data.data.length; i++) {
+          //   this.data.push(res.data.data[i]);
+          //   this.data[i].added = false;
+          // } 
+        if(res.data.current_page == res.data.last_page){
+          this.LoadMore = false;
+        }else{
+          this.LoadMore = true;
+          this.page++;
+        }  
+        // if(res.data.from == 1){
+        //   this.page = 1;
+        // }
+          console.log('data',this.ingredients);
+        });
+      });
+    }
+  }
+
+  doInfinite(event) {
+    //this.shoping_item_list(true, event);
+
+    this.searchThis(this.search_string);
   }
 }
