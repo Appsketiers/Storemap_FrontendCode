@@ -16,7 +16,8 @@ export class GroceryListSharePage implements OnInit {
   public Checked = [];
   list_id: any;
   select_all:boolean=false;
-  LoadMore = true
+  LoadMore = true;
+  public toggled: boolean = false;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -106,5 +107,14 @@ export class GroceryListSharePage implements OnInit {
 
   all(){
     this.select_all=!this.select_all;
+  }
+
+  public toggle(): void {
+    this.toggled = !this.toggled;
+  }
+
+  cancelSearch(ev) {
+    this.toggle();
+
   }
 }

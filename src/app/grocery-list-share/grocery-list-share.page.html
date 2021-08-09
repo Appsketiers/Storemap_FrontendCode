@@ -4,7 +4,12 @@
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title></ion-title>
+    <ion-icon *ngIf="!toggled" (click)="toggle()" slot="end" name="search-outline"></ion-icon>
   </ion-toolbar>
+  <ion-searchbar *ngIf="toggled"
+  (ionCancel)="cancelSearch($event)"
+  (ionClear) ="cancelSearch($event)"
+  ></ion-searchbar>
 </ion-header>
 
 <ion-content>
@@ -22,7 +27,7 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let item of data"> 
       <ion-avatar slot="start">
-        <img src="{{image_url}}{{item.profile_image}}" />
+        <img src="{{image_url}}{{item.profile_image}}" onerror="this.src='../../assets/img/svg/Account.svg'" />
       </ion-avatar>
       <ion-label>{{item.name}}</ion-label>
       <ion-checkbox mode="md"  slot="end" [checked]="select_all" (ionChange)="checked($event, item.id)"></ion-checkbox>
