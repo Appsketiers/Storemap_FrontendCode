@@ -23,7 +23,7 @@
                 <span slot="start">{{i+1}}</span>
                 <ion-label>{{ingredient.title}}</ion-label>
                 <span class="green">1 lbs</span>
-                <span class="icon-add" slot="end"></span>
+                <span class="icon-add" slot="end" (click)="add_to_shopping_list(ingredient.id)"></span>
             </ion-item>
 
         </ion-list>

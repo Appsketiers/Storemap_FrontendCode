@@ -9,8 +9,11 @@ import { ModalController } from '@ionic/angular';
 export class MealIdeasShoppingComponent implements OnInit {
   public shopping_list = this.navParams.get('shopping_list');
   chk1: any;
+  disable: any = true;
   selectedRadioGroup:any;
-  selectedRadioItem:any;
+  selectedRadioItem:any={
+    
+  };
   constructor(private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
@@ -18,16 +21,31 @@ export class MealIdeasShoppingComponent implements OnInit {
   }
 
   async closeModal() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss('','close');
   }
 
   radioGroupChange(event) {
     console.log("radioGroupChange",event.detail);
     this.selectedRadioGroup = event.detail;
+    if(this.selectedRadioGroup.value){
+      this.disable=false;
+    }
+    else{
+      this.disable=true;
+    }
   }
 
-  radioSelect(event) {
-    console.log("radioSelect",event.detail);
-    this.selectedRadioItem = event.detail;
+  radioSelect(title, id) {
+    this.selectedRadioItem.id = id;
+    this.selectedRadioItem.title = title;
+    console.log(this.selectedRadioItem);
+  }
+
+  radioFocus() {
+    console.log("radioFocus");
+  }
+
+  async apply(){
+    await this.modalController.dismiss(this.selectedRadioItem,'apply');
   }
 }
