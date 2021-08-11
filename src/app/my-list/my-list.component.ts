@@ -94,4 +94,12 @@ export class MyListComponent implements OnInit {
   //   debugger;
   //   this.shoping_list_items();
   // }
+
+
+
+  // delete(){
+  //   this.helper.confirm('Are you sure you want to Delete List', function(status){
+  //     console.log(status);
+  //   })
+  // }
 }
