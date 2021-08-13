@@ -17,6 +17,7 @@ export class GroceryListSharePage implements OnInit {
   list_id: any;
   select_all:boolean=false;
   LoadMore = true;
+  someValue: any;
   public toggled: boolean = false;
   constructor(
     private router: Router,
@@ -116,5 +117,50 @@ export class GroceryListSharePage implements OnInit {
   cancelSearch(ev) {
     this.toggle();
 
+  }
+
+
+  searchThis(ev) {
+    this.page=1;
+    
+    console.log(ev.srcElement.value);
+    if(ev.target.value.length>=3){
+      let search_string = ev.target.value;
+      this.helper.getByKeynew('storetoken', (res) => {
+        let body: any = {
+          token: res,
+          limit: this.limit,
+          search: ev.srcElement.value,
+          page: this.page,
+        };
+        this.helper.postMethod('get-users', body, (res) => {  
+          console.log(res);
+          this.data = [];
+          this.data = [...this.data,...res.data.data];
+          console.log(this.data,"this.data");
+          // for (let i = 0; i < res.data.data.length; i++) {
+          //   this.data.push(res.data.data[i]);
+          //   this.data[i].added = false;
+          // } 
+        if(res.data.current_page == res.data.last_page){
+          this.LoadMore = false;
+        }else{
+          this.LoadMore = true;
+          this.page++;
+        }  
+        // if(res.data.from == 1){
+        //   this.page = 1;
+        // }
+          console.log('data',this.data);
+        });
+      });
+    }
+  }
+
+  search2(ev){
+    
+    if(ev.srcElement.value == ""){
+      this.get_users(false,'');
+    }
   }
 }

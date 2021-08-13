@@ -4,7 +4,7 @@
       >{{ item.title }}
       <p>
         <span
-          ><img src="{{ image_url }}{{ item.profile_image }}" alt=""
+          ><img src="{{ image_url }}{{ item.profile_image }}" onerror="this.src='../../assets/img/svg/Account.svg'" alt=""
         /></span>
         {{ item.shared_by }}
       </p>

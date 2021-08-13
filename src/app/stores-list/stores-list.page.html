@@ -4,7 +4,8 @@
       <ion-back-button text="" defaultHref="/"></ion-back-button>
     </ion-buttons>
     <ion-title>Store List</ion-title>
-    <ion-icon slot="end" style="color: #fff;" name="filter" (click)="filter()"></ion-icon>
+    <ion-icon slot="end" style="color: #fff;" name="funnel" (click)="filter()"></ion-icon>
+    
   </ion-toolbar>
 </ion-header>
 
@@ -18,8 +19,8 @@
         >{{item.store_name}}
         <p class="loc">
           <span
-            ><ion-icon name="location"></ion-icon> {{item.distance}} Miles
-            Ways</span
+            ><ion-icon name="location"></ion-icon> {{item.distance | number: '1.2-2'}} Miles
+            away</span
           >
         </p>
       </ion-label>

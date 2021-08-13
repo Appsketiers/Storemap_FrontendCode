@@ -7,8 +7,11 @@
     <ion-icon *ngIf="!toggled" (click)="toggle()" slot="end" name="search-outline"></ion-icon>
   </ion-toolbar>
   <ion-searchbar *ngIf="toggled"
+  [(ngModel)]="someValue"
+  (ionInput)="search2($event)"
   (ionCancel)="cancelSearch($event)"
   (ionClear) ="cancelSearch($event)"
+  (keyup.enter)="searchThis($event)"
   ></ion-searchbar>
 </ion-header>
 
