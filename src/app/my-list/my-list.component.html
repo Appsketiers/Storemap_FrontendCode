@@ -3,7 +3,7 @@
     <ion-label (click)="shoping_list(item.id)">{{item.title}} </ion-label>
     <ion-label slot="end" class="left">
       <ion-icon (click)="remove(item.id)" name="trash-outline"></ion-icon>
-      <span class="icon-Arrow-right"></span>
+      <span class="icon-Arrow-right" (click)="shoping_list(item.id)"></span>
 
     </ion-label>
   </ion-item>
