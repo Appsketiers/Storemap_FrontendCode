@@ -19,7 +19,7 @@
 <ion-list >
   
   <ion-item  lines="none" *ngFor="let item of List" (click)="safety_awareness(item.id)">
-    <span slot="start"><img src="assets/img/svg/user.svg" alt=""></span>
+    <span slot="start"><img src="{{image_url}}{{item.profile_image}}" onerror="this.src='../../assets/img/svg/user.svg'" alt=""></span>
     <ion-label>
       <h4>{{item.title}}</h4>
       <p>10 hrs ago</p>

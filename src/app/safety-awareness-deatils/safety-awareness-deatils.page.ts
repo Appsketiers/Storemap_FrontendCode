@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-safety-awareness-deatils',
   templateUrl: './safety-awareness-deatils.page.html',
@@ -9,6 +10,9 @@ import { HelperService } from '../providers/helper.service';
 export class SafetyAwarenessDeatilsPage implements OnInit {
   id: any;
   data: any;
+  title:any;
+  image:any;
+  image_url = environment.image_baseurl;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -28,6 +32,8 @@ export class SafetyAwarenessDeatilsPage implements OnInit {
         console.log(res);
         
         this.data= res.data.content;
+        this.title= res.data.title;
+        this.image= res.data.profile_image;
       });
     });
   }

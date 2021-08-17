@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-safety-awareness',
   templateUrl: './safety-awareness.page.html',
@@ -10,6 +11,7 @@ export class SafetyAwarenessPage implements OnInit {
   public cat_list: any;
   public List: any;
   public id: any;
+  image_url = environment.image_baseurl;
   constructor(
     private helper: HelperService,
     private router: Router,

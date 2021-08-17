@@ -22,6 +22,7 @@ export class ShoppingLists1Page implements OnInit {
   limit: any = 10;
   image_url = environment.image_baseurl;
   saved: any= false;
+  empty = false;
   LoadMore;
   constructor(
     private formBuilder: FormBuilder,
@@ -124,9 +125,11 @@ export class ShoppingLists1Page implements OnInit {
   save() {
     this.submmited = true;
     if (this.form.invalid) {
+      this.helper.Alert('Please Enter Shopping List Name','');
       return;
+      
     }
-
+if(this.items.length>0){
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
         token: res,
@@ -144,6 +147,11 @@ export class ShoppingLists1Page implements OnInit {
         }
       });
     });
+  }
+
+  else{
+    this.helper.Alert('Please add ingredients','');
+  }
   }
 
   public toggle(): void {
@@ -198,5 +206,9 @@ export class ShoppingLists1Page implements OnInit {
   cancelSearch(ev) {
     this.toggle();
     this.shoping_item_list(false,'');
+  }
+
+  open_store(){
+
   }
 }
