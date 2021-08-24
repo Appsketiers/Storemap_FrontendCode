@@ -15,7 +15,7 @@
   ></ion-searchbar>
 </ion-header>
 
-<ion-content>
+<ion-content overflow-scroll='true'>
     <ion-row>
 <ion-col size="12">
         <div class="select_all">
@@ -24,24 +24,22 @@
   </div>
 </ion-col>
 </ion-row>
-  <ion-grid>
-    <ion-row>
-        <ion-col size="12">
+
   <ion-list>
-    <ion-item lines="none" *ngFor="let item of data"> 
+    <ion-item lines="none" *ngFor="let item of data let i = index"> 
       <ion-avatar slot="start">
         <img src="{{image_url}}{{item.profile_image}}" onerror="this.src='../../assets/img/svg/Account.svg'" />
       </ion-avatar>
       <ion-label>{{item.name}}</ion-label>
-      <ion-checkbox mode="md"  slot="end" [checked]="select_all" (ionChange)="checked($event, item.id)"></ion-checkbox>
+      <ion-img src="assets/img/unchecked.png" alt="" *ngIf="!item.check" mode="md"  slot="end"  (click)="checked('add', item.id, i)"></ion-img>
+      <ion-img src="assets/img/checked.png" alt="" *ngIf="item.check" mode="md"  slot="end"  (click)="checked('rm', item.id, i)"></ion-img>
+      
     </ion-item>
 
   </ion-list>
 
 
-      </ion-col>
-  </ion-row>
-</ion-grid>
+
 
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="LoadMore">
   <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

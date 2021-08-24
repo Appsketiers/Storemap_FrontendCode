@@ -40,7 +40,7 @@ export class StoresListPage implements OnInit {
       console.log(this.list_id);
     });
 
-    this.location_service.checkGPSPermission((data) => {
+    this.location_service.requestGPSPermission((data) => {
       console.log('Location Services data----', data);
       if (data.code == 4) {
         this.helper.Alert('Please enable GPS', '/grocery-list');

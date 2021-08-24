@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 // import { MyListComponent } from '../my-list/my-list.component';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class GroceryListSharePage implements OnInit {
   someValue: any;
   public toggled: boolean = false;
   constructor(
-    private router: Router,
+    private router: Router,public change: ChangeDetectorRef,
     private route: ActivatedRoute,
     private helper: HelperService // private mylist:MyListComponent
   ) {
@@ -43,7 +43,11 @@ export class GroceryListSharePage implements OnInit {
         console.log(res);
         for (let i = 0; i < res.data.data.length; i++) {
           this.data.push(res.data.data[i]);
+          this.data[i].check=false;
+          
+          
         }
+        console.log('nitin -----', this.data);
         if (isFirstLoad) event.target.complete();
         if(res.data.current_page == res.data.last_page){
           this.LoadMore = false;
@@ -63,10 +67,12 @@ export class GroceryListSharePage implements OnInit {
     this.get_users(true, event);
   }
 
-  checked(ev: any, id: any) {
-    if (ev.detail.checked) {
+  checked(action, id: any, i) {
+    if (action == 'add') {
+      this.data[i].check=true;
       this.Checked.push(id);
     } else {
+      this.data[i].check=false;
       let index = this.Checked.findIndex((el) => {
         return el == id;
       });
@@ -77,6 +83,16 @@ export class GroceryListSharePage implements OnInit {
     }
 
     console.log('checked list: ', this.Checked);
+  }
+
+  checkForItem(id){
+    if(id){ 
+      return this.Checked.findIndex((el)=>{
+        console.log(el);
+       return el.id == id 
+     }) != -1 ? true : false;
+    }
+    return false;
   }
 
   removeCheckedFromArray(id: any) {
@@ -108,6 +124,25 @@ export class GroceryListSharePage implements OnInit {
 
   all(){
     this.select_all=!this.select_all;
+
+    if (this.select_all){
+   for(let i=0; i<this.data.length; i++){
+    this.Checked.push(this.data[i].id);
+      this.data[i].check=true;
+      
+   }
+    
+console.log(this.Checked);
+    }
+    else{
+      this.Checked=[];
+     console.log(this.Checked);
+
+     for(let i=0; i<this.data.length; i++){
+      this.data[i].check=false;
+        
+     }
+    }
   }
 
   public toggle(): void {
