@@ -14,12 +14,15 @@
         style="height: 30px"
         *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''" >
         <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
-         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''"/>
+         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'"/>
         </div> 
       </ion-col>
     </ion-row>
   </div>
   <ion-grid>
+    
+      <img src="assets/img/left.png" alt="">
+    
     <ion-row>
 
       <ion-col size="6">
@@ -35,10 +38,15 @@
         </div>
       </ion-col>
     </ion-row>
+    
+      <img src="assets/img/right.png" alt="">
+   
   </ion-grid>
-
+  <h6 class="heading">Other Products on Your List:</h6>
   <ion-grid class="other_pro">
-    <h4>Other Products on Your List:</h4>
+        
+
+        <img src="assets/img/left.png" alt="">
     <ion-row>
 
       <ion-col size="3">
@@ -67,5 +75,6 @@
       </div> 
       </ion-col>
     </ion-row>
+    <img src="assets/img/right.png" alt="">
   </ion-grid>
 </ion-content>

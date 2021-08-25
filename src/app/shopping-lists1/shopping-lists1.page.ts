@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {  ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
 import { NavController } from '@ionic/angular';
@@ -24,6 +24,8 @@ export class ShoppingLists1Page implements OnInit {
   saved: any= false;
   empty = false;
   LoadMore;
+  list_id:any;
+  view_store:any=false;
   constructor(
     private formBuilder: FormBuilder,
     private helper: HelperService,
@@ -140,9 +142,19 @@ if(this.items.length>0){
       this.helper.postMethod('create-shopping-list', body, (res) => {
         console.log(res);
         if (res.status == true) {
-          this.helper.Alert('Shopping List successfully created.',"/shopping-lists");
-          
+          if(!this.view_store)
+          {this.helper.Alert('Shopping List successfully created.',"/shopping-lists");
           this.saved = true;
+        }
+          else{  
+            this.list_id=res.data.id;
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              id: this.list_id,
+            },
+          };
+          this.router.navigate(['/stores-list'], navigationExtras);}
+         
           //this.navCtrl.pop();
         }
       });
@@ -208,7 +220,21 @@ if(this.items.length>0){
     this.shoping_item_list(false,'');
   }
 
-  open_store(){
+  show_store(){
+    let that =this;
+this.helper.confirm('Save List and Show Store', function(status){
+  if(status){
+    that.view_store=true;
+    that.save();
+   
+  }
+  else{
+    console.log('denied');
+  }
+})
+  }
 
+  ionViewWillEnter() {
+    this.view_store=false;
   }
 }

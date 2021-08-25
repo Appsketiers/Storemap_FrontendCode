@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { FilterComponent } from '../filter/filter.component';
 import { LocationService } from '../providers/location.service';
+import {Platform } from '@ionic/angular';
 @Component({
   selector: 'app-stores-list',
   templateUrl: './stores-list.page.html',
@@ -31,7 +32,8 @@ export class StoresListPage implements OnInit {
     private helper: HelperService,
     private route: ActivatedRoute,
     public modalController: ModalController,
-    private location_service: LocationService
+    private location_service: LocationService,
+    private platform: Platform
   ) {}
 
   ngOnInit() {
@@ -40,20 +42,45 @@ export class StoresListPage implements OnInit {
       console.log(this.list_id);
     });
 
-    this.location_service.requestGPSPermission((data) => {
-      console.log('Location Services data----', data);
-      if (data.code == 4) {
-        this.helper.Alert('Please enable GPS', '/grocery-list');
-      } else {
-        this.lat = data.coords.latitude;
-        this.lng = data.coords.longitude;
-        if (this.lat && this.lng) {
-          this.store_list(false, '');
+    this.platform.ready().then(() => {
+     if (this.platform.is('android' || 'ios')) {
+
+      this.location_service.requestGPSPermission((data) => {
+        console.log('Location Services data----', data);
+        if (data.code == 4) {
+          this.helper.Alert('Please enable GPS', '/grocery-list');
         } else {
-          this.helper.Alert('Check your GPS', '');
+          this.lat = data.coords.latitude;
+          this.lng = data.coords.longitude;
+          if (this.lat && this.lng) {
+            this.store_list(false, '');
+          } else {
+            this.helper.Alert('Check your GPS', '');
+          }
         }
+      });
+
+       
       }
-    });
+      else{
+        console.log("running in a browser on mobile!");
+
+        this.helper.get_location(data=>{
+          this.lat = data.coords.latitude;
+      this.lng = data.coords.longitude;
+            if(this.lat && this.lng){
+      this.store_list(false, '');
+    }
+
+    else{
+      this.helper.Alert('Check your GPS','');
+    }
+        })
+      }
+
+  });
+
+ 
 
     // this.helper.get_location((data) => {
     //   console.log(data);
@@ -89,12 +116,13 @@ export class StoresListPage implements OnInit {
         lng: JSON.stringify(this.lng),
         limit: this.limit,
         page: this.page,
-      };
+      }
       this.helper.postMethod('search-store', body, (res) => {
         console.log(res);
-        for (let i = 0; i < res.data.data.length; i++) {
-          this.data.push(res.data.data[i]);
-        }
+        this.data = [...this.data,...res.data.data];
+        // for (let i = 0; i < res.data.data.length; i++) {
+        //   this.data.push(res.data.data[i]);
+        // }
         if (isFirstLoad) event.target.complete();
         this.page++;
         console.log('data', this.data);

@@ -5,6 +5,7 @@ ion-header {
     span {
         color: #00CF09;
         font-size: 14px;
+        padding: 12px;
     }
     p {
         margin-top: 15px;
@@ -27,31 +28,16 @@ ion-content {
     }
     ion-grid {
         position: relative;
+        display: flex;
+        img{
+            align-self: center;
+        }
         h4 {
             font-size: 13px;
             color: #4a4a4a;
             text-align: center;
         }
-        &:before {
-            position: absolute;
-            content: "";
-            background: #4a4a4a;
-            width: 40px;
-            height: 40px;
-            top: 33%;
-            z-index: -1;
-            left: 0;
-        }
-        &:after {
-            position: absolute;
-            content: "";
-            background: #4a4a4a;
-            width: 40px;
-            height: 40px;
-            top: 33%;
-            z-index: -1;
-            right: 0;
-        }
+    
         &.other_pro {
             &:before {
                 top: 50%;
@@ -105,4 +91,11 @@ ion-content {
             }
         }
     }
+
+
+}
+.heading{
+    color: gray;
+    font-size: small;
+    text-align: center;
 }
