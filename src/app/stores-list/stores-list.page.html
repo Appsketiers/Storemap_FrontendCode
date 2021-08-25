@@ -11,7 +11,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item lines="none" *ngFor="let item of data let i = index">
+    <!-- {{data.length}} -->
+    <ion-item lines="none" *ngFor="let item of data; let i = index">
       <ion-thumbnail slot="start">
         <img src="{{image_url}}{{item.store_images[0]}}" />
       </ion-thumbnail>

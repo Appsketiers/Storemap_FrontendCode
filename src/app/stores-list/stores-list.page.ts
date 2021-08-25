@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
@@ -33,7 +33,8 @@ export class StoresListPage implements OnInit {
     private route: ActivatedRoute,
     public modalController: ModalController,
     private location_service: LocationService,
-    private platform: Platform
+    private platform: Platform,
+    private ngZone:NgZone,
   ) {}
 
   ngOnInit() {
@@ -107,27 +108,31 @@ export class StoresListPage implements OnInit {
   }
 
   store_list(isFirstLoad, event) {
-    this.helper.getByKeynew('storetoken', (res) => {
-      let body: any = {
-        token: res,
-        shopping_list_id: this.list_id,
-        filter: this.filter_value,
-        lat: JSON.stringify(this.lat),
-        lng: JSON.stringify(this.lng),
-        limit: this.limit,
-        page: this.page,
-      }
-      this.helper.postMethod('search-store', body, (res) => {
-        console.log(res);
-        this.data = [...this.data,...res.data.data];
-        // for (let i = 0; i < res.data.data.length; i++) {
-        //   this.data.push(res.data.data[i]);
-        // }
-        if (isFirstLoad) event.target.complete();
-        this.page++;
-        console.log('data', this.data);
+    this.ngZone.run(()=>{
+      this.helper.getByKeynew('storetoken', (res) => {
+        let body: any = {
+          token: res,
+          shopping_list_id: this.list_id,
+          filter: this.filter_value,
+          lat: JSON.stringify(this.lat),
+          lng: JSON.stringify(this.lng),
+          limit: this.limit,
+          page: this.page,
+        }
+        this.helper.postMethod('search-store', body, (res) => {
+          console.log(res);
+          this.data = [...this.data,...res.data.data];
+          // for (let i = 0; i < res.data.data.length; i++) {
+          //   this.data.push(res.data.data[i]);
+          // }
+          if (isFirstLoad) event.target.complete();
+          this.page++;
+          console.log('data', this.data);
+  
+        });
       });
-    });
+    })
+    
   }
 
   doInfinite(event) {
