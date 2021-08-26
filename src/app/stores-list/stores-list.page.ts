@@ -149,6 +149,8 @@ export class StoresListPage implements OnInit {
       console.log(data);
       this.filter_value = data.data;
       console.log(this.filter_value);
+      this.page=1;
+      this.data=[];
       this.store_list(false, '');
     });
 

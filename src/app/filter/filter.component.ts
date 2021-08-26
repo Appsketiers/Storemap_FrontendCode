@@ -30,7 +30,7 @@ export class FilterComponent implements OnInit {
 
   change2(e) {
     if (e.detail.checked) {
-      this.filter_value='NTF';
+      this.filter_value='FTN';
       this.chk2 = true;
       this.chk1 = false;
       this.chk3 = false;
@@ -39,7 +39,7 @@ export class FilterComponent implements OnInit {
 
   change3(e) {
     if (e.detail.checked) {
-      this.filter_value='FTN';
+      this.filter_value='NTF';
       this.chk3 = true;
       this.chk1 = false;
       this.chk2 = false;

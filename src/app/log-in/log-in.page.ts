@@ -12,7 +12,8 @@ import { IonRouterOutlet } from '@ionic/angular';
   styleUrls: ['./log-in.page.scss'],
 })
 export class LogInPage implements OnInit {
-
+email_req:any=false;
+password_req:any=false;
   loginForm: FormGroup;
   submmited: any = false;
   imagepath: any;
@@ -67,6 +68,14 @@ export class LogInPage implements OnInit {
       }
       
   loginSubmit() {
+    if(this.loginForm.controls['email'].value == ""){
+this.email_req=true;
+    }
+
+    if(this.loginForm.controls['password'].value == ""){
+      this.password_req=true;
+    }
+    debugger
     this.submmited = true;
     if (this.loginForm.invalid) {
       return;
@@ -210,6 +219,10 @@ export class LogInPage implements OnInit {
           }
         }
        
+      }
+
+      else{
+        this.helper.Alert(res.message,'');
       }
      
      // this.helper.presentToast(res.message); (two times)

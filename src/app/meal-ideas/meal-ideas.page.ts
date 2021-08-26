@@ -41,7 +41,6 @@ export class MealIdeasPage implements OnInit {
   }
 
   meal_idea_details() {
-    debugger
     this.helper.getByKeynew('storetoken', (res) => {
       console.log(res);
       let body: any = { token: res, meal_id: this.list_id };
