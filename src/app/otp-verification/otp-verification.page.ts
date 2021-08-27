@@ -104,6 +104,10 @@ if(this.otp == otpsubmit ){
   };
   this.router.navigate(["/auth/reset-password"],  navigationExtras);
 }
+
+else{
+  this.helper.Alert('Please Enter Valid Otp','');
+}
     
 
   

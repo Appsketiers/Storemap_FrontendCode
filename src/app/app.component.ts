@@ -16,7 +16,7 @@ import { AlertController } from '@ionic/angular';
 export class AppComponent {
   userDetail: any;
   imagebaseurl: any;
-  constructor(public menuCtrl:MenuController,private helper: HelperService, private splashScreen: SplashScreen,public alertController: AlertController, private backbuttonhandalService: BackbuttonhandalService, private platform: Platform, private device: Device, private router: Router) {
+  constructor(public menuCtrl:MenuController,private helper: HelperService, private splashScreen: SplashScreen,public alertController: AlertController, private backbuttonhandalService: BackbuttonhandalService, private platform: Platform, private device: Device, private router: Router, private statusBar: StatusBar) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
   }
@@ -24,7 +24,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
       this.backbuttonhandalService.init();
-     
+     this.statusBar.backgroundColorByHexString('#9D4CDF');
     })}
   public appPages = [
     {

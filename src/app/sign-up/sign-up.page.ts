@@ -29,6 +29,11 @@ export class SignUpPage implements OnInit {
   submmited: any = false;
   imagepath: any;
   ornamentimage: any;
+  name_req:any=false;
+  email_req:any=false;
+  password_req:any=false;
+  
+
   constructor(
     private formBuilder: FormBuilder,
     private iab: InAppBrowser,
@@ -97,7 +102,15 @@ export class SignUpPage implements OnInit {
   }
   signupSubmit() {
     //this.signupForm.controls['image'].setValue("image add successfully");
-
+if(this.signupForm.controls['name'].value == ""){
+  this.name_req=true;
+}
+if(this.signupForm.controls['email'].value == ""){
+  this.email_req=true;
+}
+if(this.signupForm.controls['password'].value == ""){
+  this.password_req=true;
+}
     this.submmited = true;
     if (this.signupForm.invalid) {
       return;
@@ -118,7 +131,7 @@ export class SignUpPage implements OnInit {
       (res) => {
         console.log(res);
         //  alert("test "+JSON.stringify(res));
-        this.helper.presentToast(res.message);
+        this.helper.Alert(res.message,'');
         this.location.back();
         // debugger
       },
@@ -131,5 +144,16 @@ export class SignUpPage implements OnInit {
   }
   getFormControl(name) {
     return this.signupForm.get(name);
+  }
+
+  allow_char(event){
+    var inp = String.fromCharCode(event.keyCode);
+
+    if (/^[a-zA-Z \-\']+/.test(inp)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
   }
 }

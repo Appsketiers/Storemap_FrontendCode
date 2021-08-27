@@ -18,7 +18,7 @@
       <ion-row >
           <ion-col size="12">
               <ion-label>Name</ion-label>
-              <ion-input  formControlName="name" placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
+              <ion-input style="color: black;" formControlName="name" placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
               <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || getFormControl('name').touched)"
               class="my-0 py-0 text-danger" style="font-size: 10px;">
           
@@ -34,8 +34,9 @@
           <ion-col size="12">
               <ion-label>Email</ion-label>
               <ion-input  formControlName="email" placeholder="Enter Email" class="{{submmited && f.email.errors ?'errorclassb':'successclassb'}}" readonly>
-               </ion-input>
-               <ion-icon name="checkmark-circle-sharp"></ion-icon>
+                <ion-icon name="checkmark-circle-sharp"></ion-icon> 
+              </ion-input>
+               
               <div *ngIf="getFormControl('email').invalid  && (getFormControl('email').dirty || getFormControl('email').touched)"
               class="my-0 py-0 text-danger" style="font-size: 10px;">
               <p *ngIf="getFormControl('email').errors.required" class="my-0 py-0 text-danger">

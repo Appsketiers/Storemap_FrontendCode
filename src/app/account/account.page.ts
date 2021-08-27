@@ -93,9 +93,10 @@ export class AccountPage implements OnInit {
       })
   }
   aboutus(){
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no'}); 
+    const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', fullscreen: "no", toolbar:'yes'}); 
    // debugger
    // this.router.navigate(['/terms-conditions'])
+   //this.router.navigate(['/about-us']);
   }
   tandc(){
     const browser = this.iab.create('http://dev9server.com/store-mapps/page/terms-&-conditions','_self',{location:'no'}); 

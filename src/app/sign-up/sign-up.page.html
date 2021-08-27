@@ -44,8 +44,8 @@
         <ion-row >
             <ion-col size="12">
                 <ion-label>Name</ion-label>
-                <ion-input  formControlName="name" placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
-                <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || getFormControl('name').touched)"
+                <ion-input (keypress)="allow_char($event)" formControlName="name"  placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
+                <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || (getFormControl('name').updateOn && name_req))"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
             
               <div *ngIf="getFormControl('name').errors.required" class="my-0 py-0 text-danger">
@@ -61,7 +61,7 @@
                 <ion-label>Email Address</ion-label>
                 <ion-input inputmode="email"  formControlName="email" placeholder="Enter Email" class="{{submmited && f.email.errors ?'errorclassb':'successclassb'}}"></ion-input>
            
-                <div *ngIf="getFormControl('email').invalid  && (getFormControl('email').dirty || getFormControl('email').touched)"
+                <div *ngIf="getFormControl('email').invalid  && (getFormControl('email').dirty || getFormControl('email').updateOn && email_req)"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
                 <p *ngIf="getFormControl('email').errors.required" class="my-0 py-0 text-danger">
                     Email is required.
@@ -81,7 +81,7 @@
             <ion-col size="12">
                 <ion-label>Password</ion-label>
                 <ion-input type="password" formControlName="password" placeholder="Enter Password" class="{{submmited && f.password.errors ?'errorclassb':'successclassb'}}"></ion-input>
-                <div *ngIf="getFormControl('password').invalid  && (getFormControl('password').dirty || getFormControl('password').touched)"
+                <div *ngIf="getFormControl('password').invalid  && (getFormControl('password').dirty || getFormControl('password').updateOn && password_req)"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
                 <p *ngIf="getFormControl('password').errors.required" class="my-0 py-0 text-danger">
                     Password is required.
@@ -108,7 +108,7 @@
                 <div *ngIf="getFormControl('checkData').invalid && submmited"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
                 <div *ngIf="getFormControl('checkData').errors.required" class="my-0 py-0 text-danger">
-                    Checked is required.
+                   Accept Terms and Conditions and Privacy Policy.
                   </div>
                 
                 </div>

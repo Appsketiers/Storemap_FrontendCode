@@ -1,5 +1,7 @@
 ion-header{
+    height: 32%;
     .top_head {
+        height: 100%;
         background: #9D4CDF;
         background: linear-gradient(
     0deg
@@ -7,6 +9,7 @@ ion-header{
         padding: 30px 0;
         text-align: center;
         h2 {
+            margin-top: 10%;
             font-size: 38px;
             color: white;
             font-weight: bold;

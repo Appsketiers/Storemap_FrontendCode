@@ -15,6 +15,7 @@ export class ForgotPasswordPage implements OnInit {
   submmited: any = false;
   imagepath: any;
   ornamentimage: any;
+  email_req:any =false;
   constructor(private formBuilder: FormBuilder, private location: Location, private helper: HelperService, private device: Device, private router: Router) {
   
    }
@@ -40,6 +41,10 @@ export class ForgotPasswordPage implements OnInit {
   get f() { return this.emailForm.controls; }
 
   emailSubmit() {
+    if(this.emailForm.controls['email'].value == ""){
+      this.email_req=true;
+          }
+
     this.submmited = true;
     if (this.emailForm.invalid) {
       return;
@@ -72,8 +77,8 @@ export class ForgotPasswordPage implements OnInit {
       
       
       
-
-      this.helper.presentToast(res.message);
+this.helper.Alert(res.message,'');
+      //this.helper.presentToast(res.message);
      // debugger
     }, err => {
       console.log(err)

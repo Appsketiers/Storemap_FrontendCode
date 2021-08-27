@@ -75,7 +75,7 @@ this.email_req=true;
     if(this.loginForm.controls['password'].value == ""){
       this.password_req=true;
     }
-    debugger
+    
     this.submmited = true;
     if (this.loginForm.invalid) {
       return;
