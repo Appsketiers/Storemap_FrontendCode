@@ -50,7 +50,8 @@ export class SignUpPage implements OnInit {
   createForm() {
     this.signupForm = this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, emailNameValidator(new RegExp("[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})")),
+    ]],
       password: [
         '',
         [

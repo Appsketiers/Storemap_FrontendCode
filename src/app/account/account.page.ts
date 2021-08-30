@@ -12,7 +12,8 @@ import { Device } from '@ionic-native/device/ngx';
 export class AccountPage implements OnInit {
   userDetail: any;
   imagebaseurl: any;
-  two_factor: any
+  two_factor: any;
+  notify:any;
   constructor(private helper: HelperService, private device: Device, private router: Router, private iab: InAppBrowser,) { 
 
   }
@@ -93,19 +94,19 @@ export class AccountPage implements OnInit {
       })
   }
   aboutus(){
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', fullscreen: "no", toolbar:'yes'}); 
+   // const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', fullscreen: "no", toolbar:'yes'}); 
    // debugger
    // this.router.navigate(['/terms-conditions'])
-   //this.router.navigate(['/about-us']);
+   this.router.navigate(['/about-us']);
   }
   tandc(){
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/terms-&-conditions','_self',{location:'no'}); 
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/terms-&-conditions','_self',{location:'no'}); 
    // debugger
-   // this.router.navigate(['/terms-conditions'])
+   this.router.navigate(['/terms-conditions'])
   }
   pandp(){
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'}); 
-    //this.router.navigate(['/privacy-policy'])
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'}); 
+    this.router.navigate(['/privacy-policy'])
   }
   getDetail(){
     this.helper.getByKeynew('storetoken', res=>{
@@ -138,5 +139,9 @@ export class AccountPage implements OnInit {
 
   notifications(){
      this.router.navigate(['/notification'])
+  }
+
+  notification_toggle(ev){
+    console.log(this.notify);
   }
 }

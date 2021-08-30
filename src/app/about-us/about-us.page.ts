@@ -10,7 +10,7 @@ export class AboutUsPage implements OnInit {
   constructor(private iab: InAppBrowser) { }
 
   ngOnInit() {
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', toolbar:'yes'}); 
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', toolbar:'yes'}); 
   }
 
 }

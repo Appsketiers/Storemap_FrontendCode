@@ -23,6 +23,7 @@ ion-content {
       h4 {
         font-size: 15px;
         color: #000;
+        
       }
       h5 {
         font-size: 13px;
@@ -47,6 +48,9 @@ ion-content {
   ion-badge {
     --background: #9d4cdf;
     margin-left: 5px;
+    height: 10%;
+    width: 7%; 
+    border-radius: 50%
   }
   .lable {
     display: flex;
@@ -57,5 +61,10 @@ ion-content {
   ion-toggle {
     --background: #fff;
     --background-checked: #9d4cdf;
+  
+    --handle-background: #fff;
+    --handle-background-checked: #fff;
+    
+   
   }
 }

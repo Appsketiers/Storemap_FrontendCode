@@ -177,7 +177,9 @@ console.log(this.otpForm.controls['checkData'].value);
   // };
   // this.router.navigate(["/main-home"],  navigationExtras);
 }
-    
+else{
+  this.helper.Alert('Please Enter Valid Otp','');
+}
 
   
     //this.router.navigate(['/auth/reset-password'])

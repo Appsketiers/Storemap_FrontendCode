@@ -20,7 +20,7 @@
             <p *ngIf="getFormControl('email').errors.required" class="my-0 py-0 text-danger">
                 Email is required.
             </p>
-            <p *ngIf="(!getFormControl('email').errors.required )&& (getFormControl('email').errors.email)" class="my-0 py-0 text-danger">
+            <p *ngIf="(!getFormControl('email').errors.required )&& (getFormControl('email').errors.emailName)" class="my-0 py-0 text-danger">
               Invalid email.
               </p>
             </div>

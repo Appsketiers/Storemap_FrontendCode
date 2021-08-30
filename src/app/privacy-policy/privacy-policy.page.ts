@@ -10,7 +10,7 @@ export class PrivacyPolicyPage implements OnInit {
   constructor(private iab: InAppBrowser) { }
 
   ngOnInit() {
-    const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'}); 
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'}); 
   }
 
 }

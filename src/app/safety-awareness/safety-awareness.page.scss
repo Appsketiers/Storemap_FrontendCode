@@ -9,11 +9,8 @@ ion-content {
                     width: 100%;
                     --background: #F0F0F0;
                     color: #868686;
-                    &.active{
-                        color: white;
-                        --background: #9D4CDF;
-
-                    }
+            
+                 
                 }
 
             }
@@ -42,4 +39,9 @@ ion-list{
         }
     }
 }
+}
+.active{
+    color: white;
+    --background: #9D4CDF;
+
 }
