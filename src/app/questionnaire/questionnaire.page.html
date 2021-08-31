@@ -14,7 +14,8 @@
     <ion-list>
         <ion-item *ngFor="let list of checkboxlist">
             <ion-label>{{list.title}}</ion-label>
-            <ion-checkbox (ionChange)="checked($event, list.id)"></ion-checkbox>
+            <ion-checkbox *ngIf="!list.selected" (ionChange)="checked($event, list.id)"></ion-checkbox>
+            <ion-checkbox *ngIf="list.selected" (ionChange)="checked($event, list.id)" checked></ion-checkbox>
         </ion-item>
        </ion-list>
 

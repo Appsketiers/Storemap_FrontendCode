@@ -11,8 +11,8 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let item of cat_list" size="5">
-         <ion-button  class="cus_btn active" (click)="list(item.id)">{{item.name}}</ion-button>
+      <ion-col *ngFor="let item of cat_list let i = index" size="5">
+         <ion-button (click)="list(item.id, i)" class="{{item.clicked ?'btn_active':'btn_inactive'}}" >{{item.name}}</ion-button>
       </ion-col>
       </ion-row>
   </ion-grid>

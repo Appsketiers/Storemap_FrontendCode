@@ -3,17 +3,7 @@ ion-content {
         ion-row{
             flex-wrap: inherit;
     overflow: scroll;
-            ion-col{
-                ion-button{
-                    margin: 10px 15px 0 0;
-                    width: 100%;
-                    --background: #F0F0F0;
-                    color: #868686;
-            
-                 
-                }
-
-            }
+           
         }
     }
 ion-list{
@@ -40,8 +30,28 @@ ion-list{
     }
 }
 }
-.active{
-    color: white;
-    --background: #9D4CDF;
 
+
+.btn_active{
+    display: block;
+    --background: #9D4CDF;
+    --border-radius: 10px;
+    --color: white;
+    --box-shadow: none;
+    margin: 10px 15px;
+    font-family: 'SF UI Text Semibold';
+    height: 50px;
+    width: 100%;
+}
+
+.btn_inactive{
+    display: block;
+    --background: #F0F0F0;
+    --border-radius: 10px;
+    --color: #868686;
+    --box-shadow: none;
+    width: 100%;
+    margin: 10px 15px;
+    font-family: 'SF UI Text Semibold';
+    height: 50px;
 }

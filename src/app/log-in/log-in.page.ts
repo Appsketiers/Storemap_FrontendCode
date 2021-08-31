@@ -94,6 +94,8 @@ this.email_req=true;
       console.log(res)
       //alert("test "+JSON.stringify(res));
       if(res.status){
+        this.helper.setKeyValueNew('tag_list',res.data.my_tags);
+        console.log(res.data.my_tags);
         // await this.helper.setObject('storeuser',res.data);
         // this.helper.setStringValue("storetoken", res.data.token)
         this.helper.setKeyValueNew("device_token", form.device_token);
@@ -157,8 +159,8 @@ this.email_req=true;
 
           }else{
             this.helper.setKeyValueNew('storeuser',res.data);
-            this.helper.setKeyValueNew("storetoken", res.data.token)
-           
+            this.helper.setKeyValueNew("storetoken", res.data.token);
+                    
             this.router.navigate(['/main-home']);
           }
 
