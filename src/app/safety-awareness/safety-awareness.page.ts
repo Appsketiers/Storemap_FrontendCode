@@ -40,7 +40,7 @@ export class SafetyAwarenessPage implements OnInit {
         this.List = res.data;
 
         for (let j = 0; j < this.cat_list.length; j++) {
-          if (this.cat_list == index) {
+          if (j == index) {
             this.cat_list[index].clicked = true;
           } else {
             this.cat_list[j].clicked = false;
@@ -59,4 +59,5 @@ export class SafetyAwarenessPage implements OnInit {
     };
     this.router.navigate(['/safety-awareness-deatils'], NavigationExtras);
   }
+  
 }

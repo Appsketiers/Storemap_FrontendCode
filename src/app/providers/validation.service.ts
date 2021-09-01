@@ -75,3 +75,12 @@ export function passwordNameValidator(nameRe: RegExp): ValidatorFn {
     return forbidden ? {passwordName: {value: control.value}} : null;
   };
 }
+
+export function NameValidator(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    const forbidden = ! control.value.match(
+      /^[a-zA-Z \-\']+/
+    );
+    return forbidden ? {Name: {value: control.value}} : null;
+  };
+}

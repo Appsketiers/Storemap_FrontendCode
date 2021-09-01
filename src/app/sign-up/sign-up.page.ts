@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HelperService } from '../providers/helper.service';
 import {
   ValidationService,
   emailNameValidator,
   passwordNameValidator,
+  NameValidator
+  
 } from '../providers/validation.service';
 import { Device } from '@ionic-native/device/ngx';
 import { CameraService } from '../providers/camera.service';
@@ -32,7 +34,7 @@ export class SignUpPage implements OnInit {
   name_req:any=false;
   email_req:any=false;
   password_req:any=false;
-  
+  user_name:any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,13 +43,15 @@ export class SignUpPage implements OnInit {
     private cameraService: CameraService,
     private helper: HelperService,
     private device: Device,
-    private router: Router
+    private router: Router,
+    private  cd: ChangeDetectorRef,
   ) {}
 
   ngOnInit() {
     this.createForm();
   }
   createForm() {
+    
     this.signupForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, emailNameValidator(new RegExp("[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})")),
@@ -96,6 +100,22 @@ export class SignUpPage implements OnInit {
     );
     //this.router.navigate(['/privacy-policy'])
   }
+  removeSpace(value) {
+    console.log(value);
+      let val = value.trim();
+if(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(val)){
+  let val1  = val.replace(/[^a-zA-Z ]/g, "")
+  setTimeout(() => {
+    this.signupForm.controls['name'].setValue(val1)
+  }, 200);
+  
+  this.cd.detectChanges();
+} else {
+  this.signupForm.controls['name'].setValue(val)
+}
+
+  }
+
 
   changeCheckBox(event) {
     if (!event.detail.checked)
@@ -148,13 +168,20 @@ if(this.signupForm.controls['password'].value == ""){
   }
 
   allow_char(event){
-    var inp = String.fromCharCode(event.keyCode);
+      let newValue = event.target.value;
 
-    if (/^[a-zA-Z \-\']+/.test(inp)) {
-      return true;
-    } else {
-      event.preventDefault();
-      return false;
+    let regExp = new RegExp('^[A-Za-z0-9? ]+$');
+
+    if (! regExp.test(newValue)) {
+      event.target.value = newValue.slice(0, -1);
     }
+    // var inp = String.fromCharCode(event.keyCode);
+
+    // if (/^[a-zA-Z \-\']+/.test(inp)) {
+    //   return true;
+    // } else {
+    //   event.preventDefault();
+    //   return false;
+    // }
   }
 }

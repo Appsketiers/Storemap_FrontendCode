@@ -9,7 +9,7 @@
 
 <ion-content>
 <ion-list>
-  <ion-item *ngFor="let item of data let i = index" (click)="meal_idea(item.id)">
+  <ion-item  *ngFor="let item of data let i = index" (click)="meal_idea(item.id)">
     <ion-avatar slot="start">
       <img src={{image_url}}{{item.image}} />
     </ion-avatar>
