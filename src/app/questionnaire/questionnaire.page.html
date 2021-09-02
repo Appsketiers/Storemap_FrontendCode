@@ -6,7 +6,7 @@
         </ion-buttons>
         <ion-title >Questionnaire</ion-title>
 
-        <ion-label class="text" slot="end" (click)="skip()">SKIP</ion-label>
+        <ion-label *ngIf="page=='two-factor'" class="text" slot="end" (click)="skip()">SKIP</ion-label>
     </ion-toolbar>
 </ion-header>
 
@@ -22,6 +22,6 @@
 </ion-content>
 
 <ion-footer (click) = "next()">
-    <ion-button class="cus_btn" >Next</ion-button>
-
+    <ion-button *ngIf="page=='two-factor'" class="cus_btn" >Next</ion-button>
+    <ion-button *ngIf="page!=='two-factor'" class="cus_btn" >Submit</ion-button>
 </ion-footer>

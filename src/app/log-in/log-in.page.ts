@@ -5,7 +5,7 @@ import { HelperService } from '../providers/helper.service';
 import { Device } from '@ionic-native/device/ngx';
 import { emailNameValidator, passwordNameValidator } from '../providers/validation.service';
 import { IonRouterOutlet } from '@ionic/angular';
-
+import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.page.html',
@@ -224,7 +224,7 @@ this.email_req=true;
       }
 
       else{
-        this.helper.Alert(res.message,'');
+        this.helper.presentToast(res.message);
       }
      
      // this.helper.presentToast(res.message); (two times)

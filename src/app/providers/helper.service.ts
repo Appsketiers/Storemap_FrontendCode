@@ -135,6 +135,7 @@ setsocketObs(profile: any) {
 
   }
   isLoggedIn(): Promise<boolean> {
+    //debugger
     return new Promise(async (resolve, reject) => {
       
       this.nativeStorage.getItem("storeuser")

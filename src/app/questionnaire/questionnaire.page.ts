@@ -80,8 +80,8 @@ export class QuestionnairePage implements OnInit {
 
         if(res.status){
           this.helper.setKeyValueNew('tag_list',this.Checked);
-          this.helper.Alert(res.message,'/main-home')
-          // this.router.navigate(['/main-home']);
+          this.helper.presentToast(res.message);
+          this.router.navigate(['/main-home']);
         }
       });
   

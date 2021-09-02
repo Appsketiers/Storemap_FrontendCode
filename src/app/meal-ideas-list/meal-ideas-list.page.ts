@@ -19,8 +19,7 @@ export class MealIdeasListPage implements OnInit {
   }
 
   meal_idea_list(isFirstLoad, event){
-    debugger
-    this.helper.getByKeynew('storetoken', (res) => {
+      this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, limit: this.limit, page:this.page};
       this.helper.postMethod('meal-idea-list', body, (res) => {
         console.log(res);

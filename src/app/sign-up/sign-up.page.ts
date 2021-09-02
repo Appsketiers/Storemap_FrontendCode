@@ -152,7 +152,7 @@ if(this.signupForm.controls['password'].value == ""){
       (res) => {
         console.log(res);
         //  alert("test "+JSON.stringify(res));
-        this.helper.Alert(res.message,'');
+        this.helper.presentToast(res.message);
         this.location.back();
         // debugger
       },

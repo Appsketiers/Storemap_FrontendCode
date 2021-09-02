@@ -2,7 +2,8 @@
 
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button text="" defaultHref="/"></ion-back-button>
+            <ion-back-button icon="chevron-back-outline" text="" defaultHref="/"></ion-back-button>
+           
         </ion-buttons>
         <ion-title>Recommended</ion-title>
     </ion-toolbar>
@@ -14,8 +15,8 @@
         <ion-row>
             <ion-col size="6" routerLink="/grocery-list">
                 <div class="list_box_1">
-                    <img src="assets/img/list.png" alt="">
-                    <h4>Recommended List</h4>
+                    <img src="assets/img/recommend.png" alt="">
+                    <!-- <h4>Recommended List</h4> -->
                 </div>
             </ion-col>
             <ion-col size="6">
@@ -34,7 +35,7 @@
             <ion-label style="color: #9D4CDF;">All Recommended Lists</ion-label>
         </ion-item>
         <ion-item *ngFor="let item of data let i = index">
-            <span slot="start">{{i+1}}</span>
+            <span style="color: gray;" slot="start">{{i+1}}</span>
             <ion-label (click)="recommended_details(item.id)">{{item.title}}</ion-label>
             <span class="icon-add" slot="end"></span>
         </ion-item>

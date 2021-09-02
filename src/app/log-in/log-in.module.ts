@@ -9,7 +9,7 @@ import { LogInPageRoutingModule } from './log-in-routing.module';
 import { LogInPage } from './log-in.page';
 import { HttpClientModule } from '@angular/common/http';
 import { HelperService } from '../providers/helper.service';
-
+import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,6 +20,6 @@ import { HelperService } from '../providers/helper.service';
     LogInPageRoutingModule
   ],
   providers: [HelperService],
-  declarations: [LogInPage]
+  declarations: [LogInPage, ShowHidePasswordComponent]
 })
 export class LogInPageModule {}

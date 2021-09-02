@@ -77,7 +77,7 @@ export class ForgotPasswordPage implements OnInit {
       
       
       
-this.helper.Alert(res.message,'');
+this.helper.presentToast(res.message);
       //this.helper.presentToast(res.message);
      // debugger
     }, err => {
