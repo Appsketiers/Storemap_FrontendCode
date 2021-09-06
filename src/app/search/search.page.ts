@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchPage implements OnInit {
 
-  constructor() { }
+  constructor(private keyboard: Keyboard) { }
 
   ngOnInit() {
   }
 
+  handleLogin(){
+    this.keyboard.hide();
+      }
 }

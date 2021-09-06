@@ -10,6 +10,7 @@ import {
 } from '../providers/validation.service';
 import { Device } from '@ionic-native/device/ngx';
 import { CameraService } from '../providers/camera.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import {
   Location,
   LocationStrategy,
@@ -37,6 +38,7 @@ export class SignUpPage implements OnInit {
   user_name:any;
 
   constructor(
+    private keyboard: Keyboard,
     private formBuilder: FormBuilder,
     private iab: InAppBrowser,
     private location: Location,
@@ -53,7 +55,7 @@ export class SignUpPage implements OnInit {
   createForm() {
     
     this.signupForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, emailNameValidator(new RegExp("[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})")),
     ]],
       password: [
@@ -84,21 +86,11 @@ export class SignUpPage implements OnInit {
     });
   }
   tandc() {
-    const browser = this.iab.create(
-      'http://dev9server.com/store-mapps/page/terms-&-conditions',
-      '_self',
-      { location: 'no' }
-    );
-    // debugger
-    // this.router.navigate(['/terms-conditions'])
+this.router.navigate(['/terms-conditions'])
   }
   pandp() {
-    const browser = this.iab.create(
-      'http://dev9server.com/store-mapps/page/privacy-policy',
-      '_self',
-      { location: 'no' }
-    );
-    //this.router.navigate(['/privacy-policy'])
+  
+  this.router.navigate(['/privacy-policy'])
   }
   removeSpace(value) {
     console.log(value);
@@ -184,4 +176,8 @@ if(this.signupForm.controls['password'].value == ""){
     //   return false;
     // }
   }
+
+  handleLogin(){
+    this.keyboard.hide();
+      }
 }

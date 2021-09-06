@@ -16,6 +16,11 @@
     <ion-label>{{item.title}}</ion-label>
 
 </ion-item>
+
+
+<div class="plac" *ngIf="data.length<=0"> 
+  <ion-label>Meals not found</ion-label>
+</div>
 </ion-list>
 <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
   <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

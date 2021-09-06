@@ -18,22 +18,22 @@
       <ion-row>
           <ion-col size="3">
               <ion-input name="a" #a (keyup)="moveFocus($event,b,'')" type="tel" formControlName="a"
-                  class="{{submmited && f.a.errors ?'errorclassb':'successclassb'}}" maxlength="1">
+                  class="{{submmited && f.a.errors ?'errorclassb':'successclassb'}}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="1">
               </ion-input>
           </ion-col>
           <ion-col size="3">
               <ion-input name="b" #b (keyup)="moveFocus($event,c,a)" type="tel" formControlName="b"
-                  class="{{submmited && f.b.errors ?'errorclassb':'successclassb'}}" maxlength="1">
+                  class="{{submmited && f.b.errors ?'errorclassb':'successclassb'}}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="1">
               </ion-input>
           </ion-col>
           <ion-col size="3">
               <ion-input name="c" #c (keyup)="moveFocus($event,d,b)" type="tel" formControlName="c"
-                  class="{{submmited && f.c.errors ?'errorclassb':'successclassb'}}" maxlength="1">
+                  class="{{submmited && f.c.errors ?'errorclassb':'successclassb'}}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="1">
               </ion-input>
           </ion-col>
           <ion-col size="3">
               <ion-input name="d" #d (keyup)="moveFocus($event,'',c)" type="tel" formControlName="d"
-                  class="{{submmited && f.d.errors ?'errorclassb':'successclassb'}}" maxlength="1">
+                  class="{{submmited && f.d.errors ?'errorclassb':'successclassb'}}" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="1">
               </ion-input>
           </ion-col>
       </ion-row>

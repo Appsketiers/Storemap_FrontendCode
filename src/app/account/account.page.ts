@@ -73,7 +73,9 @@ export class AccountPage implements OnInit {
                         "otp":otp,
                         "isSkip": false,
                         "isLogin": false,
-                        "two_factor":this.userDetail.two_factor
+                        "two_factor":this.userDetail.two_factor,
+                        page:"accounts"
+                        
                     }
                   };
               

@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SafetyAwarenessPage implements OnInit {
   public cat_list: any = [];
-  public List: any;
+  public List: any = [];
   public id: any;
   previous_clicked:any;
   image_url = environment.image_baseurl;

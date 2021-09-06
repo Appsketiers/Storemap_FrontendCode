@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { ModalController } from '@ionic/angular';
 import { MealIdeasShoppingComponent } from '../meal-ideas-shopping/meal-ideas-shopping.component';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-meal-ideas',
   templateUrl: './meal-ideas.page.html',
@@ -25,6 +26,7 @@ export class MealIdeasPage implements OnInit {
   image_url = environment.image_baseurl;
   selected_shopping_list:any;
   constructor(
+    private iab: InAppBrowser,
     private helper: HelperService,
     private router: Router,
     private route: ActivatedRoute,
@@ -147,5 +149,9 @@ export class MealIdeasPage implements OnInit {
       });
     });
     
+  }
+
+  open_link(){
+    const browser = this.iab.create(this.credit_link,'_system',{location:'no'}); 
   }
 }

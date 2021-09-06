@@ -93,6 +93,7 @@ export class GroceryListPage implements OnInit {
   }
 
   delete_ingredient(id) {
+    
     let index = this.update.findIndex((el) => {
       console.log(el);
       return el.product == id;
@@ -108,6 +109,15 @@ export class GroceryListPage implements OnInit {
   this.update_list();
   }
 
+  confirm(id){
+    let that= this;
+    this.helper.confirm('Are you sure you want to delete the item from the list', function(status){
+      if(status){
+        that.delete_ingredient(id);
+      }
+    })
+  }
+
   update_list(){
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
@@ -120,10 +130,10 @@ export class GroceryListPage implements OnInit {
       this.helper.postMethod('update-shopping-list', body, (res) => {
         console.log(res);
         if (res.status == true) {
-          this.helper.Alert(
-            'Shopping List successfully updated.',
-            '/grocery-list'
-          );
+          this.helper.presentToast(
+            'Shopping List successfully updated.'
+            );
+            this.router.navigate(['/grocery-list']);
         }
       });
     });
@@ -154,6 +164,7 @@ export class GroceryListPage implements OnInit {
   cancelSearch(ev) {
     this.toggle();
     this.shoping_list();
+    this.someValue="";
   }
 
   searchThis(ev) {

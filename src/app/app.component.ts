@@ -8,6 +8,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AlertController } from '@ionic/angular';
+import { Network } from '@ionic-native/network/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,7 +17,18 @@ import { AlertController } from '@ionic/angular';
 export class AppComponent {
   userDetail: any;
   imagebaseurl: any;
-  constructor(public menuCtrl:MenuController,private helper: HelperService, private splashScreen: SplashScreen,public alertController: AlertController, private backbuttonhandalService: BackbuttonhandalService, private platform: Platform, private device: Device, private router: Router, private statusBar: StatusBar) {
+  constructor(
+    private network: Network,
+    public menuCtrl: MenuController,
+    private helper: HelperService,
+    private splashScreen: SplashScreen,
+    public alertController: AlertController,
+    private backbuttonhandalService: BackbuttonhandalService,
+    private platform: Platform,
+    private device: Device,
+    private router: Router,
+    private statusBar: StatusBar
+  ) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
   }
@@ -24,100 +36,132 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.splashScreen.hide();
       this.backbuttonhandalService.init();
-     this.statusBar.backgroundColorByHexString('#9D4CDF');
-    })}
+      this.statusBar.backgroundColorByHexString('#9D4CDF');
+     // this.check_internet_connection();
+
+      window.addEventListener('offline', () => {
+        this.helper.presentToast('No Internet Connection');
+        });
+
+
+        window.addEventListener('online', () => {
+          this.helper.presentToast('Internet Connected');
+          });
+    });
+  }
   public appPages = [
     {
       title: 'Home',
-      url: '/main-home'
-
+      url: '/main-home',
     },
     {
       title: 'Shopping Lists',
-      url: '/shopping-lists'
-
+      url: '/shopping-lists',
     },
-
 
     {
       title: 'Questionnaire',
-      url: '/questionnaire'
-
+      url: '/questionnaire',
     },
 
     {
       title: 'Past Orders',
-      url: '/past-orders'
-
+      url: '/past-orders',
     },
     {
       title: 'My Account',
-      url: '/main-account'
-
+      url: '/main-account',
     },
   ];
-
-  ngDoCheck(){
-   
-  }
-  onMenuOpen(){
-    this.helper.getByKeynew('storeuser', res=>{
-      this.userDetail = res;
-    })
-   
-  }
-  logout(){
-  this.helper.getByKeynew('storetoken', res=>{
-    this.helper.getByKeynew('device_token', async device_token=>{
-      const alert = await this.alertController.create({
-        cssClass: 'logoutcss',
-        header: 'Confirm!',
-        message: 'Are you sure you want to log out?',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: (blah) => {
-              console.log('Confirm Cancel: blah');
-            }
-          }, {
-            text: 'Okay',
-            handler: () => {
-              let body: any = {
-                token:res,
-                device_token: device_token ? device_token : 'asdfghjk1234rtyu',
-           
-                
-              }
-              this.helper.postMethod('logout', body, res => {
-                console.log(res)
-              if(res.status){
-                this.helper.clearStorageNew();
-                this.router.navigate(['/auth'])
-              }
-             
-                this.helper.presentToast(res.message);
-              
-               // debugger
-              }, err => {
-                console.log(err)
-            
-              });
-            }
-          }
-        ]
-      });
-  
-      await alert.present();
+  check_internet_connection() {
+    debugger;
+    // watch network for a disconnection
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      console.log('network was disconnected :-(');
+      this.helper.presentToast('No Internet Connection');
     });
-  
-    })
-   
+
+    // stop disconnect watch
+    disconnectSubscription.unsubscribe();
+
+    // watch network for a connection
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+      console.log('network connected!');
+      this.helper.presentToast('Internet Connected');
+      // We just got a connection but we need to wait briefly
+      // before we determine the connection type. Might need to wait.
+      // prior to doing any api requests as well.
+      setTimeout(() => {
+        if (this.network.type === 'wifi') {
+          console.log('we got a wifi connection, woohoo!');
+          this.helper.presentToast('we got a wifi connection, woohoo!');
+        }
+      }, 3000);
+    });
+
+    // stop connect watch
+    connectSubscription.unsubscribe();
   }
-  closeMenu(){
-    this.menuCtrl.close()
+
+  ngDoCheck() {}
+  onMenuOpen() {
+    this.helper.getByKeynew('storeuser', (res) => {
+      this.userDetail = res;
+    });
+  }
+  logout() {
+    this.helper.getByKeynew('storetoken', (res) => {
+      this.helper.getByKeynew('device_token', async (device_token) => {
+        const alert = await this.alertController.create({
+          cssClass: 'logoutcss',
+          header: 'Confirm!',
+          message: 'Are you sure you want to log out?',
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (blah) => {
+                console.log('Confirm Cancel: blah');
+              },
+            },
+            {
+              text: 'Okay',
+              handler: () => {
+                let body: any = {
+                  token: res,
+                  device_token: device_token
+                    ? device_token
+                    : 'asdfghjk1234rtyu',
+                };
+                this.helper.postMethod(
+                  'logout',
+                  body,
+                  (res) => {
+                    console.log(res);
+                    if (res.status) {
+                      this.helper.clearStorageNew();
+                      this.router.navigate(['/auth']);
+                    }
+
+                    this.helper.presentToast(res.message);
+
+                    // debugger
+                  },
+                  (err) => {
+                    console.log(err);
+                  }
+                );
+              },
+            },
+          ],
+        });
+
+        await alert.present();
+      });
+    });
+  }
+  closeMenu() {
+    this.menuCtrl.close();
   }
 }
-
-

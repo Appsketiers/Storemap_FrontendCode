@@ -113,7 +113,9 @@ export class GroceryListSharePage implements OnInit {
       this.helper.postMethod('share-shopping-list', body, (res) => {
         console.log(res);
         if (res.status == true) {
-          this.helper.Alert(res.message, '/shopping-lists');
+          this.helper.presentToast(res.message);
+          this.router.navigate(['/shopping-lists']);
+          
         } else {
           this.helper.Alert('Fail', '');
         }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
-
+import { Validators } from "@angular/forms";
 @Injectable({
   providedIn: 'root'
 })
@@ -79,8 +79,9 @@ export function passwordNameValidator(nameRe: RegExp): ValidatorFn {
 export function NameValidator(nameRe: RegExp): ValidatorFn {
   return (control: AbstractControl): {[key: string]: any} | null => {
     const forbidden = ! control.value.match(
-      /^[a-zA-Z \-\']+/
+      /^\d{3,}$/
     );
     return forbidden ? {Name: {value: control.value}} : null;
   };
 }
+

@@ -30,7 +30,7 @@
                         </div>
 
                     <div class="a_b">
-                        <span>{{credit_link}}</span>
+                        <span (click)="open_link()">{{credit_link}}</span>
                         <ion-icon *ngIf="!liked" name="heart-outline" (click)="like(1)"></ion-icon>  
                         <ion-icon style="color: #9D4CDF;" *ngIf="liked" name="heart" (click)="like(0)"></ion-icon> 
                     </div>
@@ -59,6 +59,10 @@
             <span class="green">1 lbs</span>
             <span class="icon-add" slot="end" (click)="add_to_shopping_list(item.id)"></span>
         </ion-item>
+
+        <div class="plac" *ngIf="ingredient_list.length<=0"> 
+            <ion-label>Not found</ion-label>
+          </div>
 
     </ion-list>
 

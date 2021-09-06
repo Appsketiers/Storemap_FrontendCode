@@ -40,6 +40,10 @@
             <span class="icon-add" slot="end"></span>
         </ion-item>
     
+        <div class="plac" *ngIf="data.length<=0"> 
+            <ion-label>No meal found</ion-label>
+          </div>
+
     </ion-list>
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

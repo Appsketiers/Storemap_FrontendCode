@@ -49,6 +49,7 @@ export class MyListComponent implements OnInit {
               this.helper.postMethod('delete-shopping-list', body, (res) => {
                 console.log(res);
                 if (res.status == true) {
+                  this.helper.presentToast(res.message);
                   let index = this.MyList.findIndex((el) => {
                     console.log(el);
                     return el.id == id;

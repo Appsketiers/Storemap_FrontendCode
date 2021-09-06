@@ -52,6 +52,10 @@
                 Name is required.
               </div>
 
+              <div *ngIf="getFormControl('name').errors.minLength" class="my-0 py-0 text-danger">
+                Name 
+              </div>
+
               <!-- <p *ngIf="(!getFormControl('name').errors.required )&& (getFormControl('name').errors.Name)" class="my-0 py-0 text-danger">
                 Invalid Input.
                 </p> -->
@@ -84,7 +88,9 @@
             </ion-col> -->
             <ion-col size="12">
                 <ion-label>Password</ion-label>
-                <ion-input type="password" formControlName="password" placeholder="Enter Password" class="{{submmited && f.password.errors ?'errorclassb':'successclassb'}}"></ion-input>
+                <app-show-hide-password>
+                <ion-input type="password" formControlName="password" placeholder="Enter Password" class="{{submmited && f.password.errors ?'errorclassb':'successclassb'}}" (keyup.enter)="handleLogin()" maxlength='15'></ion-input>
+              </app-show-hide-password>
                 <div *ngIf="getFormControl('password').invalid  && (getFormControl('password').dirty || getFormControl('password').updateOn && password_req)"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
                 <p *ngIf="getFormControl('password').errors.required" class="my-0 py-0 text-danger">

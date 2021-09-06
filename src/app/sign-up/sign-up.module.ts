@@ -10,6 +10,7 @@ import { SignUpPage } from './sign-up.page';
 import { HttpClientModule } from '@angular/common/http';
 import { HelperService } from '../providers/helper.service';
 import { CameraService } from '../providers/camera.service';
+import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { CameraService } from '../providers/camera.service';
     SignUpPageRoutingModule
   ],
   providers: [HelperService, CameraService],
-  declarations: [SignUpPage]
+  declarations: [SignUpPage, ShowHidePasswordComponent]
 })
 export class SignUpPageModule {}

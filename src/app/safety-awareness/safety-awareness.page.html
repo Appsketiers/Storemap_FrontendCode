@@ -25,6 +25,9 @@
       <p>10 hrs ago</p>
     </ion-label>
   </ion-item>
- 
+
+  <div class="plac" *ngIf="List.length<=0"> 
+    <ion-label>Not found</ion-label>
+  </div>
 </ion-list>
 </ion-content>

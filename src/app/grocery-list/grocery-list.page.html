@@ -46,10 +46,12 @@
                 <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
                 {{item.name}} ({{item.quantity}})</ion-label>
                 <span (click)="add_item(item.id,i)" *ngIf="!checkForItem(item.id)" class="icon-add" slot="end"></span>
-                <ion-icon slot="end" name="trash-outline" (click)="delete_ingredient(item.id)" *ngIf="checkForItem(item.id)"></ion-icon>
+                <ion-icon slot="end" name="trash-outline" (click)="confirm(item.id)" *ngIf="checkForItem(item.id)"></ion-icon>
         </ion-item>
 
-       
+        <div class="plac" *ngIf="ingredients.length<=0"> 
+            <ion-label>No meal found</ion-label>
+          </div>
     </ion-list>
 
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="LoadMore && pagination">

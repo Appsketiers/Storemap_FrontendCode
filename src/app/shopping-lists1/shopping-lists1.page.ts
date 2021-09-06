@@ -4,6 +4,7 @@ import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
 import { NavController } from '@ionic/angular';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 @Component({
   selector: 'app-shopping-lists1',
   templateUrl: './shopping-lists1.page.html',
@@ -27,6 +28,7 @@ export class ShoppingLists1Page implements OnInit {
   list_id: any;
   view_store: any = false;
   constructor(
+    private keyboard: Keyboard,
     private formBuilder: FormBuilder,
     private helper: HelperService,
     private router: Router,
@@ -141,10 +143,12 @@ export class ShoppingLists1Page implements OnInit {
           console.log(res);
           if (res.status == true) {
             if (!this.view_store) {
-              this.helper.Alert(
-                'Shopping List successfully created.',
-                '/shopping-lists'
-              );
+              this.helper.presentToast(res.message);
+              this.router.navigate(['/shopping-lists']);
+              // this.helper.Alert(
+              //   'Shopping List successfully created.',
+              //   '/shopping-lists'
+              // );
               this.saved = true;
             } else {
               this.list_id = res.data.id;
@@ -232,4 +236,8 @@ export class ShoppingLists1Page implements OnInit {
   ionViewWillEnter() {
     this.view_store = false;
   }
+
+  handleLogin(){
+    this.keyboard.hide();
+      }
 }
