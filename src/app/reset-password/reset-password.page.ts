@@ -18,6 +18,12 @@ export class ResetPasswordPage implements OnInit {
   imagepath: any;
   ornamentimage: any;
   email: any;
+
+  n_passwordType: string = 'password';
+  n_passwordIcon: string = 'eye-off-outline';
+
+  r_passwordType: string = 'password';
+  r_passwordIcon: string = 'eye-off-outline';
   constructor(private formBuilder: FormBuilder,  private helper: HelperService, private location: Location,private device: Device, private router: Router, private route: ActivatedRoute) {
  
    }
@@ -88,4 +94,14 @@ export class ResetPasswordPage implements OnInit {
 
   }
 
+
+  n_hideShowPassword(){
+    this.n_passwordType = this.n_passwordType === 'text' ? 'password' : 'text';
+     this.n_passwordIcon = this.n_passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+  }
+
+  r_hideShowPassword(){
+    this.r_passwordType = this.r_passwordType === 'text' ? 'password' : 'text';
+     this.r_passwordIcon = this.r_passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+  }
 }

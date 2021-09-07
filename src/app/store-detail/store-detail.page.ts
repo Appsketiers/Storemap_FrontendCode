@@ -59,4 +59,15 @@ console.log(this.matched_products);
       });
     });
   }
+
+  open_shop(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id:this.list_id,
+        store_id:this.store_id,
+      },
+    };
+
+    this.router.navigate(['/shop'], navigationExtras);
+  }
 }

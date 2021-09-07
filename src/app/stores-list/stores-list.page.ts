@@ -100,8 +100,8 @@ export class StoresListPage implements OnInit {
   open_store(id) {
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        id: this.list_id,
-        store_id: id,
+        id:this.list_id,
+        store_id:id,
       },
     };
     this.router.navigate(['/store-detail'], navigationExtras);

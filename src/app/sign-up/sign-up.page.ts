@@ -5,8 +5,7 @@ import {
   ValidationService,
   emailNameValidator,
   passwordNameValidator,
-  NameValidator
-  
+  NameValidator,
 } from '../providers/validation.service';
 import { Device } from '@ionic-native/device/ngx';
 import { CameraService } from '../providers/camera.service';
@@ -32,10 +31,11 @@ export class SignUpPage implements OnInit {
   submmited: any = false;
   imagepath: any;
   ornamentimage: any;
-  name_req:any=false;
-  email_req:any=false;
-  password_req:any=false;
-  user_name:any;
+  name_req: any = false;
+  email_req: any = false;
+  password_req: any = false;
+  user_name: any;
+  name_length;
 
   constructor(
     private keyboard: Keyboard,
@@ -46,18 +46,26 @@ export class SignUpPage implements OnInit {
     private helper: HelperService,
     private device: Device,
     private router: Router,
-    private  cd: ChangeDetectorRef,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.createForm();
   }
   createForm() {
-    
     this.signupForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, emailNameValidator(new RegExp("[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})")),
-    ]],
+      email: [
+        '',
+        [
+          Validators.required,
+          emailNameValidator(
+            new RegExp(
+              '[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})'
+            )
+          ),
+        ],
+      ],
       password: [
         '',
         [
@@ -86,28 +94,27 @@ export class SignUpPage implements OnInit {
     });
   }
   tandc() {
-this.router.navigate(['/terms-conditions'])
+    this.router.navigate(['/terms-conditions']);
   }
   pandp() {
-  
-  this.router.navigate(['/privacy-policy'])
+    this.router.navigate(['/privacy-policy']);
   }
   removeSpace(value) {
+    this.name_length = value.length;
+
     console.log(value);
-      let val = value.trim();
-if(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(val)){
-  let val1  = val.replace(/[^a-zA-Z ]/g, "")
-  setTimeout(() => {
-    this.signupForm.controls['name'].setValue(val1)
-  }, 200);
-  
-  this.cd.detectChanges();
-} else {
-  this.signupForm.controls['name'].setValue(val)
-}
+    let val = value.trim();
+    if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(val)) {
+      let val1 = val.replace(/[^a-zA-Z ]/g, '');
+      setTimeout(() => {
+        this.signupForm.controls['name'].setValue(val1);
+      }, 200);
 
+      this.cd.detectChanges();
+    } else {
+      this.signupForm.controls['name'].setValue(val);
+    }
   }
-
 
   changeCheckBox(event) {
     if (!event.detail.checked)
@@ -115,15 +122,19 @@ if(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(val)){
   }
   signupSubmit() {
     //this.signupForm.controls['image'].setValue("image add successfully");
-if(this.signupForm.controls['name'].value == ""){
-  this.name_req=true;
-}
-if(this.signupForm.controls['email'].value == ""){
-  this.email_req=true;
-}
-if(this.signupForm.controls['password'].value == ""){
-  this.password_req=true;
-}
+    if (
+      this.signupForm.controls['name'].value == '' ||
+      this.signupForm.controls['name'].value.length < 3
+    ) {
+      this.name_req = true;
+    }
+
+    if (this.signupForm.controls['email'].value == '') {
+      this.email_req = true;
+    }
+    if (this.signupForm.controls['password'].value == '') {
+      this.password_req = true;
+    }
     this.submmited = true;
     if (this.signupForm.invalid) {
       return;
@@ -159,12 +170,12 @@ if(this.signupForm.controls['password'].value == ""){
     return this.signupForm.get(name);
   }
 
-  allow_char(event){
-      let newValue = event.target.value;
+  allow_char(event) {
+    let newValue = event.target.value;
 
     let regExp = new RegExp('^[A-Za-z0-9? ]+$');
 
-    if (! regExp.test(newValue)) {
+    if (!regExp.test(newValue)) {
       event.target.value = newValue.slice(0, -1);
     }
     // var inp = String.fromCharCode(event.keyCode);
@@ -177,7 +188,7 @@ if(this.signupForm.controls['password'].value == ""){
     // }
   }
 
-  handleLogin(){
+  handleLogin() {
     this.keyboard.hide();
-      }
+  }
 }

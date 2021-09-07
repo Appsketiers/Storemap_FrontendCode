@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HelperService } from '../providers/helper.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.page.html',
@@ -11,8 +11,14 @@ export class ShopPage implements OnInit {
   row: any;
   col: any;
   request;
+  list_id: any;
+  store_id: any;
   image_url = environment.image_baseurl
-  constructor(private helper: HelperService, private router: Router) {
+  constructor(private helper: HelperService,   private router: Router,
+    private route: ActivatedRoute) {
+
+  
+   
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res };
       this.helper.getMethod('store-blueprint', body, (res) => {
@@ -50,9 +56,19 @@ export class ShopPage implements OnInit {
     } 
   }
   close(){
-this.router.navigate(['/my-stores'])
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.list_id,
+        store_id: this.store_id,
+      },
+    };
+this.router.navigate(['/stores-list'], navigationExtras)
   }
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.list_id = params['id'];
+      console.log(this.list_id);
+    });
   }
 
 }

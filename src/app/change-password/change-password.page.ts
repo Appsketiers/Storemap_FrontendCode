@@ -18,6 +18,19 @@ export class ChangePasswordPage implements OnInit {
   imagepath: any;
   ornamentimage: any;
   email: any;
+  Current_req:any=false;
+  new_req:any=false;
+  confirm_req:any=false;
+  
+
+  c_passwordType: string = 'password';
+  c_passwordIcon: string = 'eye-off-outline';
+
+  n_passwordType: string = 'password';
+  n_passwordIcon: string = 'eye-off-outline';
+
+  r_passwordType: string = 'password';
+  r_passwordIcon: string = 'eye-off-outline';
   constructor(private formBuilder: FormBuilder,  private helper: HelperService, private device: Device, private router: Router,private location: Location, private route: ActivatedRoute) {
  
    }
@@ -44,6 +57,16 @@ export class ChangePasswordPage implements OnInit {
   get f() { return this.repasswordForm.controls; }
 
   resetPassSubmit() {
+    if(this.repasswordForm.controls['currentpassword'].value == ""){
+      this.Current_req=true;
+    }
+    if(this.repasswordForm.controls['password'].value == ""){
+      this.new_req=true;
+    }
+    if(this.repasswordForm.controls['repassword'].value == ""){
+      this.confirm_req=true;
+    }
+
     this.submmited = true;
     if(!(this.repasswordForm.controls['password'].value === this.repasswordForm.controls['repassword'].value)){
       
@@ -84,6 +107,21 @@ export class ChangePasswordPage implements OnInit {
   getFormControl(name) {
     return this.repasswordForm.get(name);
 
+  }
+
+  c_hideShowPassword(){
+    this.c_passwordType = this.c_passwordType === 'text' ? 'password' : 'text';
+     this.c_passwordIcon = this.c_passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+  }
+
+  n_hideShowPassword(){
+    this.n_passwordType = this.n_passwordType === 'text' ? 'password' : 'text';
+     this.n_passwordIcon = this.n_passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
+  }
+
+  r_hideShowPassword(){
+    this.r_passwordType = this.r_passwordType === 'text' ? 'password' : 'text';
+     this.r_passwordIcon = this.r_passwordIcon === 'eye-off-outline' ? 'eye-outline' : 'eye-off-outline';
   }
 
 
