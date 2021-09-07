@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     component: MainHomePage,
-    canActivate: [AdminGuard],
+   // canActivate: [AdminGuard],
     children: [
       {
         path: '',
