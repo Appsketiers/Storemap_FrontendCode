@@ -41,10 +41,10 @@
       </div>
     
     </div>
-        <ion-row >
+        <ion-row >  
             <ion-col size="12">
                 <ion-label>Name</ion-label>
-                <ion-input formControlName="name" #nameinput (ionInput)="removeSpace(nameinput.value)"  placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}"></ion-input>
+                <ion-input formControlName="name" #nameinput (ionInput)="removeSpace(nameinput.value)"  placeholder="Enter Name" class="{{submmited && f.name.errors ?'errorclassb':'successclassb'}}" maxlength='30'></ion-input>
                 <div *ngIf="getFormControl('name').invalid && (getFormControl('name').dirty || (getFormControl('name').updateOn && name_req))"
                 class="my-0 py-0 text-danger" style="font-size: 10px;">
             
@@ -52,17 +52,14 @@
                 Name is required.
               </div>
 
-              <div *ngIf="getFormControl('name').errors.minLength" class="my-0 py-0 text-danger">
-                Name 
-              </div>
-
               <!-- <p *ngIf="(!getFormControl('name').errors.required )&& (getFormControl('name').errors.Name)" class="my-0 py-0 text-danger">
                 Invalid Input.
                 </p> -->
-            
-            
-            
+                <div *ngIf="!getFormControl('name').errors.required && getFormControl('name').errors.minlength" class="my-0 py-0 text-danger">
+                  Name length should be between 3-30 characters
+                </div>
             </div>
+          
             </ion-col>
         
             <ion-col size="12">
