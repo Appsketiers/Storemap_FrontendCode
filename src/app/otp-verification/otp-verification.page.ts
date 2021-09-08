@@ -104,7 +104,9 @@ export class OtpVerificationPage implements OnInit {
   optSubmit() {
     this.submmited = true;
     if (this.otpForm.invalid) {
+      this.helper.presentToast('Please Enter valid otp')
       return;
+      
     }
 
     let otpsubmit:string =

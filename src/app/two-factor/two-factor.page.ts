@@ -146,6 +146,7 @@ export class TwoFactorPage implements OnInit {
   optSubmit() {
     this.submmited = true;
     if (this.otpForm.invalid) {
+      this.helper.presentToast('Please Enter valid otp')
       return;
     }
 
