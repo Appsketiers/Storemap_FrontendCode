@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AlertController } from '@ionic/angular';
 import { Network } from '@ionic-native/network/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -27,6 +28,7 @@ export class AppComponent {
     private platform: Platform,
     private device: Device,
     private router: Router,
+    private nativeStorage: NativeStorage,
     private statusBar: StatusBar
   ) {
     this.imagebaseurl = environment.image_baseurl;
@@ -38,7 +40,41 @@ export class AppComponent {
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
      // this.check_internet_connection();
+     if(localStorage.getItem("User")){
+      let user = JSON.parse(localStorage.getItem("User"));
+      this.nativeStorage.setItem("storeuser",user);
+      if(user){
+        console.log(user)
+        this.router.navigate(["/main-home"]);
+      }else{
+        this.router.navigate(["/auth"]);
+       
+      }
+     }
+     
+     this.nativeStorage.getItem("storeuser").then(
+       data => {
+         console.log("sam",data);
+         
+         console.log("Hello 11" );
+         console.log(data)
+         this.router.navigate(["/main-home"]);
+       },
+       error => {
+        console.log("sam error" ,error);
 
+         console.log("Hello 2" );
+         let data = JSON.parse(localStorage.getItem("storeuser"))
+         if(data){
+           console.log(data)
+           this.router.navigate(["/main-home"]);
+         }else{
+           this.router.navigate(["/auth"]);
+          
+         }
+   
+       }
+     );
       window.addEventListener('offline', () => {
         this.helper.presentToast('No Internet Connection');
         });

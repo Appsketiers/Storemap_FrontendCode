@@ -8,14 +8,15 @@
         <ion-icon class="share_btn" slot="end" name="arrow-redo" (click)="share_list()"></ion-icon>
     </ion-toolbar>
 <form action="searchThis($event)">
-    <ion-searchbar *ngIf="toggled"
+    <ion-searchbar *ngIf="toggled" 
     [ngModelOptions]="{standalone: true}"
     [(ngModel)]="someValue"
     (ionInput)="search2($event)"
     (ionCancel)="cancelSearch($event)"
     (ionClear) ="cancelSearch($event)"
     (keydown.enter)="searchThis($event)"
-    ></ion-searchbar></form>
+    ></ion-searchbar>
+</form>
 </ion-header>
 
 <ion-content>

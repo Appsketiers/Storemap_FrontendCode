@@ -205,6 +205,7 @@ console.log(this.rem);
                   console.log(res1);
                   //alert("test "+JSON.stringify(res));
                   if (res1.status) {
+                    localStorage.setItem("User",JSON.stringify(res.data)); 
                     this.helper.setKeyValueNew('storeuser', res.data);
                     this.helper.setKeyValueNew('storetoken', res.data.token);
                     let otp = res1.data;

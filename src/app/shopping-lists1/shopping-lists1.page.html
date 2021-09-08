@@ -6,13 +6,16 @@
     <ion-title>Create New List</ion-title>
     <ion-icon *ngIf="!toggled" (click)="toggle()" slot="end" name="search-outline"></ion-icon>
   </ion-toolbar>
+  <form action="searchThis($event)">
   <ion-searchbar *ngIf="toggled"
+  [ngModelOptions]="{standalone: true}"
   [(ngModel)]="someValue"
   (ionInput)="search2($event)"
   (ionCancel)="cancelSearch($event)"
   (ionClear) ="cancelSearch($event)"
-  (keyup.enter)="searchThis($event)"
+  (keydown.enter)="searchThis($event)"
   ></ion-searchbar>
+</form>
 </ion-header>
 
 <ion-content>

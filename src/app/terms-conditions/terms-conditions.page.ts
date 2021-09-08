@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 @Component({
   selector: 'app-terms-conditions',
@@ -6,11 +7,16 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
   styleUrls: ['./terms-conditions.page.scss'],
 })
 export class TermsConditionsPage implements OnInit {
+  url
+  constructor(private iab: InAppBrowser, public sanitize: DomSanitizer) { 
 
-  constructor(private iab: InAppBrowser) { }
+  }
 
   ngOnInit() {
     //const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no'}); 
   }
+  sanitizeUrl() {
+    return this.sanitize.bypassSecurityTrustResourceUrl('http://dev9server.com/store-mapps/page/terms-&-conditions')
 
+  }
 }
