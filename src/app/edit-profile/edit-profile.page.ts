@@ -81,19 +81,20 @@ this.imageUpdate = true;
       return;
     }
     this.helper.getByKeynew('storetoken', token=>{
-    let body: any = {
-      token: token,
-      name: this.signupForm.controls['name'].value,
-   //   email: this.signupForm.controls['email'].value,
-
-      // password: this.signupForm.controls['password'].value,
-      // device_type: 'ANDROID',
-      // device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
-      profile_image: this.imageUpdate  ? this.imagepath : null
-        
-    
-      
+    let body: any 
+    if(this.imageUpdate) {
+      body = {
+        token: token,
+        name: this.signupForm.controls['name'].value,
+        profile_image: this.imageUpdate  ? this.imagepath : this.ornamentimage? this.ornamentimage:null
+      }
+    } else {
+      body = {
+        token: token,
+        name: this.signupForm.controls['name'].value,
+      }
     }
+   
     this.helper.postMethod('update-profile', body, res => {
       console.log(res)
     //  alert("test "+JSON.stringify(res));

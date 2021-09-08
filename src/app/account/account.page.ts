@@ -122,6 +122,7 @@ export class AccountPage implements OnInit {
         console.log(res)
       if(res.status){
       this.userDetail = res.data
+      localStorage.setItem("User",JSON.stringify(res.data)); 
       this.helper.setKeyValueNew('storeuser',res.data);
       this.helper.setsocketObs(res.data);
       this.two_factor = res.data.two_factor
