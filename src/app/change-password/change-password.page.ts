@@ -70,7 +70,7 @@ export class ChangePasswordPage implements OnInit {
     this.submmited = true;
     if(!(this.repasswordForm.controls['password'].value === this.repasswordForm.controls['repassword'].value)){
       
-      this.helper.presentToast("Confirm password should be same.");
+      this.helper.presentToast("New password and confirm password does not match.");
       return ;
     }
     if (this.repasswordForm.invalid) {
