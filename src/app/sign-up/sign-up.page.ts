@@ -156,7 +156,10 @@ export class SignUpPage implements OnInit {
         console.log(res);
         //  alert("test "+JSON.stringify(res));
         this.helper.presentToast(res.message);
-        this.location.back();
+        if(res.status)
+        {
+          this.location.back();
+        }
         // debugger
       },
       (err) => {
