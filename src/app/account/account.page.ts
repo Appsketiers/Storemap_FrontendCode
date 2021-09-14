@@ -10,6 +10,7 @@ import { Device } from '@ionic-native/device/ngx';
   styleUrls: ['./account.page.scss'],
 })
 export class AccountPage implements OnInit {
+  notification_count;
   userDetail: any;
   imagebaseurl: any;
   two_factor: any;
@@ -121,7 +122,8 @@ export class AccountPage implements OnInit {
       this.helper.getMethod('get-profile', body, res => {
         console.log(res)
       if(res.status){
-      this.userDetail = res.data
+      this.userDetail = res.data;
+      this.notification_count = this.userDetail.notification;
       localStorage.setItem("User",JSON.stringify(res.data)); 
       this.helper.setKeyValueNew('storeuser',res.data);
       this.helper.setsocketObs(res.data);
