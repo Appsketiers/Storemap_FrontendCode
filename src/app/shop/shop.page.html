@@ -21,60 +21,46 @@
   </div>
   <ion-grid>
     
-      <img src="assets/img/left.png" alt="">
-    
+      <img src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
+      <ion-slides pager="false" [options]="slideOptsone" #slideWithNav1
+(ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav1)">
+<ion-slide *ngFor="let s of matched_products">
     <ion-row>
 
       <ion-col size="6">
-        <img src="assets/img/pro.png" alt="">
+        <img style="height: 125px; width: 125px;" src="{{image_url}}{{s.images[0]}}" alt="" onerror="this.src='../../assets/img/item_placeholder.png'">
       </ion-col>
       <ion-col size="6">
         <div class="shop_details">
-          <h2>Aisle 7 - Back </h2>
-          <p>Also see Aisle 7 - End cap</p>
-          <h4>Doritos Nacho Cheese Tortilla Chips, Party Size, 15oz Bag</h4>
+          <h2>{{s.name}}</h2>
+          <!-- <p>Also see Aisle 7 - End cap</p> -->
+          <h4>{{s.description}}</h4>
           <span routerLink="/payment-sucess">CHECK OUT</span>
 
         </div>
       </ion-col>
     </ion-row>
-    
-      <img src="assets/img/right.png" alt="">
+  </ion-slide>
+</ion-slides>
+      <img src="assets/img/right.png" (click)="slideNext(sliderOne,slideWithNav1)" alt="">
    
   </ion-grid>
   <h6 class="heading">Other Products on Your List:</h6>
   <ion-grid class="other_pro">
         
 
-        <img src="assets/img/left.png" alt="">
+        <img src="assets/img/left.png" alt="" (click)="slidePrev(sliderTwo,slideWithNav2)"alt="">
     <ion-row>
 
-      <ion-col size="3">
-        <div class="pro_images">
-        <img src="assets/img/pro.png" alt="">
-      </div> 
-      </ion-col>
-      <ion-col size="3">
-        <div class="pro_images">
-        <img src="assets/img/pro.png" alt="">
-      </div> 
-      </ion-col>
-      <ion-col size="3">
-        <div class="pro_images">
-        <img src="assets/img/pro.png" alt="">
-      </div> 
-      </ion-col>
-      <ion-col size="3">
-        <div class="pro_images">
-        <img src="assets/img/pro.png" alt="">
-      </div> 
-      </ion-col>
-      <ion-col size="3">
-        <div class="pro_images">
-        <img src="assets/img/pro.png" alt="">
-      </div> 
+      <ion-col size="12">
+  <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
+(ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)">
+<ion-slide *ngFor="let s of store_products">
+<img style="height: 80px; width: 80px;"  src="{{image_url}}{{s.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'">
+</ion-slide>
+</ion-slides>
       </ion-col>
     </ion-row>
-    <img src="assets/img/right.png" alt="">
+    <img src="assets/img/right.png" alt="" (click)="slideNext(sliderTwo,slideWithNav2)">
   </ion-grid>
 </ion-content>

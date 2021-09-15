@@ -35,7 +35,6 @@ export class LocationService {
 
   //Check if application having GPS access permission
   checkGPSPermission(data) {
-    debugger;
     let that = this;
     cordova.plugins.diagnostic.isLocationEnabled(
       function (enabled) {
