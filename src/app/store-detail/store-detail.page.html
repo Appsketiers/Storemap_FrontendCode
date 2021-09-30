@@ -43,7 +43,7 @@
                     <ion-col><b>${{item.price}}</b></ion-col>
                     <ion-col class="ion-text-right">
                         <ion-icon name="remove-circle-outline"></ion-icon>
-                        5 kg
+                        {{item.quantity}} kg
                         <ion-icon name="add-circle-outline"></ion-icon>
                     </ion-col>
                 </ion-row>
@@ -53,42 +53,53 @@
     </div>
     <h3>Categories</h3>
 
-    <!-- <ion-list class="listss">
-        <ion-item>
-            <ion-label>All Items</ion-label>
-        </ion-item>
-        <ion-item>
-            <span slot="start">1</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <span slot="start">2</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <span slot="start">3</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <span slot="start">4</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <span slot="start">5</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-        <ion-item>
-            <span slot="start">6</span>
-            <ion-label>Kroger (North Ave)</ion-label>
-            <ion-icon name="chevron-down-outline" slot="end"></ion-icon>
-        </ion-item>
-    </ion-list> -->
-<div class="not-av">
+    <ion-list >
+       
+        <div class="items" *ngFor="let item of store_category let i = index" (click)="open_category(i, item.id)">
+            
+            <ion-label>{{item.name}}</ion-label>
+            
+            <ion-icon name="chevron-up-outline" slot="end" *ngIf="store_category[i].open"></ion-icon>
+            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!store_category[i].open"></ion-icon>
+        
+                  
+        <ion-list *ngIf="store_category[i].open">
+           
+            <ion-item *ngFor="let items of store_category_product let i =index">
+            
+                <ion-thumbnail slot="start">
+                    <img src="{{image_url}}{{items.images[0]}}" />
+                  </ion-thumbnail>
+                  <ion-label>
+                      {{items.name}}
+                   </ion-label>
+                
+                  <ion-label slot="end" style="text-align: right">
+                     
+                    <!-- <p>{{items.match_count}} products match</p> -->
+                    
+                  </ion-label>
+
+                  <div class="ion-text-right">
+                    <ion-icon name="remove-circle-outline"></ion-icon>
+                     kg
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                  </div>
+
+            </ion-item>
+
+            <ion-item  *ngIf="store_category[i].open&&store_category_product.length<=0"> 
+                <ion-label>Items not Found</ion-label>
+              </ion-item>
+        </ion-list>
+        
+        
+    </div>
+
+    
+
+    </ion-list>
+<div class="not-av"*ngIf="store_category.length<=0">
     <ion-label >Not Available</ion-label>
 </div>
 </ion-content>

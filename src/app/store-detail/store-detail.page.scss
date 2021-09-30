@@ -100,10 +100,24 @@ ion-content {
             }
         }
     }
-    .listss {
-        [slot="end"] {
-            font-size: 14px;
+    ion-list {
+        ion-item {
+            ion-thumbnail {
+                img {
+                    border-radius: 15px;
+                }
+            }
+            span {
+                color: #8B8B8B;
+                &.green {
+                    font-size: 16px;
+                    color: #8BC34A;
+                }
+            }
+        }
+        ion-icon[slot="end"] {
             color: rgba($color: #000000, $alpha: 0.3);
+            float: right;
         }
     }
 }
@@ -111,4 +125,11 @@ ion-content {
 .not-av{
     text-align: center;
     margin-top: 30%;
+}
+
+.items{
+    font-size: large;
+    align-items: center;
+    margin: 20px;
+    border-bottom: solid 1px #ddd;
 }

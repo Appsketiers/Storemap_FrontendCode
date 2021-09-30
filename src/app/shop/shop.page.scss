@@ -78,20 +78,21 @@ ion-content {
                         color: #4a4a4a;
                         margin: 10px 0px 0;
                     }
-                    span {
-                        font-size: 13px;
-                        background: #9D4CDF;
-                        display: inline-block;
-                        padding: 6px 10px;
-                        margin: 14px 0 0;
-                        color: white;
-                        border-radius: 20px;
-                    }
+                 
                 }
             }
         }
     }
-
+    span {
+        font-size: 13px;
+        background: #9D4CDF;
+        display: inline-block;
+        padding: 6px 10px;
+        margin: 14px 0 0;
+        color: white;
+        border-radius: 20px;
+        
+    }
 
 }
 .heading{
