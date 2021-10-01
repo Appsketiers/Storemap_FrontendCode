@@ -12,18 +12,19 @@
 
 <ion-content>
   <ion-list>
-    <ion-item lines="none" (click)="optionModal()">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
+    <ion-item lines="none" *ngFor="let item of data; let i = index">
+      <span slot="start" class="u-img"><img src="{{image_url}}{{item.store_images[0]}}" alt=""></span>
       <ion-label>
-        <h5>Kroger</h5>
+        <h5>{{item.store_name}}</h5>
         <h6>1242 North ave</h6>
         <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
+            <ion-icon name="location"></ion-icon> {{item.distance | number: '1.2-2'}} Miles
+            away
           </span></p>
       </ion-label>
       <ion-label slot="end" class="rating_sec">
         
-          <ion-icon name="heart-outline"></ion-icon>
+          <ion-icon class="heart" name="heart" (click)="like(item.id,0)"></ion-icon>
         
         <p >
           <span class="icon-Star-fill"></span>
@@ -32,147 +33,14 @@
           <span class="icon-Star-fill"></span>
           <span class="icon-Star-unfill"></span>
         </p>
-        <span>(128 reviews)</span>
+        <span>({{item.review_count}} reviews)</span>
       </ion-label>
     </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-          <ion-icon name="heart-outline"></ion-icon>
-        
-        <p (click)="ratings()">
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-        <ion-icon name="heart" class="fill"></ion-icon>
-        
-        <p>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-        <ion-icon name="heart" class="fill"></ion-icon>
-        
-        <p>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-        <ion-icon name="heart" class="fill"></ion-icon>
-        
-        <p>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-        <ion-icon name="heart" class="fill"></ion-icon>
-        
-        <p>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/my-store.png" alt=""></span>
-      <ion-label>
-        <h5>Kroger</h5>
-        <h6>1242 North ave</h6>
-        <p class="loc"><span>
-            <ion-icon name="location"></ion-icon> 20 Miles Ways
-          </span></p>
-      </ion-label>
-      <ion-label slot="end" class="rating_sec">
-        
-          <ion-icon name="heart-outline"></ion-icon>
-        
-        <p>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
-        </p>
-        <span>(128 reviews)</span>
-      </ion-label>
-    </ion-item>
+    
   </ion-list>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

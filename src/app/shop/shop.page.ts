@@ -106,12 +106,24 @@ this.router.navigate(['/stores-list'], navigationExtras)
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.list_id = params['id'];
+      this.store_id = params['store_id'];
       console.log(this.list_id);
+      console.log(this.store_id);
     });
   }
 
 
-
+checkout(){
+  debugger
+  this.helper.getByKeynew('storetoken', (res) => {
+    let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id};
+    this.helper.postMethod('checkout', body, (res) => {
+     
+      console.log(res);
+    });
+  });  
+  this.router.navigate(['/payment-sucess']);
+}
 
     //Move to Next slide
     slideNext(object, slideView) {

@@ -68,17 +68,12 @@
             <ion-item *ngFor="let items of store_category_product let i =index">
             
                 <ion-thumbnail slot="start">
-                    <img src="{{image_url}}{{items.images[0]}}" />
+                    <img src="{{image_url}}{{items.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" />
                   </ion-thumbnail>
                   <ion-label>
                       {{items.name}}
                    </ion-label>
-                
-                  <ion-label slot="end" style="text-align: right">
-                     
-                    <!-- <p>{{items.match_count}} products match</p> -->
-                    
-                  </ion-label>
+           
 
                   <div class="ion-text-right">
                     <ion-icon name="remove-circle-outline"></ion-icon>

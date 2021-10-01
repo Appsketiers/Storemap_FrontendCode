@@ -104,6 +104,8 @@ ion-content {
         ion-item {
             ion-thumbnail {
                 img {
+                    width: 40px;
+                    height: 40px;
                     border-radius: 15px;
                 }
             }
@@ -118,6 +120,17 @@ ion-content {
         ion-icon[slot="end"] {
             color: rgba($color: #000000, $alpha: 0.3);
             float: right;
+        }
+        ion-list{
+            ion-item{
+                div{
+                    ion-icon {
+                        display: inline-block;
+                        vertical-align: middle;
+                        color: #9D4CDF;
+                    }
+                }
+            }
         }
     }
 }
