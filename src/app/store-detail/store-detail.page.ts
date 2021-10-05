@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class StoreDetailPage implements OnInit {
 list_id:any;
+title:any;
 store_id:any;
 lat: any;
 lng: any;
@@ -19,6 +20,7 @@ store_address:any;
 matched_products:any=[];
 store_category: any=[];
 store_category_product: any=[];
+update: any=[];
 image_url = environment.image_baseurl;
   constructor(private router: Router,
     private helper: HelperService,
@@ -28,7 +30,8 @@ image_url = environment.image_baseurl;
     this.route.queryParams.subscribe((params) => {
       this.list_id = params['id'];
       this.store_id=params['store_id'];
-      console.log(this.list_id, this.store_id);
+      this.title=params['title'];
+      console.log(this.list_id, this.title, this.store_id);
 
       this.helper.get_location((data) => {
         this.lat = data.coords.latitude;
@@ -60,6 +63,14 @@ this.store_address=res.data.store.address;
 this.store_category=res.data.store_category;
 console.log(this.matched_products);
 console.log('store category---', this.store_category);
+
+for (let i = 0; i < this.matched_products.length; i++) {
+  this.update.push({
+    product: this.matched_products[i].id,
+    quantity: this.matched_products[i].quantity,
+  });
+}
+console.log('Update---',this.update);
       });
     });
   }
@@ -87,5 +98,86 @@ if(this.store_category[i].open){
   });  
 }
        
+  }
+increment(id){
+  let index = this.update.findIndex((el) => {
+    console.log(el);
+    return el.product == id;
+  });
+
+  console.log(index, id);
+  if (index != -1) {
+    this.update[index].quantity++;
+    this.matched_products[index].quantity++;
+  }
+  console.log(this.update);
+  console.log(this.matched_products);
+this.update_list();
+}
+
+decrement(id){
+  let index = this.update.findIndex((el) => {
+    console.log(el);
+    return el.product == id;
+  });
+
+  console.log(index, id);
+  if (index != -1) {
+    if(this.matched_products[index].quantity == 1){
+      this.update.splice(index, 1);
+      this.matched_products.splice(index, 1);
+    }
+    this.update[index].quantity --;
+    this.matched_products[index].quantity --;
+  }
+  console.log(this.update);
+  console.log(this.matched_products);
+this.update_list();
+
+}
+
+
+add_item(id,i) {
+  
+  // this.data[i].added=true;
+  this.update.push({
+    product:id,
+    quantity:1
+  });
+  console.log(this.update);
+this.store_category_product[i].push({
+  quantity:1
+})
+  this.update_list();
+}
+
+checkForItem(id){
+  if(id){ 
+    return this.update.findIndex((el)=>{
+     return el.product == id 
+   }) != -1 ? true : false;
+  }
+  return false;
+}
+
+  update_list(){
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = {
+        token: res,
+        shopping_list_id: this.list_id,
+        list_name: this.title,
+        ingredients: JSON.stringify(this.update),
+      };
+
+      this.helper.postMethod('update-shopping-list', body, (res) => {
+        console.log(res);
+        if (res.status == true) {
+          this.helper.presentToast(
+            'Shopping List successfully updated.'
+            );
+            
+        }
+      });
+    });
   }
 }

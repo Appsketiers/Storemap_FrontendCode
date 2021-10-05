@@ -125,6 +125,10 @@ checkout(){
   this.router.navigate(['/payment-sucess']);
 }
 
+shopping_list(){
+  this.router.navigate(['/grocery-list']);
+}
+
     //Move to Next slide
     slideNext(object, slideView) {
       slideView.slideNext(500).then(() => {

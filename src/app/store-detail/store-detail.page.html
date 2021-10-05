@@ -42,9 +42,9 @@
                 <ion-row>
                     <ion-col><b>${{item.price}}</b></ion-col>
                     <ion-col class="ion-text-right">
-                        <ion-icon name="remove-circle-outline"></ion-icon>
+                        <ion-icon name="remove-circle-outline" (click)="decrement(item.id)"></ion-icon>
                         {{item.quantity}} kg
-                        <ion-icon name="add-circle-outline"></ion-icon>
+                        <ion-icon name="add-circle-outline" (click)="increment(item.id)"></ion-icon>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -75,10 +75,14 @@
                    </ion-label>
            
 
-                  <div class="ion-text-right">
+                  <div *ngIf="checkForItem(item.id)" class="ion-text-right">
                     <ion-icon name="remove-circle-outline"></ion-icon>
                      kg
                     <ion-icon name="add-circle-outline"></ion-icon>
+                  </div>
+
+                  <div *ngIf="!checkForItem(item.id)" class="ion-text-right">
+                    <span>Add</span>
                   </div>
 
             </ion-item>

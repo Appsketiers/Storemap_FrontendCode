@@ -59,7 +59,7 @@
   <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
 (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)">
 <ion-slide *ngFor="let s of store_products">
-<img style="height: 80px; width: 80px;"  src="{{image_url}}{{s.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'">
+<img (click)="shopping_list()" style="height: 80px; width: 80px;"  src="{{image_url}}{{s.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'">
 </ion-slide>
 </ion-slides>
       </ion-col>

@@ -3,12 +3,32 @@
         <ion-buttons slot="start">
             <ion-menu-button><span class="icon-menu"></span></ion-menu-button>
         </ion-buttons>
-        <ion-title>Past Orders</ion-title>
+        <ion-title>My Orders</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
+
+
+    <div class="top-hedaer">
+        <ion-segment [(ngModel)]="category" mode="md">
+            <ion-segment-button checked value="pending">
+                <ion-label>Pending</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="completed">
+                <ion-label>Completed</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    
+      </div>
+      <div [ngSwitch]="category">
+        <app-pending *ngSwitchCase="'pending'" ></app-pending>
+        <app-completed *ngSwitchCase="'completed'"></app-completed>
+      </div>
+
+
+
+    <!-- <ion-list>
         <ion-item lines="none" (click)="open_order()">
             <ion-label>
                 <h4>Kroger Store</h4>
@@ -53,6 +73,6 @@
             <span slot="start"><img src="assets/img/item_placeholder.png" alt=""></span>
             <span style="margin-top: 20px; font-size: 15px; font-weight: bold;" slot="end" >$9.95</span>
         </ion-item>
-    </ion-list>
+    </ion-list> -->
 
 </ion-content>

@@ -143,6 +143,7 @@ export class GroceryListPage implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.list_id,
+        title:this.title
       },
     };
     this.router.navigate(['/stores-list'], navigationExtras);

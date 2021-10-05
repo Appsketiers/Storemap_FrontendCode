@@ -7,7 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { PastOrdersPageRoutingModule } from './past-orders-routing.module';
 
 import { PastOrdersPage } from './past-orders.page';
-
+import { PendingComponent } from '../pending/pending.component';
+import { CompletedComponent } from '../completed/completed.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,7 @@ import { PastOrdersPage } from './past-orders.page';
     IonicModule,
     PastOrdersPageRoutingModule
   ],
-  declarations: [PastOrdersPage]
+  declarations: [PastOrdersPage,PendingComponent,CompletedComponent],
+  entryComponents: [PendingComponent,CompletedComponent],
 })
 export class PastOrdersPageModule {}

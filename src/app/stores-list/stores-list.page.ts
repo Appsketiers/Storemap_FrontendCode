@@ -14,6 +14,7 @@ import {Platform } from '@ionic/angular';
 })
 export class StoresListPage implements OnInit {
   list_id: any;
+  title:any;
   data: any = [];
   page: any = 1;
   limit: any = 10;
@@ -40,7 +41,9 @@ export class StoresListPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.list_id = params['id'];
+      this.title = params['title'];
       console.log(this.list_id);
+      console.log(this.title);
     });
 
     this.platform.ready().then(() => {
@@ -101,6 +104,7 @@ export class StoresListPage implements OnInit {
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id:this.list_id,
+        title:this.title,
         store_id:id,
       },
     };

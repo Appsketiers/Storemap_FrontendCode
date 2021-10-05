@@ -101,7 +101,7 @@ export class AppComponent {
     },
 
     {
-      title: 'Past Orders',
+      title: 'My Orders',
       url: '/past-orders',
     },
     {

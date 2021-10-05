@@ -1,0 +1,20 @@
+<ion-list>
+  <ion-item *ngFor="let item of data" lines="none" (click)="open_order()">
+      <ion-label>
+          <h4>{{item.store_name}}</h4>
+          <p>04-22-2021 | 12:00 PM</p>
+      </ion-label>
+      <span slot="start"><img src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      <span style="margin-top: 20px; font-size: 15px; font-weight: bold;" slot="end" >${{item.amount}}</span>
+  </ion-item>
+
+</ion-list>
+
+<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+<div class="plac" *ngIf="data.length<=0"> 
+  <ion-label>No List Available</ion-label>
+</div>

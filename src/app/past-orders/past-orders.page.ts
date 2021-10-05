@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./past-orders.page.scss'],
 })
 export class PastOrdersPage implements OnInit {
-
+  public category: string = "pending";
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -15,3 +15,4 @@ export class PastOrdersPage implements OnInit {
 this.router.navigate(['/past-orders1']);
   }
 }
+  
