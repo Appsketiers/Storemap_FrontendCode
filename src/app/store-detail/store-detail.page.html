@@ -35,16 +35,16 @@
     </ion-grid>
     <h3>Matched Items</h3>
     <div class="scrolles">
-        <ion-card *ngFor="let item of matched_products">
+        <ion-card *ngFor="let item of matched_products let k = index">
             <img src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'"/>
             <h5>{{item.name}}</h5>
             <ion-grid>
                 <ion-row>
                     <ion-col><b>${{item.price}}</b></ion-col>
                     <ion-col class="ion-text-right">
-                        <ion-icon name="remove-circle-outline" (click)="decrement(item.id)"></ion-icon>
+                        <ion-icon name="remove-circle-outline" (click)="decrement(item.id, 'match',k)"></ion-icon>
                         {{item.quantity}} kg
-                        <ion-icon name="add-circle-outline" (click)="increment(item.id)"></ion-icon>
+                        <ion-icon name="add-circle-outline" (click)="increment(item.id, 'match',k)"></ion-icon>
                     </ion-col>
                 </ion-row>
             </ion-grid>
@@ -55,17 +55,17 @@
 
     <ion-list >
        
-        <div class="items" *ngFor="let item of store_category let i = index" (click)="open_category(i, item.id)">
+        <div class="items" *ngFor="let item of store_category let i = index" >
             
             <ion-label>{{item.name}}</ion-label>
             
-            <ion-icon name="chevron-up-outline" slot="end" *ngIf="store_category[i].open"></ion-icon>
-            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!store_category[i].open"></ion-icon>
+            <ion-icon name="chevron-up-outline" slot="end" *ngIf="store_category[i].open" (click)="open_category(i, item.id)"></ion-icon>
+            <ion-icon name="chevron-down-outline" slot="end" *ngIf="!store_category[i].open" (click)="open_category(i, item.id)"></ion-icon>
         
                   
         <ion-list *ngIf="store_category[i].open">
            
-            <ion-item *ngFor="let items of store_category_product let i =index">
+            <ion-item *ngFor="let items of store_category_product let j =index">
             
                 <ion-thumbnail slot="start">
                     <img src="{{image_url}}{{items.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" />
@@ -75,14 +75,14 @@
                    </ion-label>
            
 
-                  <div *ngIf="checkForItem(item.id)" class="ion-text-right">
-                    <ion-icon name="remove-circle-outline"></ion-icon>
-                     kg
-                    <ion-icon name="add-circle-outline"></ion-icon>
+                  <div *ngIf="checkForItem(items.id)" class="ion-text-right">
+                    <ion-icon name="remove-circle-outline" (click)="decrement(items.id,'other',j)"></ion-icon>
+                     {{items.quantity}} kg
+                    <ion-icon name="add-circle-outline" (click)="increment(items.id, 'other',j)"></ion-icon>
                   </div>
 
-                  <div *ngIf="!checkForItem(item.id)" class="ion-text-right">
-                    <span>Add</span>
+                  <div *ngIf="!checkForItem(items.id)" (click)="add_item(items.id,j)" class="ion-text-right">
+                    <span style="color: #9D4CDF;">Add</span>
                   </div>
 
             </ion-item>

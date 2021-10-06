@@ -30,6 +30,7 @@ export class CompletedComponent implements OnInit {
         this.helper.postMethod('my-orders', body, (res) => {
           console.log(res);
           this.data = [...this.data,...res.data.data];
+          this.convert_to_array();
           // for (let i = 0; i < res.data.data.length; i++) {
           //   this.data.push(res.data.data[i]);
           // }
@@ -40,6 +41,14 @@ export class CompletedComponent implements OnInit {
         });
       });
     })
+  }
+
+  convert_to_array(){
+    let img:any=[];
+     for (let i = 0; i < this.data.length; i++) {
+      this.data[i].store_images= JSON.parse(this.data[i].store_images);
+            }
+            console.log(this.data);
   }
 
 

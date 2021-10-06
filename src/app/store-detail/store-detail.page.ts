@@ -87,19 +87,28 @@ console.log('Update---',this.update);
   }
 
   open_category(i, id) {
-      this.store_category[i].open=!this.store_category[i].open;
+    for(let j=0; j<this.store_category.length;j++){
+if(i==j){
+  this.store_category[i].open=!this.store_category[i].open;
+}
+else{
+  this.store_category[j].open=false;
+}
+    }
+     // this.store_category[i].open=!this.store_category[i].open;
 if(this.store_category[i].open){
   this.helper.getByKeynew('storetoken', (res) => {
     let body: any = { token: res, shopping_list_id: this.list_id, store_id: this.store_id, category_id:id};
     this.helper.postMethod('store-category-product', body, (res) => {
       this.store_category_product=res.data;
-      console.log(this.store_category_product);
+      console.log('store-category-product ---',this.store_category_product);
+      console.log(this.store_category);
     });
   });  
 }
        
   }
-increment(id){
+increment(id, key,i){
   let index = this.update.findIndex((el) => {
     console.log(el);
     return el.product == id;
@@ -107,15 +116,21 @@ increment(id){
 
   console.log(index, id);
   if (index != -1) {
+    if(key=='match'){
     this.update[index].quantity++;
-    this.matched_products[index].quantity++;
+    this.matched_products[i].quantity++;
+    }
+    else{
+      this.update[index].quantity++;
+      this.store_category_product[i].quantity++;
+    }
   }
   console.log(this.update);
   console.log(this.matched_products);
 this.update_list();
 }
 
-decrement(id){
+decrement(id, key,i){
   let index = this.update.findIndex((el) => {
     console.log(el);
     return el.product == id;
@@ -123,12 +138,26 @@ decrement(id){
 
   console.log(index, id);
   if (index != -1) {
-    if(this.matched_products[index].quantity == 1){
+    if(key=='match'){
+    if(this.matched_products[i].quantity <= 1){
       this.update.splice(index, 1);
-      this.matched_products.splice(index, 1);
+      this.matched_products.splice(i, 1);
     }
+    else{
     this.update[index].quantity --;
-    this.matched_products[index].quantity --;
+    this.matched_products[i].quantity --;
+    }
+  }
+
+  else{
+    if(this.store_category_product[i].quantity <= 1){
+      this.update.splice(index, 1);
+      }
+    else{
+    this.update[index].quantity --;
+    this.store_category_product[i].quantity --;
+    }
+  }
   }
   console.log(this.update);
   console.log(this.matched_products);
@@ -145,9 +174,13 @@ add_item(id,i) {
     quantity:1
   });
   console.log(this.update);
-this.store_category_product[i].push({
-  quantity:1
-})
+this.store_category_product[i].quantity=1;
+
+console.log(this.store_category_product);
+
+this.matched_products.splice(0,0,this.store_category_product[i]);
+
+console.log(this.matched_products);
   this.update_list();
 }
 

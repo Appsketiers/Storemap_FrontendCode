@@ -10,24 +10,18 @@
 </ion-header>
 <ion-content>
     <ion-list>
-        <ion-item lines="none">
-            <ion-label>Flour</ion-label>
+        <ion-item lines="none" *ngFor="let item of data; let i = index">
+            <ion-label>{{item.item_name}}</ion-label>
             <ion-checkbox color="primary" slot="start"></ion-checkbox>
-            <span>bought 10 times</span>
+            <span>{{item.total_time}}</span>
         </ion-item>
-        <ion-item lines="none">
-            <ion-label>Flour</ion-label>
-            <ion-checkbox color="primary" slot="start"></ion-checkbox>
-            <span>bought 10 times</span>
-        </ion-item>
-        <ion-item lines="none">
-            <ion-label>Flour</ion-label>
-            <ion-checkbox color="primary" slot="start"></ion-checkbox>
-            <span>bought 10 times</span>
-        </ion-item>
+     
     </ion-list>
 
-
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
 
 
 </ion-content>
