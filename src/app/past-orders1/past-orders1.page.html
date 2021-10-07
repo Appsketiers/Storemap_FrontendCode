@@ -11,59 +11,24 @@
   <ion-list>
     <ion-item style="border: none;" lines="none">
       <ion-label>
-          <h4>Kroger Store</h4>
-          <p>04-22-2021 | 12:00 PM</p>
+          <h4>{{store_name}}</h4>
+          <p>{{order_time | date: 'MM/dd/yyyy h:mm a'}}</p>
       </ion-label>
-      <span slot="start"><img src="assets/img/item_placeholder.png" alt=""></span>
-      <span style="margin-top: 20px; font-size: 15px; font-weight: bold; color: #9D4CDF;" slot="end" >$9.95</span>
+      <span slot="start"><img src="{{image_url}}{{store_image}}" alt=""></span>
+      <span style="margin-top: 20px; font-size: 15px; font-weight: bold; color: #9D4CDF;" slot="end" >$ {{order_amount}}</span>
   </ion-item>
   </ion-list>
 <ion-item style="border: none; color: #9D4CDF;"><h6 style="font-weight: bolder;">Items</h6></ion-item>
   <ion-list>
-    <ion-item lines="none">
-      <ion-label>Bananas
-        <span  class="quantity">5 kg</span>
+    <ion-item lines="none" *ngFor="let item of data">
+      <ion-label>{{item.item_name}}
+        <span  class="quantity">{{item.quantity}} kg</span>
       </ion-label>
-     <span slot="start"><img src="assets/img/pics.png" alt=""></span>
+     <span slot="start"><img src="{{image_url}}{{item.image}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       
-      <span class="price" slot="end">$2.33</span>
+      <span class="price" slot="end">$ {{item.price}}</span>
     </ion-item>
-    <ion-item lines="none">
-      <ion-label>Frozen Strawberries
-        <span  class="quantity">5 kg</span>
-      </ion-label>
-      <!-- <ion-checkbox color="primary"  slot="start"></ion-checkbox> -->
-      <span slot="start"><img src="assets/img/pics.png" alt=""></span>
-      <span slot="end">$2.33</span>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>Almond Milk
-        <span  class="quantity">5 kg</span>
-      </ion-label>
-    <span slot="start"><img src="assets/img/pics.png" alt=""></span>
-      <span slot="end">$2.33</span>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>Toothpaste
-        <span  class="quantity">5 kg</span>
-      </ion-label>
-    <span slot="start"><img src="assets/img/pics.png" alt=""></span>
-      <span slot="end">$2.33</span>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>Shampoo
-        <span  class="quantity">5 kg</span>
-      </ion-label>
-    <span slot="start"><img src="assets/img/pics.png" alt=""></span>
-      <span slot="end">$2.33</span>
-    </ion-item>
-    <ion-item lines="none">
-      <ion-label>Flour
-        <span  class="quantity">5 kg</span>
-      </ion-label>
-    <span slot="start"><img src="assets/img/pics.png" alt=""></span>
-      <span slot="end">$2.33</span>
-    </ion-item>
+
   </ion-list>
 
 </ion-content>

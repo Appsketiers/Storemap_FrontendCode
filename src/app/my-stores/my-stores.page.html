@@ -13,7 +13,7 @@
 <ion-content>
   <ion-list>
     <ion-item lines="none" *ngFor="let item of data; let i = index">
-      <span slot="start" class="u-img"><img src="{{image_url}}{{item.store_images[0]}}" alt=""></span>
+      <span slot="start" class="u-img"><img src="{{image_url}}{{item.store_images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       <ion-label>
         <h5>{{item.store_name}}</h5>
         <h6>1242 North ave</h6>
@@ -33,7 +33,7 @@
           <span class="icon-Star-fill"></span>
           <span class="icon-Star-unfill"></span>
         </p>
-        <span>({{item.review_count}} reviews)</span>
+        <span (click)="ratings(item.id)">({{item.review_count}} reviews)</span>
       </ion-label>
     </ion-item>
     

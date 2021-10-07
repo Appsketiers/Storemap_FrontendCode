@@ -1,5 +1,5 @@
     <ion-list>
-        <ion-item *ngFor="let item of data" lines="none" (click)="open_order()">
+        <ion-item *ngFor="let item of data" lines="none" (click)="open_order(item.id, item.store_name, item.updated_at, item.amount, item.store_images[0])">
             <ion-label>
                 <h4>{{item.store_name}}</h4>
                 <p>{{item.created_at | date: 'MM/dd/yyyy h:mm a'}}</p>

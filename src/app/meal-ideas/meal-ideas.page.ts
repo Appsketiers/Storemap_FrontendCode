@@ -154,4 +154,15 @@ export class MealIdeasPage implements OnInit {
   open_link(){
     const browser = this.iab.create(this.credit_link,'_system',{location:'no'}); 
   }
+
+  ratings(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.list_id,
+        type:'MEAL'
+      },
+    };
+
+this.router.navigate(['/review-rating'], navigationExtras)
+  }
 }

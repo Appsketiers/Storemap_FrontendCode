@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-payment-sucess',
   templateUrl: './payment-sucess.page.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentSucessPage implements OnInit {
 
-  constructor() { }
+  constructor(public router:Router) { }
 
   ngOnInit() {
   }
 
+  ok(){
+this.router.navigate(['/main-home']);
+  }
 }

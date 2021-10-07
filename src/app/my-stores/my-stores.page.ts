@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
-import { Router } from '@angular/router';
+import {ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LocationService } from '../providers/location.service';
 import { HelperService } from '../providers/helper.service';
@@ -75,8 +75,16 @@ export class MyStoresPage implements OnInit {
      
     return await modal.present();
     }
-    ratings(){
-this.router.navigate(['/review-rating'])
+    
+    ratings(id){
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          id: id,
+          type:'STORE'
+        },
+      };
+
+this.router.navigate(['/review-rating'], navigationExtras)
     }
 
 
@@ -122,4 +130,5 @@ this.router.navigate(['/review-rating'])
         });
       });
     }
+
 }

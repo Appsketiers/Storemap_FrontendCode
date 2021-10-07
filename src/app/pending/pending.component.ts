@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { SlicePipe } from '@angular/common';
 @Component({
@@ -60,7 +60,16 @@ convert_to_array(){
     this.pending_orders_list(true, event);
   }
 
-  open_order(){
-    this.router.navigate(['/past-orders1']);
+  open_order(id, name, time, amount, image){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+        name:name,
+        time:time,
+        amount:amount,
+        image:image
+      },
+    };
+    this.router.navigate(['/past-orders1'], navigationExtras);
       }
 }
