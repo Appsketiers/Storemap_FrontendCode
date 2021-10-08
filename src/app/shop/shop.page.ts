@@ -20,6 +20,7 @@ export class ShopPage implements OnInit {
   sliderOne:any;
   matched_products: any=[];
   arrangement: any=[];
+  map_items:any=[];
   image_url = environment.image_baseurl;
   slideOptsTwo = {
     initialSlide: 0,  
@@ -39,6 +40,7 @@ export class ShopPage implements OnInit {
   isBeginningSlide: true;
   isEndSlide: false;
   store_products;
+  heighlightedItem;
   constructor(private helper: HelperService,   private router: Router,
     private route: ActivatedRoute) {
 
@@ -86,6 +88,7 @@ export class ShopPage implements OnInit {
       }); 
       if(item.length > 0){
         if(item[0].item_detail.length > 0){
+        
           return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
         
         }
@@ -114,7 +117,7 @@ this.router.navigate(['/stores-list'], navigationExtras)
 
 
 checkout(){
-  debugger
+ 
   this.helper.getByKeynew('storetoken', (res) => {
     let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id};
     this.helper.postMethod('checkout', body, (res) => {
@@ -128,6 +131,27 @@ checkout(){
 shopping_list(){
   this.router.navigate(['/grocery-list']);
 }
+
+highlight(id){
+      console.log(id);
+      let data = this.arrangement.filter(ele=>{
+        return ele.item_detail.length > 0 && ele.item_detail.filter(ele2=>{return ele2.id === id}).length >0;
+      });
+      if(this.heighlightedItem){
+        document.getElementById("Col-"+this.heighlightedItem[0].row+""+this.heighlightedItem[0].col).style.boxShadow = "none"
+      }
+      
+      
+      // console.log("Col-"+data[0].row+""+data[0].col)
+      setTimeout(() => {
+        this.heighlightedItem = data; 
+        document.getElementById("Col-"+data[0].row+""+data[0].col).style.boxShadow = "0px 0px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"  
+      }, 10);
+      
+      // console.log()
+     
+      // console.log(data);
+  }
 
     //Move to Next slide
     slideNext(object, slideView) {

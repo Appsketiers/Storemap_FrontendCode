@@ -35,22 +35,13 @@ ion-content {
             margin: 0 15px;
             --padding-start: 0;
             --inner-padding-end: 0;
-            ion-checkbox {
-                --border-radius: 10px !important;
-                --border-color: #EBEBEB !important;
-                --ion-color-base: #9D4CDF !important;
-                --background-checked: #EBEBEB;
-                --border-color-checked: #EBEBEB;
-                --checkmark-color: #9D4CDF;
-                --checkmark-width: 2px;
-                width: 40px;
-                --border-width: 8px;
-                --checkmark-width: 3px;
-                height: 40px;
-                --background: #EBEBEB;
-                /* --border-color: none !important; */
-                margin-right: 12px;
+            span{
+            img {
+                width: 50px;
+                height: 50px;
+                border-radius: 10px;
             }
+        }
             span{
                 color:#9D4CDF;
                 font-size: 12px;

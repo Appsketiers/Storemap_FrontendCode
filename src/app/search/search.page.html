@@ -11,21 +11,30 @@
     <ion-row>
       <ion-col>
         <ion-label>Search</ion-label>
-        <ion-searchbar placeholder="find recipes and more" (keyup.enter)="handleLogin()"></ion-searchbar>
+        <ion-searchbar placeholder="find recipes and more" (keyup.enter)="handleLogin()"
+        [ngModelOptions]="{standalone: true}"
+  [(ngModel)]="someValue"
+  (ionInput)="search2($event)"
+  (ionClear) ="cancelSearch($event)"
+  (keydown.enter)="search_all($event)"></ion-searchbar>
       </ion-col>
     </ion-row>
   </ion-grid>
-  <div class="listing">
-    <div class="list_box">
+  <div class="listing" *ngIf="data.length<1">
+    <div *ngIf="recent.length>0"  class="list_box">
       <h2>Recent Searches</h2>
-      <p> taco</p>
+      <p *ngFor="let item of recent" (click)="search_all(item.title)"> {{item.title}}</p>
     </div>
-    <div class="list_box">
+    <div *ngIf="trending.length>0" class="list_box">
       <h2>Trending Searches</h2>
-      <p> taco</p>
-      <p> taco</p>
-      <p> taco</p>
+      <p *ngFor="let item of trending" (click)="search_all(item.title)"> {{item.title}}</p>
     </div>  
    </div> 
+
+   <div *ngIf="data.length>0" class="listing">
+    <div class="list_box">
+      <p *ngFor="let item of data" (click)="open_details(item.id, item.type)">{{item.title}}</p>
+    </div>
+    </div>
 
 </ion-content>

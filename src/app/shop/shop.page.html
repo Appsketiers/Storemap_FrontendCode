@@ -12,9 +12,9 @@
     <ion-row *ngFor="let item of [].constructor(row) let i = index">
       <ion-col
         style="height: 30px"
-        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''" >
+        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''"  >
         <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
-         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'"/>
+         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
         </div> 
       </ion-col>
     </ion-row>
@@ -24,7 +24,7 @@
       <img src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
       <ion-slides pager="false" [options]="slideOptsone" #slideWithNav1
 (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav1)">
-<ion-slide *ngFor="let s of matched_products">
+<ion-slide *ngFor="let s of matched_products" (click)="highlight(s.id)">
     <ion-row>
 
       <ion-col size="6">

@@ -213,4 +213,16 @@ checkForItem(id){
       });
     });
   }
-}
+
+  comment_rating(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.store_id,
+        type:'STORE'
+      },
+    };
+
+this.router.navigate(['/review-rating'], navigationExtras)
+  }
+  }
+
