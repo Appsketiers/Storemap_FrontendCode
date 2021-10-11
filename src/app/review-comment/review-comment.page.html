@@ -12,11 +12,10 @@
   <div class="rate_review">
     <h2>Rate Your Experience</h2>
     <div class="rating_star">
-      <span class="icon-Star-fill"></span>
-      <span class="icon-Star-fill"></span>
-      <span class="icon-Star-fill"></span>
-      <span class="icon-Star-fill"></span>
-      <span class="icon-Star-unfill"></span>
+      <span class="icon-Star-fill" *ngFor="let st of stars ; let i =index"></span>
+    
+      <!-- <span class="icon-Star-unfill"></span> -->
+      
     </div>
   </div>
   <ion-textarea rows="8" placeholder="Comment Here..."></ion-textarea>

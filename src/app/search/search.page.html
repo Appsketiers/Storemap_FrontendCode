@@ -23,11 +23,11 @@
   <div class="listing" *ngIf="data.length<1">
     <div *ngIf="recent.length>0"  class="list_box">
       <h2>Recent Searches</h2>
-      <p *ngFor="let item of recent" (click)="search_all(item.title)"> {{item.title}}</p>
+      <p *ngFor="let item of recent" (click)="trending_recent_search(item.title)"> {{item.title}}</p>
     </div>
     <div *ngIf="trending.length>0" class="list_box">
       <h2>Trending Searches</h2>
-      <p *ngFor="let item of trending" (click)="search_all(item.title)"> {{item.title}}</p>
+      <p *ngFor="let item of trending" (click)="trending_recent_search(item.title)"> {{item.title}}</p>
     </div>  
    </div> 
 

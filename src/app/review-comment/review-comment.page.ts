@@ -15,6 +15,7 @@ export class ReviewCommentPage implements OnInit {
   rating;
   review_images:any=[];
   image_url = environment.image_baseurl;
+  stars : any[] = [false , false , false , false , false];
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone) { }
 
@@ -47,5 +48,19 @@ export class ReviewCommentPage implements OnInit {
       });
     });
   }
+
+  addRate(rt){
+    this.rating = null;
+    //this.form.controls['rating'].setValue(rt+1);
+   for(var i=0;i<=4;i++){  
+     if(rt >= i){  
+       this.stars[i]=true;  
+     }  
+     else{  
+       this.stars[i]=false;  
+     }
+   }
+   // console.log(rt , this.stars);
+ }
 
 }
