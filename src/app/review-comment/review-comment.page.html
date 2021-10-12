@@ -12,19 +12,28 @@
   <div class="rate_review">
     <h2>Rate Your Experience</h2>
     <div class="rating_star">
-      <span class="icon-Star-fill" *ngFor="let st of stars ; let i =index"></span>
+
+      <rating [(ngModel)]="rating"
+        
+      size="default"
+      (ngModelChange)="onRateChange($event)">
+</rating>
+      <!-- <span class="icon-Star-fill" *ngFor="let st of stars ; let i =index"></span>
     
-      <!-- <span class="icon-Star-unfill"></span> -->
+ <span class="icon-Star-unfill"></span> --> 
       
-    </div>
+     </div> 
   </div>
+
+
+
   <ion-textarea rows="8" placeholder="Comment Here..."></ion-textarea>
   <div class="upload_img">
     <h4>UPLOAD IMAGES (MAX 3)</h4>
     <div class="img_list">
-      <span><img src="../../assets/img/user.png" alt=""></span>
-      <span>
-        <ion-icon name="add"></ion-icon>
+      <span *ngFor="let item of review_images"><img src="{{item}}" alt=""></span>
+     <span *ngIf="review_images.length<3">
+        <ion-icon  name="add" (click)="captureImage()"></ion-icon>
       </span>
     </div>
   </div>

@@ -24,7 +24,7 @@
                     <p style="margin-top: 10px;" (click)="open_shop()">View Store Steak</p>
                     <div class="rating">
                         <h5>{{store_address}}</h5>
-                        <p routerLink="/review-comment"><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p>
+                        <p routerLink="/review-comment"><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>({{review_count}}) reviews</p>
                     </div>
                     <div class="m_b">
                         <span>{{store_distance | number:'1.2-2'}} Miles away</span>

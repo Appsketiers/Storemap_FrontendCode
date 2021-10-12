@@ -50,4 +50,15 @@ export class RecommendedPage implements OnInit {
     };
     this.router.navigate(['/recommended-camping-trip'], navigationExtras);
   }
+
+  create_list(id, title){
+    this.helper.getByKeynew('storetoken', (res) => {
+      console.log(res);
+      let body: any = { token: res, list_id: id, list_name: title };
+      this.helper.postMethod('recommended-shopping', body, (res) => {
+        console.log(res);
+      //  this.ingredients=res.data.ingredient_list;
+            });
+    });
+  }
 }

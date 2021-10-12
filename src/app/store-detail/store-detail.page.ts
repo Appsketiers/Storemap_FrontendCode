@@ -21,7 +21,9 @@ matched_products:any=[];
 store_category: any=[];
 store_category_product: any=[];
 update: any=[];
+avg_rating;
 image_url = environment.image_baseurl;
+review_count;
   constructor(private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,) { }
@@ -61,6 +63,9 @@ this.store_distance=res.data.store.distance;
 this.matched_products=res.data.matched_products;
 this.store_address=res.data.store.address;
 this.store_category=res.data.store_category;
+this.review_count= res.data.store.review_count;
+this.avg_rating = res.data.store.avg_rating;
+console.log('review count----', this.review_count);
 console.log(this.matched_products);
 console.log('store category---', this.store_category);
 

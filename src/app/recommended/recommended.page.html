@@ -37,7 +37,7 @@
         <ion-item *ngFor="let item of data let i = index">
             <span style="color: gray;" slot="start">{{i+1}}</span>
             <ion-label (click)="recommended_details(item.id)">{{item.title}}</ion-label>
-            <span class="icon-add" slot="end"></span>
+            <span class="icon-add" slot="end" (click)="create_list(item.id, item.title)"></span>
         </ion-item>
     
         <div class="plac" *ngIf="data.length<=0"> 
