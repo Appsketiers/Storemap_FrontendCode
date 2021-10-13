@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
+import { IonicRatingModule } from 'ionic4-rating';
 import { MyStoresPageRoutingModule } from './my-stores-routing.module';
 
 import { MyStoresPage } from './my-stores.page';
@@ -13,7 +13,8 @@ import { MyStoresPage } from './my-stores.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    MyStoresPageRoutingModule
+    MyStoresPageRoutingModule,
+    IonicRatingModule,
   ],
   declarations: [MyStoresPage]
 })

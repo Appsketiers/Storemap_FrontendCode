@@ -57,7 +57,8 @@ export class RecommendedPage implements OnInit {
       let body: any = { token: res, list_id: id, list_name: title };
       this.helper.postMethod('recommended-shopping', body, (res) => {
         console.log(res);
-      //  this.ingredients=res.data.ingredient_list;
+        this.helper.presentToast(res.message);
+   
             });
     });
   }

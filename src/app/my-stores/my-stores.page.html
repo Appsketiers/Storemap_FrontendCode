@@ -27,11 +27,13 @@
           <ion-icon class="heart" name="heart" (click)="like(item.id,0)"></ion-icon>
         
         <p >
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-fill"></span>
-          <span class="icon-Star-unfill"></span>
+        <span>
+          <rating [rate]="item.avg_rating"
+          
+          
+          (ngModelChange)="onRateChange($event)">
+    </rating>
+        </span>
         </p>
         <span (click)="ratings(item.id)">({{item.review_count}} reviews)</span>
       </ion-label>

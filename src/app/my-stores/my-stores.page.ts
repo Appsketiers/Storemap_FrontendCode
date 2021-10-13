@@ -19,7 +19,7 @@ export class MyStoresPage implements OnInit {
   lat: any;
   lng: any;
   image_url = environment.image_baseurl;
-
+  rating;
   constructor(public modalController: ModalController,
     private router: Router, private location_service: LocationService,
     private helper: HelperService,private ngZone:NgZone,private platform: Platform) { }
@@ -130,5 +130,9 @@ this.router.navigate(['/review-rating'], navigationExtras)
         });
       });
     }
+
+    onRateChange(ev){
+      console.log(this.rating);
+        }
 
 }
