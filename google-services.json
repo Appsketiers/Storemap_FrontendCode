@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "764866105536",
+    "project_id": "werzat-storemapps",
+    "storage_bucket": "werzat-storemapps.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764866105536:android:f2d01bcc97a9ef7705dd25",
+        "android_client_info": {
+          "package_name": "com.nhz.storemapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764866105536-psqai0ej6uju0m42r1vcs8hbfpb0on2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1isNdqIDkRw5EF2j_5VcirwxPEQnVE-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764866105536-psqai0ej6uju0m42r1vcs8hbfpb0on2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

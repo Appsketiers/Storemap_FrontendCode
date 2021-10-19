@@ -16,7 +16,7 @@
       <span slot="start" class="u-img"><img src="{{image_url}}{{item.store_images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       <ion-label>
         <h5>{{item.store_name}}</h5>
-        <h6>1242 North ave</h6>
+        <h6>{{item.address}}</h6>
         <p class="loc"><span>
             <ion-icon name="location"></ion-icon> {{item.distance | number: '1.2-2'}} Miles
             away
@@ -26,15 +26,13 @@
         
           <ion-icon class="heart" name="heart" (click)="like(item.id,0)"></ion-icon>
         
-        <p >
-        <span>
+    <div class="ratingCust">
           <rating [rate]="item.avg_rating"
-          
-          
+          [readonly] = "true"
+          size = "small"
           (ngModelChange)="onRateChange($event)">
     </rating>
-        </span>
-        </p>
+  </div>
         <span (click)="ratings(item.id)">({{item.review_count}} reviews)</span>
       </ion-label>
     </ion-item>

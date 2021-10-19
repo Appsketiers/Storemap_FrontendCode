@@ -10,6 +10,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AlertController } from '@ionic/angular';
 import { Network } from '@ionic-native/network/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/ngx";
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -29,7 +31,9 @@ export class AppComponent {
     private device: Device,
     private router: Router,
     private nativeStorage: NativeStorage,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private fcm: FCM,
+    private storage: Storage,
   ) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
@@ -39,6 +43,8 @@ export class AppComponent {
       this.splashScreen.hide();
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
+      this.savePlatformType();
+      //this.fcmNotification();
      // this.check_internet_connection();
      if(localStorage.getItem("User")){
       let user = JSON.parse(localStorage.getItem("User"));
@@ -199,5 +205,74 @@ export class AppComponent {
   }
   closeMenu() {
     this.menuCtrl.close();
+  }
+
+
+  fcmNotification() {
+    console.log("FCM IN");
+    this.fcm.requestPushPermission().then((data)=> {
+      console.log("request permission", data);
+      this.storage.get("fcmtoken").then((token) => {
+      if (!token) {
+        this.fcm
+          .getToken()
+          .then((token) => {
+            this.storage.set("fcmtoken", token);
+            //this.Config.setConf("device_id", token);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+       // this.Config.setConf("device_id", token);
+      }
+    });
+
+    this.fcm.onNotification().subscribe((data) => {
+      console.log(data);
+      if (data.wasTapped) {
+        this.storage.get("User").then((user) => {
+          if (user) {
+            setTimeout(() => {
+              if(data.dictionary == "Accept Booking") {
+                this.router.navigateByUrl('tabs/tab2');
+              } else if(data.dictionary == "Complete Booking") {
+                this.router.navigateByUrl('tabs/tab2');
+            
+              } 
+            }, 2000);
+           
+
+            console.log("usre, data",user,data);
+          } else {
+            this.router.navigate(['/auth']);
+          }
+        });
+      } else {
+        console.info("Received in foreground", data);
+        if (!this.platform.is("android")) {
+          this.helper.presentToast(data.aps.alert.body);
+          if(data.dictionary == "Accept Booking") {
+            this.router.navigateByUrl('tabs/tab2');
+          } else if(data.dictionary == "Complete Booking") {
+            this.router.navigateByUrl('tabs/tab2');
+          } 
+        } else {
+          this.helper.presentToast(data.body);
+        }
+      }
+    });
+    this.fcm.onTokenRefresh().subscribe((token) => {});
+  })
+  }
+
+  savePlatformType() {
+    if (this.platform.is("android")) {
+      this.storage.set("Platform", "ANDROID");
+      //this.Config.setConf("device_type", "ANDROID");
+    } else if (this.platform.is("ios")) {
+      this.storage.set("Platform", "IOS");
+      //this.Config.setConf("device_type", "IOS");
+    } 
   }
 }

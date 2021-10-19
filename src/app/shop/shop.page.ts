@@ -121,11 +121,13 @@ checkout(){
   this.helper.getByKeynew('storetoken', (res) => {
     let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id};
     this.helper.postMethod('checkout', body, (res) => {
-     
-      console.log(res);
+    console.log(res);
+    if(res.status){
+      this.router.navigate(['/payment-sucess']);
+    }
     });
   });  
-  this.router.navigate(['/payment-sucess']);
+  
 }
 
 shopping_list(){

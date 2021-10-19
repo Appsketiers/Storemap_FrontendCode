@@ -26,6 +26,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -54,6 +56,8 @@ import { Network } from '@ionic-native/network/ngx';
     Diagnostic,
     Network,
     Keyboard,
+    NativeAudio,
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

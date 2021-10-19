@@ -219,7 +219,7 @@ checkForItem(id){
     });
   }
 
-  comment_rating(){
+  review_rating(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.store_id,
@@ -228,6 +228,17 @@ checkForItem(id){
     };
 
 this.router.navigate(['/review-rating'], navigationExtras)
+  }
+
+  review_comment(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.store_id,
+        type:'STORE'
+      },
+    };
+
+this.router.navigate(['/review-comment'], navigationExtras)
   }
   }
 

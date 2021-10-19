@@ -155,7 +155,7 @@ export class MealIdeasPage implements OnInit {
     const browser = this.iab.create(this.credit_link,'_system',{location:'no'}); 
   }
 
-  ratings(){
+  review_ratings(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.list_id,
@@ -164,5 +164,16 @@ export class MealIdeasPage implements OnInit {
     };
 
 this.router.navigate(['/review-rating'], navigationExtras)
+  }
+
+  review_comment(){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: this.list_id,
+        type:'MEAL'
+      },
+    };
+
+this.router.navigate(['/review-comment'], navigationExtras)
   }
 }

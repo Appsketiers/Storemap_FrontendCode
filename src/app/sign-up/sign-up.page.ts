@@ -149,6 +149,7 @@ export class SignUpPage implements OnInit {
       device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
       profile_image: this.imagepath,
     };
+    console.log(body);
     this.helper.postMethod(
       'register',
       body,

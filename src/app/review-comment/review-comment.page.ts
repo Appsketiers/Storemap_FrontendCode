@@ -51,8 +51,9 @@ console.log(this.rating);
       this.helper.postMethod('add-review', body, (res) => {
         console.log(res);
         
-
+this.helper.presentToast(res.message);
       });
+      console.log(body);
     });
   }
 
@@ -73,7 +74,7 @@ console.log(this.rating);
  async captureImage() {
   this.cameraService.presentCameraActionSheet(async (obj) => {
     let pathimage = obj.imagedata;
-    this.image_path = pathimage;
+    this.image_path.push(pathimage);
     this.review_images.push( 'data:image/jpg;base64,' + pathimage);
     console.log(this.review_images);
     console.log(this.image_path);
