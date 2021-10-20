@@ -16,8 +16,10 @@ export class ShopPage implements OnInit {
   request;
   list_id: any;
   store_id: any;
+  title:any;
   sliderTwo: any;
   sliderOne:any;
+  page;
   matched_products: any=[];
   arrangement: any=[];
   map_items:any=[];
@@ -102,16 +104,26 @@ export class ShopPage implements OnInit {
       queryParams: {
         id: this.list_id,
         store_id: this.store_id,
+        title:this.title
       },
     };
+    if(this.page == 'my_store'){
+      this.router.navigate(['/my-stores']);
+    }
+    else{
 this.router.navigate(['/stores-list'], navigationExtras)
+    }
   }
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.list_id = params['id'];
       this.store_id = params['store_id'];
+      this.title = params['title'];
+      this.page = params['page'];
       console.log(this.list_id);
       console.log(this.store_id);
+      console.log(this.title);
+      console.log(this.page);
     });
   }
 

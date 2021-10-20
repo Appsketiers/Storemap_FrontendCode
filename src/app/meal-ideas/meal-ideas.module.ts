@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MealIdeasPageRoutingModule } from './meal-ideas-routing.module';
 
 import { MealIdeasPage } from './meal-ideas.page';
+import { IonicRatingModule } from 'ionic4-rating';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MealIdeasPageRoutingModule
+    MealIdeasPageRoutingModule,
+    IonicRatingModule
   ],
   declarations: [MealIdeasPage]
 })

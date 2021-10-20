@@ -21,12 +21,22 @@
                 <div class="list_box_1">
                     <h3>{{title}}</h3>
                     <h5>{{heading}}</h5>
-                    <div class="rating">
+                    <div class="rating" (click)="review_ratings()">
                         <h5>{{authentic}}</h5>
-                        <p (click)="review_comment()"><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p>
+                        <div style=" justify-content: flex-start;" class="ratingCust">
+                            <rating [rate]="avg_rating"
+                            [readonly] = "true"
+                            size = "small"
+                            >
+                      </rating>
+                      <span >({{total_review}} reviews)</span>
+                    </div>
+                    
+                        <!-- <p (click)="review_comment()"><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p> -->
                     </div>
                     <div class="m_b">
-                        <span (click)="review_ratings()">115 views today</span>
+                        <span >115 views today</span>
+                        <span (click)="review_comment()">Add Review</span>
                         </div>
 
                     <div class="a_b">

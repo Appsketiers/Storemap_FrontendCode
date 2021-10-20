@@ -22,9 +22,13 @@ export class MealIdeasPage implements OnInit {
   update: any = [];
   liked: any;
   image: any;
-  list: any = [];
+  my_list: any = [];
+  shared_list: any = [];
   image_url = environment.image_baseurl;
   selected_shopping_list:any;
+  avg_rating;
+  today_view_count;
+  total_review;
   constructor(
     private iab: InAppBrowser,
     private helper: HelperService,
@@ -39,7 +43,8 @@ export class MealIdeasPage implements OnInit {
       console.log(this.list_id);
     });
     this.meal_idea_details();
-    this.shopping_list();
+    this.my_shopping_list();
+    this.shared_shopping_list();
   }
 
   meal_idea_details() {
@@ -60,6 +65,9 @@ export class MealIdeasPage implements OnInit {
         this.title = res.data.title;
         this.ingredient_list = res.data.ingredient_list;
         this.image = res.data.image;
+        this.today_view_count = res.data.today_view_count;
+        this.avg_rating = res.data.avg_rating;
+        this.total_review = res.data.total_review;
       });
     });
   }
@@ -79,7 +87,7 @@ export class MealIdeasPage implements OnInit {
     const modal = await this.modalController.create({
       component: MealIdeasShoppingComponent,
       cssClass: 'option_modal',
-      componentProps: {shopping_list:this.list},
+      componentProps: {shopping_list:this.my_list, shared_shopping_list:this.shared_list},
     });
 
     modal.onDidDismiss().then((data) => {
@@ -119,13 +127,24 @@ export class MealIdeasPage implements OnInit {
     });
   }
 
-  shopping_list() {
+  my_shopping_list() {
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, list_type: 'MY' };
       this.helper.postMethod('shopping-list', body, (res) => {
         console.log(res);
-        this.list = res.data;
-        console.log(this.list);
+        this.my_list = res.data;
+        console.log(this.my_list);
+      });
+    });
+  }
+
+  shared_shopping_list() {
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = { token: res, list_type: 'SHARED' };
+      this.helper.postMethod('shopping-list', body, (res) => {
+        console.log(res);
+        this.shared_list = res.data;
+        console.log(this.shared_list);
       });
     });
   }

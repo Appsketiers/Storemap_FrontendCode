@@ -24,6 +24,9 @@ update: any=[];
 avg_rating;
 image_url = environment.image_baseurl;
 review_count;
+page;
+is_reviewed;
+review: any;
   constructor(private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,) { }
@@ -33,6 +36,7 @@ review_count;
       this.list_id = params['id'];
       this.store_id=params['store_id'];
       this.title=params['title'];
+this.page = params['page'];
       console.log(this.list_id, this.title, this.store_id);
 
       this.helper.get_location((data) => {
@@ -57,6 +61,8 @@ review_count;
       
       this.helper.postMethod('view-store', body, (res) => {
         console.log(res);
+        this.is_reviewed = res.data.is_reviewed;
+        this.review = res.data.review;
 this.store_name=res.data.store.store_name;
 this.store_image=res.data.store.store_images[0];
 this.store_distance=res.data.store.distance;
@@ -85,6 +91,8 @@ console.log('Update---',this.update);
       queryParams: {
         id:this.list_id,
         store_id:this.store_id,
+        title:this.title,
+        page:this.page
       },
     };
 
@@ -219,7 +227,7 @@ checkForItem(id){
     });
   }
 
-  review_rating(){
+  review_ratings(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.store_id,
@@ -230,11 +238,14 @@ checkForItem(id){
 this.router.navigate(['/review-rating'], navigationExtras)
   }
 
-  review_comment(){
+  review_comment(review_type){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.store_id,
-        type:'STORE'
+        type:'STORE',
+        review_type:review_type,
+        review_data:this.review
+
       },
     };
 

@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { LocationService } from '../providers/location.service';
 import { HelperService } from '../providers/helper.service';
 import {Platform } from '@ionic/angular';
+import { MealIdeasShoppingComponent } from '../meal-ideas-shopping/meal-ideas-shopping.component';
 @Component({
   selector: 'app-my-stores',
   templateUrl: './my-stores.page.html',
@@ -14,12 +15,15 @@ import {Platform } from '@ionic/angular';
 export class MyStoresPage implements OnInit {
   data: any = [];
   page: any = 1;
+  my_list: any = [];
+  shared_list: any = [];
   limit: any = 10;
   cord: any;
   lat: any;
   lng: any;
   image_url = environment.image_baseurl;
   rating;
+  selected_list: any;
   constructor(public modalController: ModalController,
     private router: Router, private location_service: LocationService,
     private helper: HelperService,private ngZone:NgZone,private platform: Platform) { }
@@ -63,6 +67,9 @@ export class MyStoresPage implements OnInit {
        }
  
    });
+
+   this.my_shopping_list();
+   this.shared_shopping_list();
   }
 
 
@@ -134,5 +141,58 @@ this.router.navigate(['/review-rating'], navigationExtras)
     onRateChange(ev){
       console.log(this.rating);
         }
+
+
+        my_shopping_list() {
+          this.helper.getByKeynew('storetoken', (res) => {
+            let body: any = { token: res, list_type: 'MY' };
+            this.helper.postMethod('shopping-list', body, (res) => {
+              console.log(res);
+              this.my_list = res.data;
+              console.log(this.my_list);
+            });
+          });
+        }
+      
+        shared_shopping_list() {
+          this.helper.getByKeynew('storetoken', (res) => {
+            let body: any = { token: res, list_type: 'SHARED' };
+            this.helper.postMethod('shopping-list', body, (res) => {
+              console.log(res);
+              this.shared_list = res.data;
+              console.log(this.shared_list);
+            });
+          });
+        }
+
+
+  async open_shopping_list(id) {
+    const modal = await this.modalController.create({
+      component: MealIdeasShoppingComponent,
+      cssClass: 'option_modal',
+      componentProps: {shopping_list:this.my_list, shared_shopping_list:this.shared_list},
+    });
+
+    modal.onDidDismiss().then((data) => {
+      console.log(data);
+      this.selected_list = data;
+      if(data.role=='apply'){
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            id:this.selected_list.data.id,
+            title:this.selected_list.data.title,
+            store_id:id,
+            page:'my_store'
+          },
+        };
+        this.router.navigate(['/store-detail'], navigationExtras);
+    }
+
+    });
+
+    return await modal.present();
+  }
+
+
 
 }

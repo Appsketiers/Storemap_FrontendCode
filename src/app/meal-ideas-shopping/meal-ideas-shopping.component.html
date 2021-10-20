@@ -1,5 +1,19 @@
 <div class="popup_outer">
+
   <ion-icon name="close" class="closebtn" (click)="closeModal()"> </ion-icon>
+
+  <ion-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="col_buttons" size='6'>
+          <ion-button class="{{my ?'btn_active':'btn_inactive'}}" (click)="my_list()">My List</ion-button>
+        </ion-col>
+        <ion-col class="col_buttons" size='6'>
+          <ion-button class="{{shared ?'btn_active':'btn_inactive'}}" (click)="shared_list()">Shared List</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-header><hr>
 
   <div class="popupinner">
     <div>

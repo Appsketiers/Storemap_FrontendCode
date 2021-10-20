@@ -13,8 +13,8 @@
 <ion-content>
   <ion-list>
     <ion-item lines="none" *ngFor="let item of data; let i = index">
-      <span slot="start" class="u-img"><img src="{{image_url}}{{item.store_images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
-      <ion-label>
+      <span slot="start" class="u-img" (click)="open_shopping_list(item.id)"><img src="{{image_url}}{{item.store_images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      <ion-label (click)="open_shopping_list(item.id)">
         <h5>{{item.store_name}}</h5>
         <h6>{{item.address}}</h6>
         <p class="loc"><span>

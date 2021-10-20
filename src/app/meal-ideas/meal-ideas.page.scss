@@ -38,11 +38,12 @@ ion-content {
                             color: #000;
                             margin: 0 0 5px;
                         }
-                        p {
+                        div {
+                            span{
                             margin: 0;
                             font-size: 13px;
                             color: #8B8B8B;
-                        }
+                        }}
                     }
                     .m_b {
                         display: flex;
