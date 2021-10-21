@@ -30,8 +30,15 @@
   <ion-textarea [(ngModel)]="comment" rows="8" placeholder="Comment Here..."></ion-textarea>
   <div class="upload_img">
     <h4>UPLOAD IMAGES (MAX 3)</h4>
-    <div class="img_list">
+    <div *ngIf="review_type =='ADD'" class="img_list">
       <span *ngFor="let item of review_images"><img src="{{item}}" alt=""></span>
+      <span *ngIf="review_images.length<3">
+      <ion-icon  name="add" (click)="captureImage()"></ion-icon>
+      </span>
+    </div>
+
+    <div *ngIf="review_type =='EDIT'" class="img_list">
+      <span *ngFor="let item of review_images"><img src="{{image_url}}{{item}}" alt=""></span>
       <span *ngIf="review_images.length<3">
       <ion-icon  name="add" (click)="captureImage()"></ion-icon>
       </span>

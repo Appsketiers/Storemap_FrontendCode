@@ -26,7 +26,7 @@
                         <div style=" justify-content: flex-start;" class="ratingCust">
                             <rating [rate]="avg_rating"
                             [readonly] = "true"
-                            size = "small"
+                            size = "12"
                             >
                       </rating>
                       <span >({{total_review}} reviews)</span>
@@ -35,8 +35,9 @@
                         <!-- <p (click)="review_comment()"><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-fill"></span><span class="icon-Star-unfill"></span>(128) reviews</p> -->
                     </div>
                     <div class="m_b">
-                        <span >115 views today</span>
-                        <span (click)="review_comment()">Add Review</span>
+                        <span >{{today_view_count}} views today</span>
+                        <span *ngIf="!is_reviewed" (click)="review_comment('ADD')">Add Review</span>
+                        <span *ngIf="is_reviewed" (click)="review_comment('EDIT')">Edit Review</span>
                         </div>
 
                     <div class="a_b">

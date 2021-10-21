@@ -29,6 +29,8 @@ export class MealIdeasPage implements OnInit {
   avg_rating;
   today_view_count;
   total_review;
+  is_reviewed;
+  review:any;
   constructor(
     private iab: InAppBrowser,
     private helper: HelperService,
@@ -68,6 +70,8 @@ export class MealIdeasPage implements OnInit {
         this.today_view_count = res.data.today_view_count;
         this.avg_rating = res.data.avg_rating;
         this.total_review = res.data.total_review;
+        this.is_reviewed = res.data.is_reviewed;
+        this.review = res.data.review;
       });
     });
   }
@@ -185,11 +189,13 @@ export class MealIdeasPage implements OnInit {
 this.router.navigate(['/review-rating'], navigationExtras)
   }
 
-  review_comment(){
+  review_comment(review_type){
     let navigationExtras: NavigationExtras = {
       queryParams: {
         id: this.list_id,
-        type:'MEAL'
+        type:'MEAL',
+        review_type:review_type,
+        review_data:JSON.stringify(this.review)
       },
     };
 

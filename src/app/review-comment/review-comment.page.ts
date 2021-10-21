@@ -18,6 +18,9 @@ export class ReviewCommentPage implements OnInit {
   image_path: any = [];
   image_url = environment.image_baseurl;
   stars : any[] = [false , false , false , false , false];
+  review_type;
+  review_data:any;
+
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone,
     private cameraService: CameraService,) { }
@@ -27,9 +30,17 @@ export class ReviewCommentPage implements OnInit {
       if(params['id']){
       this.id = params['id'];
       this.type = params['type'];
+      this.review_type = params['review_type'];
+      this.review_data = JSON.parse(params['review_data']);
       }
       console.log(this.id);
       console.log(this.type);
+
+      if(this.review_type =='EDIT'){
+        this.comment = this.review_data.comment;
+        this.rating = this.review_data.rating;
+        this.review_images = JSON.parse(this.review_data.pictures);
+      }
     });
 
   }
@@ -42,6 +53,7 @@ console.log(this.rating);
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
         token: res,
+        review_type:this.review_type,
         review_for:this.type,
         target_id:this.id,
         comment:this.comment,

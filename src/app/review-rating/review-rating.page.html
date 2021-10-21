@@ -9,76 +9,29 @@
 
 <ion-content>
   <ion-list>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/user.png" alt=""></span>
+    <ion-item lines="none" *ngFor="let item of data">
+      <span slot="start" class="u-img"><img src="{{image_url}}{{item.profile_image}}" alt="" onerror="this.src='../../assets/img/svg/Account.svg'"></span>
       <ion-label>
-        <h5>Jony Kame</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <h5>{{item.name}}</h5>
+        <p>{{item.comment}}</p>
       </ion-label>
-      <p slot="end">
+      <div style=" justify-content: flex-start;" class="ratingCust">
+        <rating [rate]="item.rating"
+        [readonly] = "true"
+        size = "12"
+        >
+  </rating>
+  
+</div>
+      <!-- <p slot="end">
         <span class="icon-Star-fill"></span>
         <span class="icon-Star-fill"></span>
         <span class="icon-Star-fill"></span>
         <span class="icon-Star-fill"></span>
         <span class="icon-Star-unfill"></span>
-      </p>
+      </p> -->
     </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/user.png" alt=""></span>
-      <ion-label>
-        <h5>Jony Kame</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </ion-label>
-      <p slot="end">
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-unfill"></span>
-      </p>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/user.png" alt=""></span>
-      <ion-label>
-        <h5>Jony Kame</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </ion-label>
-      <p slot="end">
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-unfill"></span>
-      </p>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/user.png" alt=""></span>
-      <ion-label>
-        <h5>Jony Kame</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </ion-label>
-      <p slot="end">
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-unfill"></span>
-      </p>
-    </ion-item>
-    <ion-item lines="none">
-      <span slot="start" class="u-img"><img src="../../assets/img/user.png" alt=""></span>
-      <ion-label>
-        <h5>Jony Kame</h5>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-      </ion-label>
-      <p slot="end">
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-fill"></span>
-        <span class="icon-Star-unfill"></span>
-      </p>
-    </ion-item>
+
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

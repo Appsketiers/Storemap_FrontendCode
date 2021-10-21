@@ -244,7 +244,7 @@ this.router.navigate(['/review-rating'], navigationExtras)
         id: this.store_id,
         type:'STORE',
         review_type:review_type,
-        review_data:this.review
+        review_data:JSON.stringify(this.review)
 
       },
     };

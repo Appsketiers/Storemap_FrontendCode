@@ -52,8 +52,17 @@ image_url = environment.image_baseurl;
           console.log('data', this.data);
   
         });
+        this.convert_to_array();
       });
     })
+  }
+
+  convert_to_array(){
+    let img:any=[];
+     for (let i = 0; i < this.data.length; i++) {
+      this.data[i].pictures= JSON.parse(this.data[i].pictures);
+            }
+            console.log(this.data);
   }
   
 

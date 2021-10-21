@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { ReviewRatingPageRoutingModule } from './review-rating-routing.module';
 
 import { ReviewRatingPage } from './review-rating.page';
-
+import { IonicRatingModule } from 'ionic4-rating';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReviewRatingPageRoutingModule
+    ReviewRatingPageRoutingModule,
+    IonicRatingModule
   ],
   declarations: [ReviewRatingPage]
 })
