@@ -30,19 +30,26 @@
   <ion-textarea [(ngModel)]="comment" rows="8" placeholder="Comment Here..."></ion-textarea>
   <div class="upload_img">
     <h4>UPLOAD IMAGES (MAX 3)</h4>
-    <div *ngIf="review_type =='ADD'" class="img_list">
-      <span *ngFor="let item of review_images"><img src="{{item}}" alt=""></span>
+    <div  class="img_list">
+      <span *ngFor="let item of review_images let i = index"><img src="{{item.image}}" alt="" *ngIf="item.camera_image">
+        <img src="{{image_url}}{{item.image}}" alt="" *ngIf="!item.camera_image">
+        <ion-icon name="close" class="closebtn" (click)="removeImageByIndex(i,item.image,item.camera_image)"></ion-icon>
+      </span>
+      
       <span *ngIf="review_images.length<3">
       <ion-icon  name="add" (click)="captureImage()"></ion-icon>
       </span>
     </div>
-
+<!-- 
     <div *ngIf="review_type =='EDIT'" class="img_list">
-      <span *ngFor="let item of review_images"><img src="{{image_url}}{{item}}" alt=""></span>
+      <span *ngFor="let item of review_images let i = index" >
+        <ion-icon name="close" class="closebtn" (click)="removeImageByIndex(i,item.id)"></ion-icon>
+      </span>
+      
       <span *ngIf="review_images.length<3">
       <ion-icon  name="add" (click)="captureImage()"></ion-icon>
       </span>
-    </div>
+    </div> -->
   </div>
   
 </ion-content>

@@ -193,6 +193,21 @@ this.router.navigate(['/review-rating'], navigationExtras)
     return await modal.present();
   }
 
+  dislike_store(id) {
+    
+    let index = this.data.findIndex((el) => {
+      console.log(el);
+      return el.product == id;
+    });
 
+    console.log(index, id);
+    if (index != -1) {
+      this.data.splice(index, 1);
+    
+    }
+    console.log(this.data);
+  
+ 
+  }
 
 }

@@ -20,6 +20,8 @@ export class ReviewCommentPage implements OnInit {
   stars : any[] = [false , false , false , false , false];
   review_type;
   review_data:any;
+  delete_image: any = [];
+  pictures:any = [];
 
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone,
@@ -39,7 +41,14 @@ export class ReviewCommentPage implements OnInit {
       if(this.review_type =='EDIT'){
         this.comment = this.review_data.comment;
         this.rating = this.review_data.rating;
-        this.review_images = JSON.parse(this.review_data.pictures);
+        this.pictures = JSON.parse(this.review_data.pictures);
+
+        for(let i=0; i<this.pictures.length; i++)
+    {
+      this.review_images.push({
+        image:this.pictures[i],
+      camera_image: false})
+    }
       }
     });
 
@@ -87,10 +96,39 @@ this.helper.presentToast(res.message);
   this.cameraService.presentCameraActionSheet(async (obj) => {
     let pathimage = obj.imagedata;
     this.image_path.push(pathimage);
-    this.review_images.push( 'data:image/jpg;base64,' + pathimage);
+    this.review_images.push( {
+      image: 'data:image/jpg;base64,' + pathimage,
+      camera_image:true
+    });
     console.log(this.review_images);
     console.log(this.image_path);
   });
 }
 
+removeImageByIndex(index, image, camera_image) {
+if(!camera_image){
+  this.delete_image.push(image);
+  
+}
+this.review_images.splice(index, 1)
+
+if(camera_image){
+  
+  let index = this.image_path.findIndex((el) => {
+    console.log(el);
+    return el.product == image;
+  });
+
+  console.log(index);
+  if (index != -1) {
+    this.image_path.splice(index, 1);
+    
+  }
+  console.log(this.image_path);
+
+
+}
+  // this.productImages.splice(index, 1);
+  // this.productFiles.splice(index, 1);
+}
 }
