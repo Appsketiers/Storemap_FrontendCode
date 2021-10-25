@@ -159,6 +159,10 @@ const routes: Routes = [
     path: 'meal-ideas-list',
     loadChildren: () => import('./meal-ideas-list/meal-ideas-list.module').then( m => m.MealIdeasListPageModule)
   },
+  {
+    path: 'checkout',
+    loadChildren: () => import('./checkout/checkout.module').then( m => m.CheckoutPageModule)
+  },
 
 ];
 

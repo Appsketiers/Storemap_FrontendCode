@@ -108,15 +108,15 @@ this.helper.presentToast(res.message);
 removeImageByIndex(index, image, camera_image) {
 if(!camera_image){
   this.delete_image.push(image);
-  
+  console.log(this.delete_image);
 }
 this.review_images.splice(index, 1)
 
 if(camera_image){
-  
+  image = image.replace('data:image/jpg;base64,','')
   let index = this.image_path.findIndex((el) => {
     console.log(el);
-    return el.product == image;
+    return el === image;
   });
 
   console.log(index);

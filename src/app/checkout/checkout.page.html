@@ -1,0 +1,43 @@
+<ion-header class="header1">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back-outline" text="" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>checkout</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-item style="border: none; color: #9D4CDF;"><h6 style="font-weight: bolder;">Items</h6></ion-item>
+  <ion-list>
+    <ion-item lines="none">
+      <ion-label>item 1 
+        <span  class="quantity">
+          <ion-icon name="remove-circle-outline" ></ion-icon>
+          <span>1 kg</span>
+          <ion-icon name="add-circle-outline" ></ion-icon>
+        </span>
+      </ion-label>
+     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      
+      <span class="price" slot="end">$ 1</span>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list mode="md" lines="none" class="ion-list">
+    <ion-list-header >
+      <ion-label class="fgray"> Saved Card </ion-label>
+    </ion-list-header>
+    <ion-list-header >
+      <ion-label class="fgray"> Saved Card </ion-label>
+    </ion-list-header>
+    <ion-item > 
+      <ion-thumbnail><ion-icon name="card" style="color: #fff"></ion-icon></ion-thumbnail>
+      <ion-text class="fwhite f14 tu">xxxxxxxx-</ion-text>
+      <ion-button slot="end" >Remove</ion-button>
+      <ion-button slot="end" >select</ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
