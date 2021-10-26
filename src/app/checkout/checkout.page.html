@@ -23,21 +23,118 @@
       <span class="price" slot="end">$ 1</span>
     </ion-item>
 
+    <ion-item lines="none">
+      <ion-label>item 1 
+        <span  class="quantity">
+          <ion-icon name="remove-circle-outline" ></ion-icon>
+          <span>1 kg</span>
+          <ion-icon name="add-circle-outline" ></ion-icon>
+        </span>
+      </ion-label>
+     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      
+      <span class="price" slot="end">$ 1</span>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>item 1 
+        <span  class="quantity">
+          <ion-icon name="remove-circle-outline" ></ion-icon>
+          <span>1 kg</span>
+          <ion-icon name="add-circle-outline" ></ion-icon>
+        </span>
+      </ion-label>
+     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      
+      <span class="price" slot="end">$ 1</span>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label>item 1 
+        <span  class="quantity">
+          <ion-icon name="remove-circle-outline" ></ion-icon>
+          <span>1 kg</span>
+          <ion-icon name="add-circle-outline" ></ion-icon>
+        </span>
+      </ion-label>
+     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+      
+      <span class="price" slot="end">$ 1</span>
+    </ion-item>
   </ion-list>
+
+  <ion-item>
+    <span style="color: #9D4CDF; font-weight: bolder;" slot="start">Total</span>
+    <span style="font-weight: bolder;" slot="end">$1000</span>
+  </ion-item>
 
   <ion-list mode="md" lines="none" class="ion-list">
     <ion-list-header >
-      <ion-label class="fgray"> Saved Card </ion-label>
+      <ion-label style="color: #9D4CDF; font-weight: bolder;"> Saved Card </ion-label>
     </ion-list-header>
-    <ion-list-header >
-      <ion-label class="fgray"> Saved Card </ion-label>
-    </ion-list-header>
-    <ion-item > 
-      <ion-thumbnail><ion-icon name="card" style="color: #fff"></ion-icon></ion-thumbnail>
-      <ion-text class="fwhite f14 tu">xxxxxxxx-</ion-text>
+      <ion-item > 
+      <ion-thumbnail><ion-icon name="card" ></ion-icon></ion-thumbnail>
+      <ion-text class="fwhite f14 tu">xxxxxxxx-1111</ion-text>
       <ion-button slot="end" >Remove</ion-button>
       <ion-button slot="end" >select</ion-button>
     </ion-item>
   </ion-list>
 
+  <ion-list mode="md" lines="none" class="ion-list">
+    <ion-list-header>
+      <ion-label style="color: #9D4CDF; font-weight: bolder;">Add New Card </ion-label>
+    </ion-list-header>
+
+    <form [formGroup]="addCardForm" >
+      <ion-grid class="ion-no-padding">
+        <ion-row>
+          
+          <ion-col size="12">
+            <ion-item class="radius">
+              <ion-input placeholder="Name on Card" formControlName="card_name"  maxlength="45"></ion-input>
+              <!-- <ion-input type="text" placeholder="Name on card" formControlName=""></ion-input> -->
+            </ion-item>
+          </ion-col>
+  
+          <ion-col size="12">
+            <ion-item class="radius">
+              <ion-input placeholder="Card Number" type="tel" formControlName="card_number"  maxlength="16"></ion-input>
+              <!-- <ion-input type="text" placeholder="Card Number" formControlName=""></ion-input> -->
+            </ion-item>
+          </ion-col>
+  
+          <ion-col s ize="6">
+            <ion-item class="radius">
+              <ion-datetime formControlName="expiry_date" min="{{today}}" max="{{max}}" displayFormat="MM/YY" class="border" placeholder="Expiry Date">
+              </ion-datetime>
+              <!-- <ion-input type="text" placeholder="MM/YY" formControlName=""></ion-input> -->
+            </ion-item>
+          </ion-col>
+  
+          <ion-col size="6">
+            <ion-item class="radius">
+              <ion-input placeholder="CVV" type="tel" formControlName="cvv" maxlength="3"></ion-input>
+              <!-- <ion-input type="text" placeholder="CVV" formControlName=""></ion-input> -->
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      </form>
+
+         <ion-grid>
+      <ion-row>
+        <ion-col size="12" style="display: flex;" color="ion-no-padding">
+          <ion-checkbox mode="md" ></ion-checkbox>
+          <label>
+            Save card securely
+          </label>
+        </ion-col>
+      </ion-row>
+    </ion-grid> 
+  </ion-list>
+
 </ion-content>
+<ion-footer>
+  <ion-button class="cus_btn" >Make Payment</ion-button>
+
+</ion-footer>

@@ -12,6 +12,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/ngx";
 import { Storage } from "@ionic/storage";
+import { Stripe } from "@ionic-native/stripe/ngx";
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -34,6 +35,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private fcm: FCM,
     private storage: Storage,
+    public stripe: Stripe,
   ) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
@@ -89,6 +91,10 @@ export class AppComponent {
         window.addEventListener('online', () => {
           this.helper.presentToast('Internet Connected');
           });
+
+          this.stripe.setPublishableKey(
+            "pk_test_51HXEfhLIPk1CcfAdhXOg1AGc22kMcAsPqoj0pKTG0257u3PKCV4UCWJbxVbvtUH1xH3KjRuZUqBgq6qHFOYl8lJD00JwVcgWB3"
+          );
     });
   }
   public appPages = [

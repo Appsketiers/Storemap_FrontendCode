@@ -28,6 +28,7 @@ import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
+import { Stripe } from '@ionic-native/stripe/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -58,6 +59,7 @@ import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
     Keyboard,
     NativeAudio,
     FCM,
+    Stripe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
