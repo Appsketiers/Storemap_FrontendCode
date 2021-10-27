@@ -129,16 +129,26 @@ this.router.navigate(['/stores-list'], navigationExtras)
 
 
 checkout(){
+
+  let navigationExtras: NavigationExtras = {
+    queryParams: {
+      id:this.list_id,
+      store_id:this.store_id,
+      title:this.title,
+      },
+  };
+
+  this.router.navigate(['/checkout'], navigationExtras);
  
-  this.helper.getByKeynew('storetoken', (res) => {
-    let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id};
-    this.helper.postMethod('checkout', body, (res) => {
-    console.log(res);
-    if(res.status){
-      this.router.navigate(['/payment-sucess']);
-    }
-    });
-  });  
+  // this.helper.getByKeynew('storetoken', (res) => {
+  //   let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id};
+  //   this.helper.postMethod('checkout', body, (res) => {
+  //   console.log(res);
+  //   if(res.status){
+  //     this.router.navigate(['/payment-sucess']);
+  //   }
+  //   });
+  // });  
   
 }
 

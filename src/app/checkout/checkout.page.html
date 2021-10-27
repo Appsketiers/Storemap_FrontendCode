@@ -69,23 +69,34 @@
   </ion-item>
 
   <ion-list mode="md" lines="none" class="ion-list">
+    <ion-radio-group allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event, 'CARD')" #radioGroup>
     <ion-list-header >
-      <ion-label style="color: #9D4CDF; font-weight: bolder;"> Saved Card </ion-label>
+      <ion-label style="color: #9D4CDF; font-weight: bolder;" (click)="show_saved_cards()"> Saved Card 
+        <ion-icon name="chevron-up-outline" slot="end" *ngIf="saved_card"></ion-icon>
+        <ion-icon name="chevron-down-outline" slot="end" *ngIf="!saved_card"></ion-icon>
+      </ion-label>
+     
     </ion-list-header>
-      <ion-item > 
+    <div *ngIf="saved_card">
+      <ion-item *ngFor="let item of cards" (ionSelect)="radioSelect($event)"> 
       <ion-thumbnail><ion-icon name="card" ></ion-icon></ion-thumbnail>
-      <ion-text class="fwhite f14 tu">xxxxxxxx-1111</ion-text>
-      <ion-button slot="end" >Remove</ion-button>
-      <ion-button slot="end" >select</ion-button>
+      <ion-text class="fwhite f14 tu">xxxxxxxx-{{item.last4}}</ion-text>
+      <ion-icon slot="end" name='trash-bin' style="color: #9D4CDF;"></ion-icon>
+      <ion-radio slot="start" value="{{item.id}}"></ion-radio>
     </ion-item>
+  </div>
+</ion-radio-group>
   </ion-list>
 
   <ion-list mode="md" lines="none" class="ion-list">
     <ion-list-header>
-      <ion-label style="color: #9D4CDF; font-weight: bolder;">Add New Card </ion-label>
+      <ion-label style="color: #9D4CDF; font-weight: bolder;" (click)="open_add_new_card()">Add New Card
+        <ion-icon name="chevron-up-outline" slot="end" *ngIf="add_new_card"></ion-icon>
+        <ion-icon name="chevron-down-outline" slot="end" *ngIf="!add_new_card"></ion-icon>
+      </ion-label>
     </ion-list-header>
 
-    <form [formGroup]="addCardForm" >
+    <form [formGroup]="addCardForm" *ngIf="add_new_card" >
       <ion-grid class="ion-no-padding">
         <ion-row>
           
@@ -121,10 +132,10 @@
       </ion-grid>
       </form>
 
-         <ion-grid>
+         <ion-grid *ngIf="add_new_card">
       <ion-row>
         <ion-col size="12" style="display: flex;" color="ion-no-padding">
-          <ion-checkbox mode="md" ></ion-checkbox>
+          <ion-checkbox mode="md" [(ngModel)]="save"></ion-checkbox>
           <label>
             Save card securely
           </label>
@@ -135,6 +146,6 @@
 
 </ion-content>
 <ion-footer>
-  <ion-button class="cus_btn" >Make Payment</ion-button>
-
+  <ion-button *ngIf="add_new_card" class="cus_btn" (click)="addCard(addCardForm.value)">Make Payment</ion-button>
+  <ion-button *ngIf="saved_card" class="cus_btn" (click)="make_payment('CARD')">Make Payment</ion-button>
 </ion-footer>

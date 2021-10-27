@@ -93,7 +93,7 @@ export class AppComponent {
           });
 
           this.stripe.setPublishableKey(
-            "pk_test_51HXEfhLIPk1CcfAdhXOg1AGc22kMcAsPqoj0pKTG0257u3PKCV4UCWJbxVbvtUH1xH3KjRuZUqBgq6qHFOYl8lJD00JwVcgWB3"
+            "pk_test_51HMKpJApZbhhD6Q94i4WRUcLweXB0usbxBiOnrqRWAVXRkpvFfKrwi6iChQwyAcC4I6PFxzJb4h9iu5vovedZmB800a30w1Lz6"
           );
     });
   }
