@@ -135,6 +135,7 @@ checkout(){
       id:this.list_id,
       store_id:this.store_id,
       title:this.title,
+      products:JSON.stringify(this.matched_products)
       },
   };
 

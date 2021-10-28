@@ -6,12 +6,14 @@ import { HelperService } from '../providers/helper.service';
 import { PaymentService } from '../providers/payment.service';
 import * as moment from 'moment';
 import { IonRadioGroup } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
   styleUrls: ['./checkout.page.scss'],
 })
 export class CheckoutPage implements OnInit {
+  image_url = environment.image_baseurl;
   @ViewChild('radioGroup') radioGroup: IonRadioGroup
   public addCardForm: FormGroup;
   cards = [];
@@ -24,6 +26,8 @@ export class CheckoutPage implements OnInit {
   title:any;
   saved_card;
   add_new_card =false;
+  selected_card_id;
+  products =[];
   constructor(public stripe: Stripe,
     private router: Router,
     private helper: HelperService,
@@ -47,10 +51,11 @@ export class CheckoutPage implements OnInit {
       this.list_id = params['id'];
       this.store_id = params['store_id'];
       this.title = params['title'];
+      this.products = JSON.parse(params['products']);
       console.log(this.list_id);
       console.log(this.store_id);
       console.log(this.title);
-    
+    console.log(this.products);
     });
 
     this.addCardForm = this.fb.group({
@@ -67,6 +72,7 @@ export class CheckoutPage implements OnInit {
       if(response.data.length>0){
         this.cards = response.data;
         this.saved_card = true;
+        this.add_new_card = false;
         console.log('Cards -----', this.cards);
       }
       else{
@@ -104,10 +110,20 @@ export class CheckoutPage implements OnInit {
       console.log("cardID",token);
       if(this.save) 
       this.saveCard(token.id, res =>{
-        this.getCards();
+        let that = this;
+        that.getCards();
         setTimeout(
           function() {
-            this.getCards();
+            //this.getCards();
+            that.helper.getByKeynew('storetoken', (res) => {
+              let body: any = { token: res, store_id: that.store_id, shopping_list_id: that.list_id,source_token:token.id,token_type:'TOKEN'};
+              that.helper.postMethod('checkout', body, (res) => {
+              console.log(res);
+              if(res.status){
+                that.router.navigate(['/payment-sucess']);
+              }
+              });
+            });  
           }, 2000);
       });
      
@@ -154,6 +170,7 @@ export class CheckoutPage implements OnInit {
 
   show_saved_cards(){
     this.saved_card = !this.saved_card;
+    this.add_new_card = false;
   }
 
   radioSelect(event) {
@@ -162,7 +179,8 @@ export class CheckoutPage implements OnInit {
   }
 
   radioGroupChange(event, token_type) {
-    console.log("radioGroupChange",event.detail);
+    this.selected_card_id = event.detail;
+    console.log("radioGroupChange",this.selected_card_id);
     console.log(' token_type ----',  token_type);
     
   }
@@ -174,6 +192,14 @@ export class CheckoutPage implements OnInit {
   }
 
   make_payment(token_type){
-
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id,source_token:this.selected_card_id.value,token_type:token_type };
+      this.helper.postMethod('checkout', body, (res) => {
+      console.log(res);
+      if(res.status){
+        this.router.navigate(['/payment-sucess']);
+      }
+      });
+    });  
   }
 }

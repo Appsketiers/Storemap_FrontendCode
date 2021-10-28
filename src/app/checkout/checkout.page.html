@@ -10,57 +10,20 @@
 <ion-content>
  <ion-item style="border: none; color: #9D4CDF;"><h6 style="font-weight: bolder;">Items</h6></ion-item>
   <ion-list>
-    <ion-item lines="none">
-      <ion-label>item 1 
+    <ion-item *ngFor="let item of products" lines="none">
+      <ion-label>{{item.name}}
         <span  class="quantity">
           <ion-icon name="remove-circle-outline" ></ion-icon>
           <span>1 kg</span>
           <ion-icon name="add-circle-outline" ></ion-icon>
         </span>
       </ion-label>
-     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+     <span slot="start"><img src="{{image_url}}{{item.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       
       <span class="price" slot="end">$ 1</span>
     </ion-item>
 
-    <ion-item lines="none">
-      <ion-label>item 1 
-        <span  class="quantity">
-          <ion-icon name="remove-circle-outline" ></ion-icon>
-          <span>1 kg</span>
-          <ion-icon name="add-circle-outline" ></ion-icon>
-        </span>
-      </ion-label>
-     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
-      
-      <span class="price" slot="end">$ 1</span>
-    </ion-item>
-
-    <ion-item lines="none">
-      <ion-label>item 1 
-        <span  class="quantity">
-          <ion-icon name="remove-circle-outline" ></ion-icon>
-          <span>1 kg</span>
-          <ion-icon name="add-circle-outline" ></ion-icon>
-        </span>
-      </ion-label>
-     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
-      
-      <span class="price" slot="end">$ 1</span>
-    </ion-item>
-
-    <ion-item lines="none">
-      <ion-label>item 1 
-        <span  class="quantity">
-          <ion-icon name="remove-circle-outline" ></ion-icon>
-          <span>1 kg</span>
-          <ion-icon name="add-circle-outline" ></ion-icon>
-        </span>
-      </ion-label>
-     <span slot="start"><img src="" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
-      
-      <span class="price" slot="end">$ 1</span>
-    </ion-item>
+    
   </ion-list>
 
   <ion-item>
