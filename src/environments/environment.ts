@@ -4,11 +4,11 @@
 
 export const environment = {
   production: false,
-  baseurl:'http://dev9server.com/store-mapps/api/',
-  image_baseurl:"http://dev9server.com/store-mapps/"
+  baseurl:'https://storemapps.co/api/',
+  image_baseurl:"https://storemapps.co/"
 };
 
-/*
+/*https://storemapps.co/
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
@@ -16,3 +16,5 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+//baseurl:'http://dev9server.com/store-mapps/api/',
+//image_baseurl:"http://dev9server.com/store-mapps/"

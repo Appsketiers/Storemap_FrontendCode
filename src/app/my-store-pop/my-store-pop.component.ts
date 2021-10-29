@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./my-store-pop.component.scss'],
 })
 export class MyStorePopComponent implements OnInit {
-
+  @Input() otp: any;
   constructor(private modalController: ModalController) { }
 
   ngOnInit() {}

@@ -149,7 +149,7 @@ export class PaymentService {
 			//'content':"application/json",
 			'content-type':"application/x-www-form-urlencoded",
 			// 'authorization': "Bearer sk_test_51HXEfhLIPk1CcfAdvOLQu9kpWt1n7xVxuc04QoTbSb9HFxkK8vAcVyiH2rpuENRoEahEQ3t6CWNwKjl2hBTs5LeM00dH6Q9Tyq"
-			'authorization': "Bearer sk_test_51HMKpJApZbhhD6Q9AdSwj3c0aZombEjoc779uqaiPEcbXCRSoRH9m53HIGBIZ5hAv3RggIG53cqnrsiYr9xKyF8n00qSxuyi3k"
+			'authorization': "Bearer sk_test_51HteFBJ1txIZUIvJdKO8opxmgJ0uWjdNkFJNSz8BqFsrjjmLOdNwvlgbSaKvYBdkb7R2ZZHyas1nlmaikERGDTQs00J98mI6Pl"
 
 		}
 		});
@@ -164,7 +164,7 @@ export class PaymentService {
         //'content':"application/json",
         'content-type':"application/x-www-form-urlencoded",
         	// 'authorization': "Bearer sk_test_51HXEfhLIPk1CcfAdvOLQu9kpWt1n7xVxuc04QoTbSb9HFxkK8vAcVyiH2rpuENRoEahEQ3t6CWNwKjl2hBTs5LeM00dH6Q9Tyq"
-			  'authorization': "Bearer sk_test_51HMKpJApZbhhD6Q9AdSwj3c0aZombEjoc779uqaiPEcbXCRSoRH9m53HIGBIZ5hAv3RggIG53cqnrsiYr9xKyF8n00qSxuyi3k"
+			  'authorization': "Bearer sk_test_51HteFBJ1txIZUIvJdKO8opxmgJ0uWjdNkFJNSz8BqFsrjjmLOdNwvlgbSaKvYBdkb7R2ZZHyas1nlmaikERGDTQs00J98mI6Pl"
 
       }
       });
@@ -179,7 +179,7 @@ export class PaymentService {
           //'content':"application/json",
           'content-type':"application/x-www-form-urlencoded",
           	// 'authorization': "Bearer sk_test_51HXEfhLIPk1CcfAdvOLQu9kpWt1n7xVxuc04QoTbSb9HFxkK8vAcVyiH2rpuENRoEahEQ3t6CWNwKjl2hBTs5LeM00dH6Q9Tyq"
-			    'authorization': "Bearer sk_test_51HMKpJApZbhhD6Q9AdSwj3c0aZombEjoc779uqaiPEcbXCRSoRH9m53HIGBIZ5hAv3RggIG53cqnrsiYr9xKyF8n00qSxuyi3k"
+			    'authorization': "Bearer sk_test_51HteFBJ1txIZUIvJdKO8opxmgJ0uWjdNkFJNSz8BqFsrjjmLOdNwvlgbSaKvYBdkb7R2ZZHyas1nlmaikERGDTQs00J98mI6Pl"
 
         }
         });
@@ -199,7 +199,7 @@ export class PaymentService {
             headers: {
               'content-type':"application/x-www-form-urlencoded",
                 
-              'authorization': "Bearer sk_test_51HMKpJApZbhhD6Q9AdSwj3c0aZombEjoc779uqaiPEcbXCRSoRH9m53HIGBIZ5hAv3RggIG53cqnrsiYr9xKyF8n00qSxuyi3k"
+              'authorization': "Bearer sk_test_51HteFBJ1txIZUIvJdKO8opxmgJ0uWjdNkFJNSz8BqFsrjjmLOdNwvlgbSaKvYBdkb7R2ZZHyas1nlmaikERGDTQs00J98mI6Pl"
 
             },
           };

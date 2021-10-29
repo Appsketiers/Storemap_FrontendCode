@@ -31,13 +31,14 @@
       clear: both;
       text-align: center;
       h4{
-        font-size: 16px;
-        font-weight: bold;
+        font-size: 40px;
+        font-weight: bolder;
         margin: 0;
       }
       P{
         margin: 10px 0;
-        font-size: 13px;
+        font-size: 20px;
+font-weight: bold;
       }
   
       .btn{
@@ -58,7 +59,16 @@
     }
   }
   
-  
+  .ok{
+    display: block;
+    --background: #9D4CDF;
+    --border-radius: 10px;
+    --color: white;
+    --box-shadow: none;
+    margin: 10px 15px;
+    font-family: 'SF UI Text Semibold';
+    height: 50px;
+  }
   
   ion-modal {
       --backdrop-opacity: 0.4 !important;

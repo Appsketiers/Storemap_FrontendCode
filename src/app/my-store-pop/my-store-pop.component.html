@@ -1,12 +1,12 @@
 <div class="popup_outer">
   <ion-icon name="close" class="closebtn" (click)="closeModal()"> </ion-icon>
   <div class="popupinner">
-    <h4>Already contain item</h4>
-    <p>You have added items from other store.Adding items from this store will require deleting previous items.</p>
-<div class="btn">
-    <ion-button class="remove"  (click)="closeModal()">Remove</ion-button>
-    <ion-button class="cus_btn" (click)="closeModal()">Continue</ion-button>
-</div>
+    <h4>{{otp}}</h4>
+    <p>Show This OTP at Store to Complete Payment.</p>
+
+    <ion-button class="cus_btn" class="remove"  (click)="closeModal()">OK</ion-button>
+    <!-- <ion-button class="cus_btn" (click)="closeModal()">Continue</ion-button> -->
+
   </div>
 
 </div>

@@ -7,6 +7,8 @@ import { PaymentService } from '../providers/payment.service';
 import * as moment from 'moment';
 import { IonRadioGroup } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { ModalController } from '@ionic/angular';
+import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
@@ -33,7 +35,8 @@ export class CheckoutPage implements OnInit {
     private helper: HelperService,
     private route: ActivatedRoute,
     public fb: FormBuilder,
-    private payment:PaymentService) {
+    private payment:PaymentService,
+    public modalController: ModalController,) {
 
       this.helper.getByKeynew('storeuser', (res) => {
         this.user = res;
@@ -120,7 +123,12 @@ export class CheckoutPage implements OnInit {
               that.helper.postMethod('checkout', body, (res) => {
               console.log(res);
               if(res.status){
-                that.router.navigate(['/payment-sucess']);
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    otp: res.data,
+                  },
+                };
+                that.router.navigate(['/payment-sucess'], navigationExtras);
               }
               });
             });  
@@ -197,9 +205,27 @@ export class CheckoutPage implements OnInit {
       this.helper.postMethod('checkout', body, (res) => {
       console.log(res);
       if(res.status){
-        this.router.navigate(['/payment-sucess']);
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            otp: res.data,
+          },
+        };
+        this.router.navigate(['/payment-sucess'],navigationExtras );
       }
       });
     });  
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: MyStorePopComponent,
+      cssClass: 'option_modal',
+      componentProps: {
+        'firstName': 'Douglas',
+        'lastName': 'Adams',
+        'middleInitial': 'N'
+      }
+    });
+    return await modal.present();
   }
 }
