@@ -43,34 +43,27 @@ export class ShopPage implements OnInit {
   isEndSlide: false;
   store_products;
   heighlightedItem;
+  user_location:any;
+  store_location:any;
   constructor(private helper: HelperService,   private router: Router,
     private route: ActivatedRoute) {
 
-  
-   
-    this.helper.getByKeynew('storetoken', (res) => {
-      let body: any = { token: res };
-      this.helper.getMethod('store-blueprint', body, (res) => {
-        console.log(res);
-        this.row = res.data.grid.row+1;
-        this.col = res.data.grid.col+1;
-        this.request = res.data;
-        this.arrangement = this.request.arrangement;
-        console.log(this.arrangement);
-        console.log(this.row, this.col);
-        this.store_products = this.request.store_products
-        console.log(this.store_products);
-
-        for(let i = 0; i<this.arrangement.length; i++)
-        {
-          if(this.arrangement[i].item.length>0){
-            this.matched_products.push(this.arrangement[i].item_detail[0]);
-          }
-
-        }
-        console.log(this.matched_products);
+      this.route.queryParams.subscribe((params) => {
+        this.list_id = params['id'];
+        this.store_id = params['store_id'];
+        this.title = params['title'];
+        this.page = params['page'];
+        this.user_location = JSON.parse(params['user_location']);
+        this.store_location = JSON.parse(params['store_location']);
+        console.log('user_location', this.user_location);
+        console.log('store location', this.store_location);
+        console.log(this.list_id);
+        console.log(this.store_id);
+        console.log(this.title);
+        console.log(this.page);
       });
-    });
+   
+
    }
 
    getData(i, j) {
@@ -90,9 +83,9 @@ export class ShopPage implements OnInit {
       }); 
       if(item.length > 0){
         if(item[0].item_detail.length > 0){
-        
+        if(item[0].item_detail[0].is_match){
           return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
-        
+        }
         }
         
       }
@@ -115,15 +108,29 @@ this.router.navigate(['/stores-list'], navigationExtras)
     }
   }
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.list_id = params['id'];
-      this.store_id = params['store_id'];
-      this.title = params['title'];
-      this.page = params['page'];
-      console.log(this.list_id);
-      console.log(this.store_id);
-      console.log(this.title);
-      console.log(this.page);
+
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id };
+      this.helper.postMethod('store-blueprint', body, (res) => {
+        console.log(res);
+        this.row = res.data.grid.row+1;
+        this.col = res.data.grid.col+1;
+        this.request = res.data;
+        this.arrangement = this.request.arrangement;
+        console.log(this.arrangement);
+        console.log(this.row, this.col);
+        this.store_products = this.request.store_products
+        console.log(this.store_products);
+
+        for(let i = 0; i<this.arrangement.length; i++)
+        {
+          if(this.arrangement[i].item.length>0 && this.arrangement[i].item_detail[0].is_match){
+            this.matched_products.push(this.arrangement[i].item_detail[0]);
+          }
+
+        }
+        console.log(this.matched_products);
+      });
     });
   }
 
@@ -135,7 +142,9 @@ checkout(){
       id:this.list_id,
       store_id:this.store_id,
       title:this.title,
-      products:JSON.stringify(this.matched_products)
+      products:JSON.stringify(this.matched_products),
+      user_location:JSON.stringify(this.user_location),
+      store_location:JSON.stringify(this.store_location)
       },
   };
 

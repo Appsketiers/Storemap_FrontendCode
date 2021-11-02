@@ -27,6 +27,8 @@ review_count;
 page;
 is_reviewed;
 review: any;
+user_location:any;
+store_location:any;
   constructor(private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,) { }
@@ -37,8 +39,9 @@ review: any;
       this.store_id=params['store_id'];
       this.title=params['title'];
 this.page = params['page'];
+this.user_location = JSON.parse(params['user_location']);
       console.log(this.list_id, this.title, this.store_id);
-
+console.log('user location', this.user_location);
       this.helper.get_location((data) => {
         this.lat = data.coords.latitude;
         this.lng = data.coords.longitude;
@@ -71,6 +74,8 @@ this.store_address=res.data.store.address;
 this.store_category=res.data.store_category;
 this.review_count= res.data.store.review_count;
 this.avg_rating = res.data.store.avg_rating;
+this.store_location = {lat: JSON.parse(res.data.store.lat), lng: JSON.parse(res.data.store.lng)};
+console.log('Store Location',this.store_location);
 console.log('review count----', this.review_count);
 console.log(this.matched_products);
 console.log('store category---', this.store_category);
@@ -92,7 +97,9 @@ console.log('Update---',this.update);
         id:this.list_id,
         store_id:this.store_id,
         title:this.title,
-        page:this.page
+        page:this.page,
+        user_location:JSON.stringify(this.user_location),
+        store_location:JSON.stringify(this.store_location)
       },
     };
 

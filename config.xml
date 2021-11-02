@@ -120,5 +120,5 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <allow-navigation href="http://localhost:8101" sessionid="713d62af" />
+    <allow-navigation href="http://localhost:8101" sessionid="a5f53ad3" />
 </widget>

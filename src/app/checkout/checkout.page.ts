@@ -9,6 +9,7 @@ import { IonRadioGroup } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ModalController } from '@ionic/angular';
 import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
@@ -30,6 +31,10 @@ export class CheckoutPage implements OnInit {
   add_new_card =false;
   selected_card_id;
   products =[];
+  user_location:any;
+  store_location:any;
+  update: any=[];
+  total : any = 0;
   constructor(public stripe: Stripe,
     private router: Router,
     private helper: HelperService,
@@ -55,10 +60,25 @@ export class CheckoutPage implements OnInit {
       this.store_id = params['store_id'];
       this.title = params['title'];
       this.products = JSON.parse(params['products']);
+      this.user_location = JSON.parse(params['user_location']);
+      this.store_location = JSON.parse(params['store_location']);
+      console.log('user_location', this.user_location);
+      console.log('store location', this.store_location);
       console.log(this.list_id);
       console.log(this.store_id);
       console.log(this.title);
     console.log(this.products);
+
+    for (let i = 0; i < this.products.length; i++) {
+      this.update.push({
+        product: this.products[i].id,
+        quantity: this.products[i].quantity,
+      });
+      console.log(this.total,'asas', this.products[0].price,"gjhg ", this.products[0].quantity);
+      
+      this.total =this.total+ this.products[i].price *  this.products[i].quantity;
+    }
+    console.log('Update---',this.update);
     });
 
     this.addCardForm = this.fb.group({
@@ -227,5 +247,80 @@ export class CheckoutPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  calculate_distance(){
+   
+    
+  }
+
+  decrement(id, i){
+ let index = this.update.findIndex((el) => {
+    console.log(el);
+    return el.product == id;
+  });
+
+  console.log(index, id);
+  if (index != -1) {
+   
+    if(this.products[i].quantity <= 1){
+      this.update.splice(index, 1);
+      let price =  this.products[i].price
+      price = price*1
+      this.total =this.total- price;
+      this.products.splice(i, 1);
+    }
+    else{
+    this.update[index].quantity --;
+    this.products[i].quantity --;
+    this.total =this.total- this.products[i].price *  1;
+    }
+  
+
+  }
+  console.log(this.update);
+  console.log(this.products);
+this.update_list();
+  }
+
+  increment(id, i){
+    let index = this.update.findIndex((el) => {
+      console.log(el);
+      return el.product == id;
+    });
+  
+    console.log(index, id);
+    if (index != -1) {
+      
+      this.update[index].quantity++;
+      this.products[i].quantity++;
+      this.total =this.total+ this.products[i].price *  1;
+   
+    }
+    console.log(this.update);
+    console.log(this.products);
+  this.update_list();
+
+  }
+
+  update_list(){
+    this.helper.getByKeynew('storetoken', (res) => {
+      let body: any = {
+        token: res,
+        shopping_list_id: this.list_id,
+        list_name: this.title,
+        ingredients: JSON.stringify(this.update),
+      };
+
+      this.helper.postMethod('update-shopping-list', body, (res) => {
+        console.log(res);
+        if (res.status == true) {
+          this.helper.presentToast(
+            'Shopping List successfully updated.'
+            );
+            
+        }
+      });
+    });
   }
 }

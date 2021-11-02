@@ -7,6 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { FilterComponent } from '../filter/filter.component';
 import { LocationService } from '../providers/location.service';
 import {Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-stores-list',
   templateUrl: './stores-list.page.html',
@@ -27,6 +28,7 @@ export class StoresListPage implements OnInit {
   NTF: any = false;
   FTN: any = false;
   filter_value = 'MMP';
+  user_location:any;
   constructor(
     public alertController: AlertController,
     private router: Router,
@@ -56,6 +58,7 @@ export class StoresListPage implements OnInit {
         } else {
           this.lat = data.coords.latitude;
           this.lng = data.coords.longitude;
+          this.user_location = {lat: this.lat, lng: this.lng}
           if (this.lat && this.lng) {
             this.store_list(false, '');
           } else {
@@ -72,6 +75,7 @@ export class StoresListPage implements OnInit {
         this.helper.get_location(data=>{
           this.lat = data.coords.latitude;
       this.lng = data.coords.longitude;
+      this.user_location = {lat: this.lat, lng: this.lng}
             if(this.lat && this.lng){
       this.store_list(false, '');
     }
@@ -106,6 +110,7 @@ export class StoresListPage implements OnInit {
         id:this.list_id,
         title:this.title,
         store_id:id,
+        user_location:JSON.stringify(this.user_location)
       },
     };
     this.router.navigate(['/store-detail'], navigationExtras);
