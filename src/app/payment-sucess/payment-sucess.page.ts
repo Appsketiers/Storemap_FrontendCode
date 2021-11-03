@@ -10,6 +10,7 @@ import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 })
 export class PaymentSucessPage implements OnInit, AfterViewInit {
 otp;
+order_id;
   constructor(public router:Router, private audio: AudioService, 
     public modalController: ModalController,
     private route: ActivatedRoute,) { }
@@ -17,7 +18,9 @@ otp;
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.otp = params['otp'];
+      this.order_id = params['order_id'];
       console.log(this.otp);
+      console.log('order id ', this.order_id);
 
     });
   }
@@ -44,6 +47,7 @@ this.router.navigate(['/main-home']);
       cssClass: 'option_modal',
       componentProps: {
         'otp': this.otp,
+        'order_id': this.order_id
          }
 
     });

@@ -106,6 +106,7 @@ export class CheckoutPage implements OnInit {
 
 
   addCard(form: any){
+    debugger
     console.log("form",form);
     if(!this.save) 
     return this.helper.presentToast('Please select save card securely to save this card')
@@ -228,6 +229,7 @@ export class CheckoutPage implements OnInit {
         let navigationExtras: NavigationExtras = {
           queryParams: {
             otp: res.data,
+            order_id: res.order_detail.id
           },
         };
         this.router.navigate(['/payment-sucess'],navigationExtras );
@@ -250,9 +252,14 @@ export class CheckoutPage implements OnInit {
   }
 
   calculate_distance(){
-   
+  
     
   }
+
+  toRad(Value) 
+    {
+        return Value * Math.PI / 180;
+    }
 
   decrement(id, i){
  let index = this.update.findIndex((el) => {
