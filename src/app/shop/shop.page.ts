@@ -23,6 +23,7 @@ export class ShopPage implements OnInit {
   matched_products: any=[];
   arrangement: any=[];
   map_items:any=[];
+  heighlightId = 0;
   image_url = environment.image_baseurl;
   slideOptsTwo = {
     initialSlide: 0,  
@@ -84,6 +85,10 @@ export class ShopPage implements OnInit {
       if(item.length > 0){
         if(item[0].item_detail.length > 0){
         if(item[0].item_detail[0].is_match){
+         let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId})
+          if(Len.length > 0 ){
+            return Len[0].images[0];
+          }
           return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
         }
         }
@@ -124,8 +129,14 @@ this.router.navigate(['/stores-list'], navigationExtras)
 
         for(let i = 0; i<this.arrangement.length; i++)
         {
-          if(this.arrangement[i].item.length>0 && this.arrangement[i].item_detail[0].is_match){
-            this.matched_products.push(this.arrangement[i].item_detail[0]);
+          if(this.arrangement[i].item.length>0){
+            for(let j = 0; j<this.arrangement[i].item_detail.length; j++){
+              if(this.arrangement[i].item_detail[j].is_match)
+              {
+                this.matched_products.push(this.arrangement[i].item_detail[j]);
+              }
+            }
+           
           }
 
         }
@@ -168,6 +179,7 @@ shopping_list(){
 
 highlight(id){
       console.log(id);
+      this.heighlightId = id;
       let data = this.arrangement.filter(ele=>{
         return ele.item_detail.length > 0 && ele.item_detail.filter(ele2=>{return ele2.id === id}).length >0;
       });

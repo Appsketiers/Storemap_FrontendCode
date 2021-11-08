@@ -35,6 +35,7 @@ export class CheckoutPage implements OnInit {
   store_location:any;
   update: any=[];
   total : any = 0;
+  distance;
   constructor(public stripe: Stripe,
     private router: Router,
     private helper: HelperService,
@@ -87,7 +88,9 @@ export class CheckoutPage implements OnInit {
       expiry_date: new FormControl("", [Validators.required]),
       cvv:new FormControl("", [Validators.required])
     });
-   
+   this.distance=this.calculate_distance(this.user_location.lat, this.user_location.lng, this.store_location.lat,this.store_location.lng
+    )
+    console.log('Distance----', this.distance);
   }
 
   getCards(){
@@ -108,13 +111,17 @@ export class CheckoutPage implements OnInit {
   addCard(form: any){
     debugger
     console.log("form",form);
-    if(!this.save) 
-    return this.helper.presentToast('Please select save card securely to save this card')
+    // if(!this.save) 
+    // return this.helper.presentToast('Please select save card securely to save this card')
 
     
     const customErrMsg = {
       
     };
+
+
+
+
   if (this.payment.setVaidations(this.addCardForm, customErrMsg)) {
     this.payment.showLoading();
     let card = {
@@ -128,33 +135,26 @@ export class CheckoutPage implements OnInit {
     console.log("card",card);
 
     this.stripe.createCardToken(card).then(token => {
-      this.getCards();
-      this.addCardForm.reset();
-      this.payment.hideLoading();
-      console.log("cardID",token);
-      if(this.save) 
-      this.saveCard(token.id, res =>{
-        let that = this;
-        that.getCards();
-        setTimeout(
-          function() {
-            //this.getCards();
-            that.helper.getByKeynew('storetoken', (res) => {
-              let body: any = { token: res, store_id: that.store_id, shopping_list_id: that.list_id,source_token:token.id,token_type:'TOKEN'};
-              that.helper.postMethod('checkout', body, (res) => {
-              console.log(res);
-              if(res.status){
-                let navigationExtras: NavigationExtras = {
-                  queryParams: {
-                    otp: res.data,
-                  },
-                };
-                that.router.navigate(['/payment-sucess'], navigationExtras);
-              }
-              });
-            });  
-          }, 2000);
-      });
+      if(this.save) {
+        this.addCardForm.reset();
+        this.payment.hideLoading();
+        console.log("cardID",token);
+        if(this.save) 
+        this.saveCard(token.id, res =>{
+          console.log("res",res);
+            if(res.id){
+              this.makeCheckoutPayemt('CARD', res.id);
+          }else{
+            this.helper.presentToast('this card is not in list ');
+          }
+        });
+
+      }else{
+this.makeCheckoutPayemt('TOKEN',token.id);
+      }
+
+     /// this.getCards();
+   
      
       // this.select('new',token.id);
      
@@ -170,18 +170,29 @@ export class CheckoutPage implements OnInit {
   //   this.payment(type,id)
   // }
 
+  makeCheckoutPayemt(type,token){
+    let that=this;
+    that.helper.getByKeynew('storetoken', (res) => {
+      let body: any = { token: res, store_id: that.store_id, shopping_list_id: that.list_id,source_token:token,token_type:type};
+      that.helper.postMethod('checkout', body, (res) => {
+      console.log(res);
+      if(res.status){
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            otp: res.data,
+            order_id: res.order_detail.id
+          },
+        };
+        that.router.navigate(['/payment-sucess'], navigationExtras);
+      }
+  });
+});
+  }
+
   saveCard(token, cb ){
     console.log("cutomer token", token);
-    
     this.payment.sendPostRequest({url: "https://api.stripe.com/v1/customers/"+this.user.stripe_customer_id+"/sources", type: 'POST', body: {"source":token},base_url:true}).subscribe(response => {
-    //  console.log(response);
-    cb(response)
-      setTimeout(
-        function() {
-          this.getCards();
-        }, 1000);
-     
-      // this.navCtrl.pop();
+        cb(response)
     });
   }
 
@@ -251,8 +262,26 @@ export class CheckoutPage implements OnInit {
     return await modal.present();
   }
 
-  calculate_distance(){
-  
+  calculate_distance(lat1, lon1, lat2, lon2){
+    const toRadian = angle => (Math.PI / 180) * angle;
+    const distance = (a, b) => (Math.PI / 180) * (a - b);
+    const RADIUS_OF_EARTH_IN_KM = 6371;
+
+    const dLat = distance(lat2, lat1);
+    const dLon = distance(lon2, lon1);
+
+    lat1 = toRadian(lat1);
+    lat2 = toRadian(lat2);
+
+    // Haversine Formula
+    const a =
+      Math.pow(Math.sin(dLat / 2), 2) +
+      Math.pow(Math.sin(dLon / 2), 2) * Math.cos(lat1) * Math.cos(lat2);
+    const c = 2 * Math.asin(Math.sqrt(a));
+
+    let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
+
+    return finalDistance * 1000;
     
   }
 
@@ -329,5 +358,20 @@ this.update_list();
         }
       });
     });
+  }
+
+  remove(i,id){
+    this.helper.confirm("Are you sure you want to remove this card?",(res)=>{
+      if(res){
+    this.payment.httpRequeststripe('https://api.stripe.com/v1/customers/'+this.user.stripe_customer_id+'/sources/'+id, 'DELETE',  {},true,false).then((response:any) => {
+      if(response.deleted){
+         if(this.cards.length>0){
+           this.cards.splice(i,1);
+         }
+      }
+    });
+  }
+  })
+
   }
 }

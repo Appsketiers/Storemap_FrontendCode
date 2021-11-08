@@ -41,11 +41,13 @@
      
     </ion-list-header>
     <div *ngIf="saved_card">
-      <ion-item *ngFor="let item of cards" (ionSelect)="radioSelect($event)"> 
+      <ion-item *ngFor="let item of cards let i index" (ionSelect)="radioSelect($event)"> 
       <ion-thumbnail><ion-icon name="card" ></ion-icon></ion-thumbnail>
       <ion-text class="fwhite f14 tu">xxxxxxxx-{{item.last4}}</ion-text>
-      <ion-icon slot="end" name='trash-bin' style="color: #9D4CDF;"></ion-icon>
+     
       <ion-radio slot="start" value="{{item.id}}"></ion-radio>
+
+      <ion-icon slot="end" name='trash-bin' style="color: hsl(273, 70%, 59%);" (click)="remove(i,item.id)"></ion-icon>
     </ion-item>
   </div>
 </ion-radio-group>
@@ -108,7 +110,8 @@
   </ion-list>
 
 </ion-content>
-<ion-footer>
+
+<ion-footer >
   <ion-button *ngIf="add_new_card" class="cus_btn" (click)="addCard(addCardForm.value)">Make Payment</ion-button>
   <ion-button *ngIf="saved_card" class="cus_btn" (click)="make_payment('CARD')">Make Payment</ion-button>
 </ion-footer>
