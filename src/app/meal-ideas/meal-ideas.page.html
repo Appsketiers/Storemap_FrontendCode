@@ -67,7 +67,7 @@
         <ion-item *ngFor="let item of ingredient_list let i = index">
             <span slot="start">{{i+1}}</span>
             <ion-label>{{item.title}}</ion-label>
-            <span class="green">1 lbs</span>
+            <span class="green">1</span>
             <span class="icon-add" slot="end" (click)="add_to_shopping_list(item.id)"></span>
         </ion-item>
 

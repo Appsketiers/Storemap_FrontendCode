@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-completed',
@@ -30,7 +30,7 @@ export class CompletedComponent implements OnInit {
         this.helper.postMethod('my-orders', body, (res) => {
           console.log(res);
           this.data = [...this.data,...res.data.data];
-          this.convert_to_array();
+          
           // for (let i = 0; i < res.data.data.length; i++) {
           //   this.data.push(res.data.data[i]);
           // }
@@ -39,6 +39,7 @@ export class CompletedComponent implements OnInit {
           console.log('data', this.data);
   
         });
+        this.convert_to_array();
       });
     })
   }
@@ -57,7 +58,16 @@ export class CompletedComponent implements OnInit {
     this.completed_orders_list(true, event);
   }
 
-  open_order(){
-    this.router.navigate(['/past-orders1']);
+  open_order(id, name, time, amount, image){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        id: id,
+        name:name,
+        time:time,
+        amount:amount,
+        image:image
+      },
+    };
+    this.router.navigate(['/past-orders1'], navigationExtras);
       }
 }

@@ -51,7 +51,7 @@ export class CheckoutPage implements OnInit {
             });
 
             let date = new Date()
-            this.today = new Date(date.setMonth(date.getMonth()+2)).toISOString();
+            this.today = new Date(date.setMonth(date.getMonth())).toISOString();
             this.max = new Date(date.setMonth(date.getMonth()+84)).toISOString();
      }
 
@@ -123,7 +123,7 @@ export class CheckoutPage implements OnInit {
 
 
   if (this.payment.setVaidations(this.addCardForm, customErrMsg)) {
-    this.payment.showLoading();
+   this.payment.showLoading();
     let card = {
       name:form.card_name,
       number:form.card_number,
@@ -135,11 +135,16 @@ export class CheckoutPage implements OnInit {
     console.log("card",card);
 
     this.stripe.createCardToken(card).then(token => {
+      let that = this;
+      that.addCardForm.reset();
+      // setTimeout(() => {
+      //   that.payment.hideLoading();
+      // }, 1000);
+      that.payment.hideLoading();
       if(this.save) {
-        this.addCardForm.reset();
-        this.payment.hideLoading();
         console.log("cardID",token);
-        if(this.save) 
+        this.addCardForm.reset();
+        // this.payment.hideLoading();
         this.saveCard(token.id, res =>{
           console.log("res",res);
             if(res.id){
@@ -150,6 +155,8 @@ export class CheckoutPage implements OnInit {
         });
 
       }else{
+        this.addCardForm.reset();
+        // this.payment.hideLoading();
 this.makeCheckoutPayemt('TOKEN',token.id);
       }
 
@@ -171,6 +178,7 @@ this.makeCheckoutPayemt('TOKEN',token.id);
   // }
 
   makeCheckoutPayemt(type,token){
+  
     let that=this;
     that.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, store_id: that.store_id, shopping_list_id: that.list_id,source_token:token,token_type:type};

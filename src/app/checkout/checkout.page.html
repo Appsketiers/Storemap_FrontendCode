@@ -11,13 +11,13 @@
  <ion-item style="border: none; color: #9D4CDF;"><h6 style="font-weight: bolder;">Items</h6></ion-item>
   <ion-list>
     <ion-item *ngFor="let item of products let i = index" lines="none">
-      <ion-label>{{item.name}}
+      <ion-label>{{item.name}}</ion-label>
         <span  class="quantity">
           <ion-icon name="remove-circle-outline" (click)="decrement(item.id, i)"></ion-icon>
           <span>{{item.quantity}}</span>
           <ion-icon name="add-circle-outline" (click)="increment(item.id, i)"></ion-icon>
         </span>
-      </ion-label>
+      
      <span slot="start"><img src="{{image_url}}{{item.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       
       <span class="price" slot="end">$ {{item.price * item.quantity}}</span>
@@ -41,13 +41,15 @@
      
     </ion-list-header>
     <div *ngIf="saved_card">
-      <ion-item *ngFor="let item of cards let i index" (ionSelect)="radioSelect($event)"> 
-      <ion-thumbnail><ion-icon name="card" ></ion-icon></ion-thumbnail>
-      <ion-text class="fwhite f14 tu">xxxxxxxx-{{item.last4}}</ion-text>
-     
-      <ion-radio slot="start" value="{{item.id}}"></ion-radio>
+      <ion-item *ngFor="let item of cards let i index" style="pointer-events: none;"> 
+        <ion-item  style="pointer-events: all;"> 
+          <ion-radio slot="start" value="{{item.id}}"></ion-radio>
+        </ion-item>
+      <ion-thumbnail  (ionSelect)="radioSelect($event)"><ion-icon name="card" ></ion-icon></ion-thumbnail>
+      <ion-text   class="fwhite f14 tu" (ionSelect)="radioSelect($event)">xxxxxxxx-{{item.last4}}</ion-text>
+       
 
-      <ion-icon slot="end" name='trash-bin' style="color: hsl(273, 70%, 59%);" (click)="remove(i,item.id)"></ion-icon>
+      <ion-icon slot="end" name='trash-bin' style="color: hsl(273, 70%, 59%); pointer-events: all;" (click)="remove(i,item.id)"></ion-icon>
     </ion-item>
   </div>
 </ion-radio-group>

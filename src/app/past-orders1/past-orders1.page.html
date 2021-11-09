@@ -22,7 +22,7 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let item of data">
       <ion-label>{{item.item_name}}
-        <span  class="quantity">{{item.quantity}} kg</span>
+        <span  class="quantity">{{item.quantity}}</span>
       </ion-label>
      <span slot="start"><img src="{{image_url}}{{item.image}}" onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
       

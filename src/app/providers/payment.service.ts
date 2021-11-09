@@ -4,6 +4,7 @@ import { LoadingController } from "@ionic/angular";
 import { HelperService } from './helper.service';
 import { AlertController, Platform, NavController, ModalController } from "@ionic/angular";
 import { Router } from "@angular/router";
+import { environment } from './../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -33,12 +34,12 @@ export class PaymentService {
   }
 
   hideLoading() {
-    setTimeout(() => {
+    // setTimeout(() => {
       if (this.isLoading) {
         this.isLoading = false;
         this.loadingController.dismiss(this.loading);
       }
-    }, 1200);
+    // }, 1200);
    
   }
 
@@ -135,6 +136,29 @@ export class PaymentService {
       }
     }
     return !formError;
+  }
+
+  async postMethod(url: any, data: any, res: any, errHandler?: any) {
+  
+
+    const baseurl: any = environment.baseurl;
+    const headers = { 'content-type': 'application/json' 
+  };
+    const body = JSON.stringify(data);
+    this.http.post<any>(baseurl + url, body, { headers }).subscribe(data => {
+      
+   
+      res(data);
+      // if(!data.user_status){
+      //   //this.user_deactivated();
+      //   this.clearStorageNew();
+      //   this.router.navigate(['/auth']);
+      //   this.presentToast('Your account is deactivated from admin. Please contact admin for more details')
+      // }
+    }, err => {
+      errHandler(err);
+      
+    });
   }
 
 

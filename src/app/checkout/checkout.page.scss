@@ -18,11 +18,9 @@ ion-content {
                 }
             }
             span{
-                margin-right: 10px;
-                margin-left: 0;
+               
                 img{
                     width: 40px;
-                    margin-right: 10px;
                     height: 40px;
                 }
             }
@@ -51,10 +49,11 @@ ion-content {
         }
 
         ion-item {
+         
             --inner-padding-end: 0;
             margin-bottom: 0px;
 
-            --padding-start: 10px;
+         
 
             ion-thumbnail {
                 width: 100%;
@@ -121,15 +120,19 @@ ion-content {
     display: flex;
     margin: 5px;
     align-items: center;
+    width: 60px;
     ion-icon{
         color: #9D4CDF;
     }
     span{
         text-align: center;
+        width: 35px;
     }
     
 }
 
 .price{
+    width: 45px;
     font-size: 16px;
+    text-align: right;
 }

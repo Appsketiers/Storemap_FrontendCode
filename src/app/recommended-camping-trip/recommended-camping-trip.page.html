@@ -35,10 +35,10 @@
       <span slot="start"></span>
       <ion-label style="color: #9D4CDF;">All Items</ion-label>
     </ion-item>
-    <ion-item *ngFor="let item of ingredients let i = index">
+    <ion-item *ngFor="let item of ingredients_list let i = index">
       <span slot="start">{{i+1}}</span>
       <ion-label>{{item.title}}</ion-label>
-      <span class="icon-add" slot="end"></span>
+      <span class="icon-add" slot="end" (click)="add_to_shopping_list(item.id)"></span>
     </ion-item>
 
   </ion-list>

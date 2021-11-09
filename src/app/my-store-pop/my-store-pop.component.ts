@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HelperService } from '../providers/helper.service';
-
+import { PaymentService } from '../providers/payment.service';
 import { timer } from 'rxjs';
 @Component({
   selector: 'app-my-store-pop',
@@ -13,7 +13,8 @@ export class MyStorePopComponent implements OnInit {
   @Input() order_id: any;
   private timer;
 
-  constructor(private modalController: ModalController, private helper:HelperService) { }
+  constructor(private modalController: ModalController, private helper:HelperService
+    , private payment: PaymentService) { }
 
   ngOnInit() {
     // this.timer = timer(5000);
@@ -34,7 +35,7 @@ async closeModal() {
   onTimeOut() {
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, order_id: this.order_id};
-      this.helper.postMethod('check-payment-status', body, (res) => {
+      this.payment.postMethod('check-payment-status', body, (res) => {
       console.log(res);
       if(res.data.paid){
         clearInterval(this.timer)
@@ -44,6 +45,9 @@ async closeModal() {
     
       });
     }); 
+}
+ionViewWillLeave() {
+  clearInterval(this.timer);
 }
   
 
