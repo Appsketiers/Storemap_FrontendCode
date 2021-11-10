@@ -14,6 +14,8 @@ data: any = [];
 page: any = 1;
 limit: any = 10;
 image_url = environment.image_baseurl;
+//open_image:any =false;
+review_images: any=[];
   constructor( private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone) { }
 
@@ -68,5 +70,13 @@ image_url = environment.image_baseurl;
 
   doInfinite(event) {
     this.review_list(true, event);
+  }
+
+  open_images(i){
+    this.data[i].open=!this.data[i].open;
+    console.log(this.data);
+this.review_images= JSON.parse(this.data[i].pictures);
+console.log(this.review_images);
+
   }
 }

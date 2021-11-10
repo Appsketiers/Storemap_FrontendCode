@@ -8,7 +8,7 @@ import {
   LocationStrategy,
   PathLocationStrategy,
 } from '@angular/common';
-
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-two-factor',
   templateUrl: './two-factor.page.html',
@@ -35,7 +35,8 @@ export class TwoFactorPage implements OnInit {
     private helper: HelperService,
     private device: Device,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: Storage,
   ) {}
 
   ngOnInit() {
@@ -160,13 +161,13 @@ export class TwoFactorPage implements OnInit {
     if (String(this.otp) == otpsubmit) {
       console.log(this.otpForm.controls['checkData'].value);
       this.helper.getByKeynew('storetoken', (res) => {
-        this.helper.getByKeynew('device_token', async (device_token) => {
+        this.storage.get("fcmtoken").then(async(device_token) => {
           let two_factor: any =
             this.isLogin == 'true' ? 1 : !parseInt(this.two_factor);
 
           let body: any = {
             token: res,
-            device_token: device_token ? device_token : 'asdfghjk1234rtyu',
+            device_token: device_token,
             dont_ask: this.otpForm.controls['checkData'].value ? 1 : 0,
             two_factor: two_factor,
           };

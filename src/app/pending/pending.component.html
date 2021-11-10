@@ -1,11 +1,11 @@
     <ion-list>
-        <ion-item *ngFor="let item of data" lines="none" (click)="open_order(item.id, item.store_name, item.updated_at, item.amount, item.store_images[0])">
+        <ion-item *ngFor="let item of data" lines="none" (click)="presentModal(item.payment_code, item.id)">
             <ion-label>
                 <h4>{{item.store_name}}</h4>
                 <p>{{item.created_at | date: 'MM/dd/yyyy h:mm a'}}</p>
                 <!-- <p>04-22-2021 | 12:00 PM</p> -->
             </ion-label>
-            <span slot="start"><img src={{image_url}}{{item.store_images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
+            <span slot="start"><img src={{image_url}}{{json.parse(item.store_images)}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
             <span style="margin-top: 20px; font-size: 15px; font-weight: bold;" slot="end" >${{item.amount}}</span>
         </ion-item>
 

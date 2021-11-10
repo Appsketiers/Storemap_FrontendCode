@@ -4,6 +4,7 @@ import { HelperService } from '../providers/helper.service';
 import { environment } from './../../environments/environment';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Device } from '@ionic-native/device/ngx';
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-account',
   templateUrl: './account.page.html',
@@ -15,8 +16,20 @@ export class AccountPage implements OnInit {
   imagebaseurl: any;
   two_factor: any;
   notify:any;
-  constructor(private helper: HelperService, private device: Device, private router: Router, private iab: InAppBrowser,) { 
+  device_type;
+  device_token;
+  constructor(private helper: HelperService, private device: Device, 
+    private router: Router, private iab: InAppBrowser,private storage: Storage,) { 
 
+      this.storage.get("Platform").then((data) => {
+        this.device_type = data;
+        console.log('Device Type -------', this.device_type);
+        });
+    
+        this.storage.get("fcmtoken").then((data) => {
+          this.device_token = data;
+          console.log('Device FCM Token -------', this.device_token);
+          });
   }
 
   ngOnInit() {
@@ -115,7 +128,7 @@ export class AccountPage implements OnInit {
     this.helper.getByKeynew('storetoken', res=>{
       let body: any = {
         token:res,
-        device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
+        device_token: this.device_token,
    
         
       }

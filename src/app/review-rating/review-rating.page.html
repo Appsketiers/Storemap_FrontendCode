@@ -9,9 +9,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item lines="none" *ngFor="let item of data">
+    <div *ngFor="let item of data let i =index">
+    <ion-item lines="none" >
       <span slot="start" class="u-img"><img src="{{image_url}}{{item.profile_image}}" alt="" onerror="this.src='../../assets/img/svg/Account.svg'"></span>
-      <ion-label>
+      <ion-label (click)="open_images(i)">
         <h5>{{item.name}}</h5>
         <p>{{item.comment}}</p>
       </ion-label>
@@ -23,6 +24,8 @@
   </rating>
   
 </div>
+
+
       <!-- <p slot="end">
         <span class="icon-Star-fill"></span>
         <span class="icon-Star-fill"></span>
@@ -31,7 +34,10 @@
         <span class="icon-Star-unfill"></span>
       </p> -->
     </ion-item>
-
+    <ion-item *ngIf="data[i].open">
+      <img class="review_images" *ngFor="let image of review_images let i = index" src="{{image_url}}{{image}}">
+    </ion-item>
+  </div>
   </ion-list>
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

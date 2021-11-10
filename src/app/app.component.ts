@@ -46,7 +46,7 @@ export class AppComponent {
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
-      //this.fcmNotification();
+      this.fcmNotification();
      // this.check_internet_connection();
      if(localStorage.getItem("User")){
       let user = JSON.parse(localStorage.getItem("User"));
@@ -159,7 +159,8 @@ export class AppComponent {
   }
   logout() {
     this.helper.getByKeynew('storetoken', (res) => {
-      this.helper.getByKeynew('device_token', async (device_token) => {
+      this.storage.get("fcmtoken").then(async(device_token) => {
+        
         const alert = await this.alertController.create({
           cssClass: 'logoutcss',
           header: 'Confirm!',
@@ -176,11 +177,10 @@ export class AppComponent {
             {
               text: 'Okay',
               handler: () => {
+              
                 let body: any = {
                   token: res,
-                  device_token: device_token
-                    ? device_token
-                    : 'asdfghjk1234rtyu',
+                  device_token:device_token ,
                 };
                 this.helper.postMethod(
                   'logout',

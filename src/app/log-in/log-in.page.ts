@@ -11,6 +11,7 @@ import {
 } from '../providers/validation.service';
 import { IonRouterOutlet } from '@ionic/angular';
 import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.page.html',
@@ -25,6 +26,8 @@ export class LogInPage implements OnInit {
   ornamentimage: any;
   isRemember: any = false;
   rem:any;
+  device_type;
+  device_token;
   constructor(
     private keyboard: Keyboard,
     private nativeStorage: NativeStorage,
@@ -32,9 +35,20 @@ export class LogInPage implements OnInit {
     private helper: HelperService,
     private device: Device,
     private router: Router,
-    private routerOutlet: IonRouterOutlet
+    private routerOutlet: IonRouterOutlet,
+    private storage: Storage,
   ) {
     this.helper.clearStorageNew();
+
+    this.storage.get("Platform").then((data) => {
+      this.device_type = data;
+      console.log('Device Type -------', this.device_type);
+      });
+  
+      this.storage.get("fcmtoken").then((data) => {
+        this.device_token = data;
+        console.log('Device FCM Token -------', this.device_token);
+        });
   }
 
   ngOnInit() {
@@ -110,8 +124,8 @@ console.log(this.rem);
       email: this.loginForm.controls['email'].value,
 
       password: this.loginForm.controls['password'].value,
-      device_type: 'ANDROID',
-      device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
+      device_type: this.device_type,
+      device_token: this.device_token,
     };
     this.helper.postMethod(
       'login',

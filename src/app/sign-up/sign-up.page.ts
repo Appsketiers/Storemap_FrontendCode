@@ -17,6 +17,7 @@ import {
 } from '@angular/common';
 import { Router } from '@angular/router';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
@@ -36,6 +37,8 @@ export class SignUpPage implements OnInit {
   password_req: any = false;
   user_name: any;
   name_length;
+  device_type;
+  device_token;
 
   constructor(
     private keyboard: Keyboard,
@@ -46,8 +49,20 @@ export class SignUpPage implements OnInit {
     private helper: HelperService,
     private device: Device,
     private router: Router,
-    private cd: ChangeDetectorRef
-  ) {}
+    private cd: ChangeDetectorRef,
+    private storage: Storage,
+  ) {
+    this.storage.get("Platform").then((data) => {
+    this.device_type = data;
+    console.log('Device Type -------', this.device_type);
+    });
+
+    this.storage.get("fcmtoken").then((data) => {
+      this.device_token = data;
+      console.log('Device FCM Token -------', this.device_token);
+      });
+
+  }
 
   ngOnInit() {
     this.createForm();
@@ -145,8 +160,8 @@ export class SignUpPage implements OnInit {
       country_code: '',
       mobile_number: '',
       password: this.signupForm.controls['password'].value,
-      device_type: 'ANDROID',
-      device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
+      device_type: this.device_type,
+      device_token: this.device_token,
       profile_image: this.imagepath,
     };
     console.log(body);

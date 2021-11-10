@@ -217,10 +217,11 @@ this.makeCheckoutPayemt('TOKEN',token.id);
   }
 
   show_saved_cards(){
+    if(this.cards.length>0){
     this.saved_card = !this.saved_card;
     this.add_new_card = false;
   }
-
+  }
   radioSelect(event) {
     console.log("radioSelect",event.detail);
   
@@ -252,6 +253,9 @@ this.makeCheckoutPayemt('TOKEN',token.id);
           },
         };
         this.router.navigate(['/payment-sucess'],navigationExtras );
+      }
+      else{
+        this.helper.presentToast('Please select card or add new card')
       }
       });
     });  
@@ -375,6 +379,9 @@ this.update_list();
       if(response.deleted){
          if(this.cards.length>0){
            this.cards.splice(i,1);
+           if(this.cards.length <= 0){
+             this.saved_card = false;
+           }
          }
       }
     });

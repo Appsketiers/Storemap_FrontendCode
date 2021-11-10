@@ -67,7 +67,8 @@ console.log(this.rating);
         target_id:this.id,
         comment:this.comment,
         rating:this.rating,
-        review_images:this.image_path
+        review_images:this.image_path,
+        delete_images:this.delete_image
               }
       this.helper.postMethod('add-review', body, (res) => {
         console.log(res);

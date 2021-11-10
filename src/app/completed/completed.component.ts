@@ -12,6 +12,7 @@ export class CompletedComponent implements OnInit {
   page: any = 1;
   limit: any = 10;
   image_url = environment.image_baseurl;
+  json = JSON;
   constructor(private helper: HelperService, private ngZone:NgZone, private router: Router) { }
 
   ngOnInit() {
@@ -39,7 +40,7 @@ export class CompletedComponent implements OnInit {
           console.log('data', this.data);
   
         });
-        this.convert_to_array();
+       // this.convert_to_array();
       });
     })
   }

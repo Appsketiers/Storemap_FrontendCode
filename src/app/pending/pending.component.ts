@@ -3,6 +3,8 @@ import { HelperService } from '../providers/helper.service';
 import { Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { SlicePipe } from '@angular/common';
+import { ModalController } from '@ionic/angular';
+import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 @Component({
   selector: 'app-pending',
   templateUrl: './pending.component.html',
@@ -12,8 +14,13 @@ export class PendingComponent implements OnInit {
   data: any = [];
   page: any = 1;
   limit: any = 10;
+  // JSON = JSON;
+  json = JSON;
   image_url = environment.image_baseurl;
-  constructor(private helper: HelperService, private ngZone:NgZone, private router: Router) { }
+from=0;
+to=0;
+  constructor(private helper: HelperService,
+    public modalController: ModalController, private ngZone:NgZone, private router: Router) { }
 
   ngOnInit() {
     this.pending_orders_list(false, '');
@@ -32,16 +39,16 @@ export class PendingComponent implements OnInit {
         this.helper.postMethod('my-orders', body, (res) => {
           console.log(res);
           this.data = [...this.data,...res.data.data];
-          
+           
           // for (let i = 0; i < res.data.data.length; i++) {
           //   this.data.push(res.data.data[i]);
           // }
           if (isFirstLoad) event.target.complete();
           this.page++;
           console.log('data', this.data);
-          
+         
         });
-        this.convert_to_array();
+        // this.convert_to_array();
       });
     })
    
@@ -49,8 +56,7 @@ export class PendingComponent implements OnInit {
 
 
 convert_to_array(){
-  let img:any=[];
-   for (let i = 0; i < this.data.length; i++) {
+  for (let i = 0; i < this.data.length; i++) {
     this.data[i].store_images= JSON.parse(this.data[i].store_images);
           }
           console.log(this.data);
@@ -71,5 +77,23 @@ convert_to_array(){
       },
     };
     this.router.navigate(['/past-orders1'], navigationExtras);
+      }
+
+      async presentModal(otp, order_id) {
+        const modal = await this.modalController.create({
+          component: MyStorePopComponent,
+          cssClass: 'option_modal',
+          componentProps: {
+            'otp': otp,
+            'order_id': order_id
+             }
+    
+        });
+    
+        modal.onDidDismiss().then((data) => {
+          console.log(data);
+          this.pending_orders_list(false, '');
+        });
+        return await modal.present();
       }
 }
