@@ -24,6 +24,7 @@ export class MyStoresPage implements OnInit {
   image_url = environment.image_baseurl;
   rating;
   selected_list: any;
+  user_location:any;
   constructor(public modalController: ModalController,
     private router: Router, private location_service: LocationService,
     private helper: HelperService,private ngZone:NgZone,private platform: Platform) { }
@@ -40,6 +41,7 @@ export class MyStoresPage implements OnInit {
          } else {
            this.lat = data.coords.latitude;
            this.lng = data.coords.longitude;
+           this.user_location = {lat: this.lat, lng: this.lng}
            if (this.lat && this.lng) {
              this.my_store_list(false, '');
            } else {
@@ -56,6 +58,7 @@ export class MyStoresPage implements OnInit {
          this.helper.get_location(data=>{
            this.lat = data.coords.latitude;
        this.lng = data.coords.longitude;
+       this.user_location = {lat: this.lat, lng: this.lng}
              if(this.lat && this.lng){
        this.my_store_list(false, '');
      }
@@ -182,6 +185,7 @@ this.router.navigate(['/review-rating'], navigationExtras)
             id:this.selected_list.data.id,
             title:this.selected_list.data.title,
             store_id:id,
+            user_location:JSON.stringify(this.user_location),
             page:'my_store'
           },
         };

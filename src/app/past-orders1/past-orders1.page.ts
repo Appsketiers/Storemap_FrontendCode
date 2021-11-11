@@ -47,7 +47,9 @@ export class PastOrders1Page implements OnInit {
         this.helper.postMethod('order-detail', body, (res) => {
           console.log(res);
          
-  this.data=res.data;
+  this.data=res.data.detail;
+  this.order_amount = res.data.amount;
+  this.store_image = res.data.store_image
         });
       });
    

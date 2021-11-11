@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
-
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-shopping-lists',
   templateUrl: './shopping-lists.page.html',
@@ -8,17 +8,28 @@ import { HelperService } from '../providers/helper.service';
 })
 export class ShoppingListsPage implements OnInit {
   list:any=[];
-  constructor(public helper:HelperService) { 
+  page;
+  public category: string = "MyList";
+  constructor(public helper:HelperService,    private router: Router,
+    private route: ActivatedRoute) { 
     // this.shoping_list_items();
+    this.route.queryParams.subscribe((params) => {
+      if(params['page']){
+      this.page = params['page'];
+      this.category = 'SharedList'
+      }
+      console.log(this.page);
+    });
   }
 
   ngOnInit() {
+ 
   }
 
   ionViewWillEnter(){
     this.shoping_list_items();
   }
-  public category: string = "MyList";
+  
 
 
   shoping_list_items() {

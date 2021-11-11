@@ -32,6 +32,9 @@
                 Logout
               </ion-label>
             </ion-item>
+            <ion-button (click)="sample()" expand="block" fill="clear" shape="round">
+              Click me
+            </ion-button>
           </ion-menu-toggle>
         </ion-list>
 
@@ -39,6 +42,8 @@
     </ion-menu>
 
 <ion-content scrollY="false">
+
+ 
     <ion-router-outlet id="main-content"  ></ion-router-outlet>
   <!-- </ion-split-pane> -->
 </ion-content>

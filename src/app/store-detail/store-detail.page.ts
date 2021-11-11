@@ -172,6 +172,7 @@ decrement(id, key,i){
   else{
     if(this.store_category_product[i].quantity <= 1){
       this.update.splice(index, 1);
+      this.store_category_product.splice(i, 1);
       }
     else{
     this.update[index].quantity --;

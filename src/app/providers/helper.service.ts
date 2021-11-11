@@ -100,6 +100,26 @@ setsocketObs(profile: any) {
     toast.present();
   }
 
+  async localNotifiationToast(msg: any,url, data?) {
+    const toast = await this.toastController.create({
+      header:'Werzat StoreMapps',
+      message: msg,
+      cssClass: 'localnotify ',
+      duration: 200000,
+      position:'top',
+      buttons: [
+        {
+          text: 'View',
+          role: 'ok',
+          handler: () => {
+            console.log('view clicked');
+          }
+        }
+      ]
+    });
+    toast.present();
+  }
+
 
   logout(){
     this.nativeStorage.getItem("storeuser")

@@ -29,6 +29,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 import { FCM } from 'cordova-plugin-fcm-with-dependecy-updated/ionic/ngx';
 import { Stripe } from '@ionic-native/stripe/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -60,6 +61,7 @@ import { Stripe } from '@ionic-native/stripe/ngx';
     NativeAudio,
     FCM,
     Stripe,
+    LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

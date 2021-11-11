@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras, } from '@angular/router';
 import { HelperService } from './providers/helper.service';
 import { Device } from '@ionic-native/device/ngx';
 import { environment } from './../environments/environment';
@@ -13,6 +13,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { FCM } from "cordova-plugin-fcm-with-dependecy-updated/ionic/ngx";
 import { Storage } from "@ionic/storage";
 import { Stripe } from "@ionic-native/stripe/ngx";
+import { LocalNotifications, ILocalNotificationActionType } from '@ionic-native/local-notifications/ngx';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -21,6 +22,7 @@ import { Stripe } from "@ionic-native/stripe/ngx";
 export class AppComponent {
   userDetail: any;
   imagebaseurl: any;
+  clickSub: any;
   constructor(
     private network: Network,
     public menuCtrl: MenuController,
@@ -36,6 +38,8 @@ export class AppComponent {
     private fcm: FCM,
     private storage: Storage,
     public stripe: Stripe,
+    private route: ActivatedRoute,
+    private localNotifications: LocalNotifications
   ) {
     this.imagebaseurl = environment.image_baseurl;
     this.initializeApp();
@@ -233,19 +237,69 @@ export class AppComponent {
        // this.Config.setConf("device_id", token);
       }
     });
-
-    this.fcm.onNotification().subscribe((data) => {
-      console.log(data);
+    this.fcm.getInitialPushPayload().then((data) => {
+      console.log('kill mode ---------',data);
       if (data.wasTapped) {
-        this.storage.get("User").then((user) => {
+        this.nativeStorage.getItem("storeuser").then((user) => {
           if (user) {
             setTimeout(() => {
-              if(data.dictionary == "Accept Booking") {
-                this.router.navigateByUrl('tabs/tab2');
-              } else if(data.dictionary == "Complete Booking") {
-                this.router.navigateByUrl('tabs/tab2');
+              if(data.action == "SAFETY_AWARENESS") {
+                this.router.navigateByUrl('safety-awareness');
+              } else if(data.action == "SHOPPING_LIST") {
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    page: 'app_com',
+                  },
+                };
+                this.router.navigate(['shopping-lists'], navigationExtras);
             
               } 
+
+              else if(data.action== "COMPLETE_ORDER"){
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    id: data.id,
+                  },
+                };
+                this.router.navigate(['past-orders1'], navigationExtras);
+              }
+            }, 2000);
+           
+
+            console.log("usre, data",user,data);
+          } else {
+            this.router.navigate(['/auth']);
+          }
+        });
+      }
+    });
+    this.fcm.onNotification().subscribe((data) => {
+      console.log(data);
+      //alert(JSON.stringify(data))
+      if (data.wasTapped) {
+        this.nativeStorage.getItem("storeuser").then((user) => {
+          if (user) {
+            setTimeout(() => {
+              if(data.action == "SAFETY_AWARENESS") {
+                this.router.navigateByUrl('safety-awareness');
+              } else if(data.action == "SHOPPING_LIST") {
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    page: 'app_com',
+                  },
+                };
+                this.router.navigate(['shopping-lists'], navigationExtras);
+            
+              } 
+
+              else if(data.action== "COMPLETE_ORDER"){
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    id: data.id,
+                  },
+                };
+                this.router.navigate(['past-orders1'], navigationExtras);
+              }
             }, 2000);
            
 
@@ -255,17 +309,80 @@ export class AppComponent {
           }
         });
       } else {
+        setTimeout(() => {
         console.info("Received in foreground", data);
-        if (!this.platform.is("android")) {
-          this.helper.presentToast(data.aps.alert.body);
-          if(data.dictionary == "Accept Booking") {
-            this.router.navigateByUrl('tabs/tab2');
-          } else if(data.dictionary == "Complete Booking") {
-            this.router.navigateByUrl('tabs/tab2');
+       // if (!this.platform.is("android")) {
+        //  this.helper.presentToast(data.aps.alert.body);
+         
+        
+        let listenSub = this.localNotifications.on('trigger').subscribe(data => {
+          console.log(data);
+          if(data.data == "SAFETY_AWARENESS") {
+            if (this.platform.is("android")) 
+            this.helper.localNotifiationToast(data.text,'safety-awareness',data);
+            // this.router.navigateByUrl('safety-awareness');
+          } else if(data.data == "SHOPPING_LIST") {
+            let navigationExtras: NavigationExtras = {
+              queryParams: {
+                page: 'app_com',
+              },
+            };
+            // this.router.navigate(['shopping-lists'], navigationExtras);
+            if (this.platform.is("android")) 
+            this.helper.localNotifiationToast(data.text,'shopping-lists',navigationExtras);
           } 
-        } else {
-          this.helper.presentToast(data.body);
-        }
+          else if(data.data== "COMPLETE_ORDER"){
+            let navigationExtras: NavigationExtras = {
+              queryParams: {
+                id: data.id,
+              },
+            };
+            // this.router.navigate(['past-orders1'], navigationExtras);
+            if (this.platform.is("android")) 
+            this.helper.localNotifiationToast(data.text,'past-orders1',navigationExtras);
+          }
+        })
+
+          this.clickSub = this.localNotifications.on('click').subscribe(data => {
+            console.log(data);
+            if(data.data == "SAFETY_AWARENESS") {
+              this.router.navigateByUrl('safety-awareness');
+            } else if(data.data == "SHOPPING_LIST") {
+              let navigationExtras: NavigationExtras = {
+                queryParams: {
+                  page: 'app_com',
+                },
+              };
+              this.router.navigate(['shopping-lists'], navigationExtras);
+            } 
+            else if(data.data== "COMPLETE_ORDER"){
+              let navigationExtras: NavigationExtras = {
+                queryParams: {
+                  id: data.id,
+                },
+              };
+              this.router.navigate(['past-orders1'], navigationExtras);
+            }
+          });
+          this.localNotifications.schedule({
+            id: data.id,
+            text: data.body,
+            data: data.action
+          })
+          // this.localNotifications.schedule({
+          //   id: 1,
+          // text: 'Single Local Notification',
+          // data: { secret: 'secret' }
+          // });
+          
+
+
+      
+
+        // } else {
+        //   this.helper.presentToast(data.body);
+        // }
+        }, 2000);
       }
     });
     this.fcm.onTokenRefresh().subscribe((token) => {});
@@ -280,5 +397,9 @@ export class AppComponent {
       this.storage.set("Platform", "IOS");
       //this.Config.setConf("device_type", "IOS");
     } 
+  }
+
+  sample() {
+    this.helper.localNotifiationToast('test','test','test');
   }
 }
