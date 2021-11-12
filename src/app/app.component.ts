@@ -316,20 +316,30 @@ export class AppComponent {
          
         
         let listenSub = this.localNotifications.on('trigger').subscribe(data => {
+          let that = this;
           console.log(data);
           if(data.data == "SAFETY_AWARENESS") {
-            if (this.platform.is("android")) 
-            this.helper.localNotifiationToast(data.text,'safety-awareness',data);
-            // this.router.navigateByUrl('safety-awareness');
+            if (that.platform.is("android")) 
+            that.helper.localNotifiationToast(data.text,'safety-awareness',data,function(status){
+              if(status){
+                that.router.navigateByUrl('safety-awareness');
+              
+            }
+            });
+            
           } else if(data.data == "SHOPPING_LIST") {
             let navigationExtras: NavigationExtras = {
               queryParams: {
                 page: 'app_com',
               },
             };
-            // this.router.navigate(['shopping-lists'], navigationExtras);
-            if (this.platform.is("android")) 
-            this.helper.localNotifiationToast(data.text,'shopping-lists',navigationExtras);
+            
+            if (that.platform.is("android")) 
+            that.helper.localNotifiationToast(data.text,'shopping-lists',navigationExtras, function(status){
+              if(status){
+                that.router.navigate(['shopping-lists'], navigationExtras);
+              }
+            });
           } 
           else if(data.data== "COMPLETE_ORDER"){
             let navigationExtras: NavigationExtras = {
@@ -337,9 +347,13 @@ export class AppComponent {
                 id: data.id,
               },
             };
-            // this.router.navigate(['past-orders1'], navigationExtras);
-            if (this.platform.is("android")) 
-            this.helper.localNotifiationToast(data.text,'past-orders1',navigationExtras);
+            
+            if (that.platform.is("android")) 
+            that.helper.localNotifiationToast(data.text,'past-orders1',navigationExtras, function(status){
+              if(status){
+                that.router.navigate(['past-orders1'], navigationExtras);
+              }
+            });
           }
         })
 

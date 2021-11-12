@@ -100,23 +100,25 @@ setsocketObs(profile: any) {
     toast.present();
   }
 
-  async localNotifiationToast(msg: any,url, data?) {
+  async localNotifiationToast(msg: any,  url, data?, callback?) {
     const toast = await this.toastController.create({
       header:'Werzat StoreMapps',
       message: msg,
-      cssClass: 'localnotify ',
-      duration: 200000,
+      cssClass: 'localnotify animate__animated animate__fadeInDown ',
+      duration: 3000,
       position:'top',
       buttons: [
         {
           text: 'View',
           role: 'ok',
           handler: () => {
+            callback(true)
             console.log('view clicked');
           }
         }
       ]
     });
+    
     toast.present();
   }
 

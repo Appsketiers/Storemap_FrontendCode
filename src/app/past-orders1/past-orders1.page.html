@@ -14,7 +14,7 @@
           <h4>{{store_name}}</h4>
           <p>{{order_time | date: 'MM/dd/yyyy h:mm a'}}</p>
       </ion-label>
-      <span slot="start"><img src="{{image_url}}{{store_image}}" alt=""></span>
+      <span slot="start"><img src="{{image_url}}{{store_image}}" onerror="this.src='../../assets/img/item_placeholder.png'"alt=""></span>
       <span style="margin-top: 20px; font-size: 15px; font-weight: bold; color: #9D4CDF;" slot="end" >$ {{order_amount}}</span>
   </ion-item>
   </ion-list>

@@ -125,7 +125,7 @@ console.log(this.rem);
 
       password: this.loginForm.controls['password'].value,
       device_type: this.device_type,
-      device_token: this.device_token,
+      device_token: this.device_token==null?'NOTFOUND':this.device_token,
     };
     this.helper.postMethod(
       'login',

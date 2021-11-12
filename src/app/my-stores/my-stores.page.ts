@@ -128,7 +128,8 @@ this.router.navigate(['/review-rating'], navigationExtras)
       this.my_store_list(true, event);
     }
 
-    like(id, status) {
+    like(id, status,i) {
+      this.data.splice(i, 1);
        this.helper.getByKeynew('storetoken', (res) => {
         console.log(res);
         let body: any = { token: res, store_id: id, status: status };

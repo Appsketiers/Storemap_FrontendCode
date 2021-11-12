@@ -8,6 +8,7 @@
     position: relative;
     border-radius: 5px;
     transform: translateY(-50%);
+    height: 85%;
   
     .closebtn {
       font-size: 12px;
@@ -27,7 +28,7 @@
     }
   
     .popupinner {
-      overflow: hidden;
+      overflow: scroll;
       clear: both;
       text-align: center;
       h4{
@@ -40,21 +41,7 @@
         float: left;
       }
   
-      .btn{
-          display: flex;
-          ion-button{
-              width: 100%;
-              &.remove{
-                height: 50px;
-                margin: 10px 0;
-                width: 100%;
-                --background: transparent;
-                --box-shadow: none;
-                color: #868686;
-              }
-          }
-          
-      }
+     
     }
   }
   
@@ -94,3 +81,4 @@
     font-family: 'SF UI Text Semibold';
     height: 50px;
 }
+

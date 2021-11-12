@@ -38,11 +38,11 @@ to=0;
         }
         this.helper.postMethod('my-orders', body, (res) => {
           console.log(res);
-          this.data = [...this.data,...res.data.data];
+          //this.data = [...this.data,...res.data.data];
            
-          // for (let i = 0; i < res.data.data.length; i++) {
-          //   this.data.push(res.data.data[i]);
-          // }
+          for (let i = 0; i < res.data.data.length; i++) {
+            this.data.push(res.data.data[i]);
+          }
           if (isFirstLoad) event.target.complete();
           this.page++;
           console.log('data', this.data);

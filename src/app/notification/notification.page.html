@@ -13,81 +13,22 @@
 <ion-content>
   <ion-list>
     <!-- Sliding item with text options on both sides -->
-    <ion-item-sliding>
-      <ion-item lines="none">
+    <ion-item-sliding *ngFor="let item of data">
+      <ion-item lines="none" (click)="open_notification(item.description)">
         <span slot="start" class="name">SM</span>
         <ion-label>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+          <p>{{item.title}}</p>
           <span>22-02-2020 | 12.00 pm</span>
         </ion-label>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option style="--background: #9d4cdf" (click)="delete_notification('','SINGLE')">
+        <ion-item-option style="--background: #9d4cdf" (click)="delete_notification(item.id,'SINGLE')">
           <ion-img src="assets/img/trash.png"></ion-img>
           
         </ion-item-option>
       </ion-item-options>
     </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item lines="none">
-        <span slot="start" class="name">SM</span>
-        <ion-label>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <span>22-02-2020 | 12.00 pm</span>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option style="--background: #9d4cdf" >
-          <ion-img src="assets/img/trash.png"></ion-img>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item lines="none">
-        <span slot="start" class="name">SM</span>
-        <ion-label>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <span>22-02-2020 | 12.00 pm</span>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option style="--background: #9d4cdf" >
-          <ion-img src="assets/img/trash.png"></ion-img>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item lines="none">
-        <span slot="start" class="name">SM</span>
-        <ion-label>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <span>22-02-2020 | 12.00 pm</span>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option style="--background: #9d4cdf" >
-          <ion-img src="assets/img/trash.png"></ion-img>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
-    <ion-item-sliding>
-      <ion-item lines="none">
-        <span slot="start" class="name">SM</span>
-        <ion-label>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <span>22-02-2020 | 12.00 pm</span>
-        </ion-label>
-      </ion-item>
-
-      <ion-item-options side="end">
-        <ion-item-option style="--background: #9d4cdf" >
-          <ion-img src="assets/img/trash.png"></ion-img>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    
   </ion-list>
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { AudioService } from '../providers/audio.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, Platform } from '@ionic/angular';
 import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 @Component({
   selector: 'app-payment-sucess',
@@ -11,9 +11,11 @@ import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
 export class PaymentSucessPage implements OnInit, AfterViewInit {
 otp;
 order_id;
+backbutton;
   constructor(public router:Router, private audio: AudioService, 
     public modalController: ModalController,
-    private route: ActivatedRoute,) { }
+    private route: ActivatedRoute,
+    private platform: Platform,) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -57,5 +59,15 @@ this.router.navigate(['/main-home']);
       
     });
     return await modal.present();
+  }
+
+  ionViewDidEnter() {
+    this.backbutton = this.platform.backButton.subscribeWithPriority(9999, () => {
+      // do nothing
+    })
+  }
+
+  ionViewWillLeave() {
+    this.backbutton.unsubscribe();
   }
 }

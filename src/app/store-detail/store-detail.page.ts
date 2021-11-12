@@ -137,12 +137,21 @@ increment(id, key,i){
   console.log(index, id);
   if (index != -1) {
     if(key=='match'){
+      let mindex = this.matched_products.findIndex((el) => {
+        console.log(el);
+        return el.id == id;
+      });
+
     this.update[index].quantity++;
-    this.matched_products[i].quantity++;
+    this.matched_products[mindex].quantity++;
     }
     else{
+      let sindex = this.store_category_product.findIndex((el) => {
+        console.log(el);
+        return el.id == id;
+      });
       this.update[index].quantity++;
-      this.store_category_product[i].quantity++;
+      this.store_category_product[sindex].quantity++;
     }
   }
   console.log(this.update);
@@ -159,24 +168,39 @@ decrement(id, key,i){
   console.log(index, id);
   if (index != -1) {
     if(key=='match'){
-    if(this.matched_products[i].quantity <= 1){
+      let mindex = this.matched_products.findIndex((el) => {
+        console.log(el);
+        return el.id == id;
+      });
+      
+    if(this.matched_products[mindex].quantity <= 1){
       this.update.splice(index, 1);
-      this.matched_products.splice(i, 1);
+      this.matched_products.splice(mindex, 1);
     }
     else{
     this.update[index].quantity --;
-    this.matched_products[i].quantity --;
+    this.matched_products[mindex].quantity --;
     }
   }
 
   else{
-    if(this.store_category_product[i].quantity <= 1){
+    let sindex = this.store_category_product.findIndex((el) => {
+      console.log(el);
+      return el.id == id;
+    });
+
+    let mindex = this.matched_products.findIndex((el) => {
+      console.log(el);
+      return el.id == id;
+    });
+    
+    if(this.store_category_product[sindex].quantity <= 1){
       this.update.splice(index, 1);
-      this.store_category_product.splice(i, 1);
+      this.matched_products.splice(mindex, 1);
       }
     else{
     this.update[index].quantity --;
-    this.store_category_product[i].quantity --;
+    this.store_category_product[sindex].quantity --;
     }
   }
   }
