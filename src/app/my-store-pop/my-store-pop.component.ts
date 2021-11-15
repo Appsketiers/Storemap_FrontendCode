@@ -39,7 +39,7 @@ async closeModal() {
       console.log(res);
       if(res.data.paid){
         clearInterval(this.timer)
-        this.modalController.dismiss();
+        this.modalController.dismiss(this.order_id);
 
       }
     
