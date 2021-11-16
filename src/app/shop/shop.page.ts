@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HelperService } from '../providers/helper.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
+import * as _ from "lodash";
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.page.html',
@@ -77,26 +78,40 @@ export class ShopPage implements OnInit {
   }
   getData2(i,j){
     if(this.request){
-      console.log();
-
+      
       let item = this.request.arrangement.filter((el)=>{
         return (el.row == i && el.col == j)
       }); 
+      // console.log(item,i,j);
       if(item.length > 0){
-        if(item[0].item_detail.length > 0){
-        if(item[0].item_detail[0].is_match){
-         let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId})
+        if(item[0].item_detail.length > 0 && item[0].region_type == "PRODUCT"){
+        // if(item[0].item_detail[0].is_match){
+         let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId && ele2.is_match})
+        //  console.log(Len,i,j);
           if(Len.length > 0 ){
             return Len[0].images[0];
           }
-          return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
+          // console.log("Len",Len,i,j);
+          if(_.isArray(item[0].item_detail[0].images)){
+            return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
+          }
+          else{
+            return item[0].item_detail[0].images;
+          }
+        // }
+      }else if(item[0].item_detail.length > 0 && item[0].region_type == "INDOOR"){
+        let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId})
+        if(Len.length > 0 ){
+          return Len[0].image;
         }
-        }
-        
+        return item[0].item_detail[0].image ? item[0].item_detail[0].image : '';
+      }
+       
+        } 
       }
       return '';
     } 
-  }
+  
   close(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -184,14 +199,18 @@ highlight(id){
         return ele.item_detail.length > 0 && ele.item_detail.filter(ele2=>{return ele2.id === id}).length >0;
       });
       if(this.heighlightedItem){
-        document.getElementById("Col-"+this.heighlightedItem[0].row+""+this.heighlightedItem[0].col).style.boxShadow = "none"
+        console.log(this.heighlightedItem);
+        console.log(document.getElementById("Col-"+this.heighlightedItem[0].row+""+this.heighlightedItem[0].col));
+        document.getElementById("Col-"+this.heighlightedItem[0].row+""+this.heighlightedItem[0].col).style.border = "0px";
       }
       
       
       // console.log("Col-"+data[0].row+""+data[0].col)
       setTimeout(() => {
         this.heighlightedItem = data; 
-        document.getElementById("Col-"+data[0].row+""+data[0].col).style.boxShadow = "0px 0px 10px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"  
+        console.log(data);
+        console.log(document.getElementById("Col-"+data[0].row+""+data[0].col));
+        document.getElementById("Col-"+data[0].row+""+data[0].col).style.border = "3px solid #0000FF"  
       }, 10);
       
       // console.log()

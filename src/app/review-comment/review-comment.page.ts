@@ -9,7 +9,7 @@ import { CameraService } from '../providers/camera.service';
   styleUrls: ['./review-comment.page.scss'],
 })
 export class ReviewCommentPage implements OnInit {
-  id:any;
+  store_id:any;
   type:any;
   data: any;
   comment;
@@ -22,6 +22,9 @@ export class ReviewCommentPage implements OnInit {
   review_data:any;
   delete_image: any = [];
   pictures:any = [];
+  list_id;
+  title;
+  user_location:any;
 
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone,
@@ -29,13 +32,16 @@ export class ReviewCommentPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      if(params['id']){
-      this.id = params['id'];
+      if(params['store_id']){
+      this.store_id = params['store_id'];
       this.type = params['type'];
       this.review_type = params['review_type'];
+      this.list_id = params['id'];
+      this.title=params['title'];
       this.review_data = JSON.parse(params['review_data']);
+      this.user_location = JSON.parse(params['user_location']);
       }
-      console.log(this.id);
+      console.log(this.store_id);
       console.log(this.type);
 
       if(this.review_type =='EDIT'){
@@ -64,7 +70,7 @@ console.log(this.rating);
         token: res,
         review_type:this.review_type,
         review_for:this.type,
-        target_id:this.id,
+        target_id:this.store_id,
         comment:this.comment,
         rating:this.rating,
         review_images:this.image_path,
@@ -74,6 +80,17 @@ console.log(this.rating);
         console.log(res);
         
 this.helper.presentToast(res.message);
+if (res.status){
+  let navigationExtras: NavigationExtras = {
+    queryParams: {
+      id:this.list_id,
+      title:this.title,
+      store_id:this.store_id,
+      user_location:JSON.stringify(this.user_location)
+    },
+  };
+  this.router.navigate(['/store-detail'], navigationExtras);
+}
       });
       console.log(body);
     });

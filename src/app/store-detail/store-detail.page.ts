@@ -273,9 +273,12 @@ this.router.navigate(['/review-rating'], navigationExtras)
   review_comment(review_type){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        id: this.store_id,
+        store_id: this.store_id,
         type:'STORE',
         review_type:review_type,
+        id:this.list_id,
+        title:this.title,
+        user_location:JSON.stringify(this.user_location),
         review_data:JSON.stringify(this.review)
 
       },

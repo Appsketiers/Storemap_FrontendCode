@@ -39,7 +39,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     }),
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // StarRatingModule,
   ],
   providers: [HelperService,
     AdminGuard,

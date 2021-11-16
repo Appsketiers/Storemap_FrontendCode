@@ -50,7 +50,11 @@ export class AppComponent {
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
-      this.fcmNotification();
+      console.log();
+      if(this.platform.is("cordova")){
+        this.fcmNotification();
+      }
+     
      // this.check_internet_connection();
      if(localStorage.getItem("User")){
       let user = JSON.parse(localStorage.getItem("User"));

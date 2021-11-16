@@ -8,13 +8,15 @@ import { ReviewCommentPageRoutingModule } from './review-comment-routing.module'
 
 import { ReviewCommentPage } from './review-comment.page';
 import { IonicRatingModule } from 'ionic4-rating';
+// import { StarRatingModule } from 'ionic4-star-rating';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     IonicRatingModule,
-    ReviewCommentPageRoutingModule
+    ReviewCommentPageRoutingModule,
+    // StarRatingModule
   ],
   declarations: [ReviewCommentPage]
 })

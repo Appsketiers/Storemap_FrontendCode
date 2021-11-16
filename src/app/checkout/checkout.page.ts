@@ -9,7 +9,8 @@ import { IonRadioGroup } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ModalController } from '@ionic/angular';
 import { MyStorePopComponent } from '../my-store-pop/my-store-pop.component';
-
+import { LocationService } from '../providers/location.service';
+import {Platform } from '@ionic/angular';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
@@ -36,13 +37,16 @@ export class CheckoutPage implements OnInit {
   update: any=[];
   total : any = 0;
   distance;
+  private timer;
   constructor(public stripe: Stripe,
     private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,
     public fb: FormBuilder,
     private payment:PaymentService,
-    public modalController: ModalController,) {
+    public modalController: ModalController,
+    private location_service: LocationService,
+    private platform: Platform,) {
 
       this.helper.getByKeynew('storeuser', (res) => {
         this.user = res;
@@ -91,6 +95,10 @@ export class CheckoutPage implements OnInit {
    this.distance=this.calculate_distance(this.user_location.lat, this.user_location.lng, this.store_location.lat,this.store_location.lng
     )
     console.log('Distance----', this.distance);
+
+
+      this.check_user_location();
+  
   }
 
   getCards(){
@@ -109,7 +117,7 @@ export class CheckoutPage implements OnInit {
 
 
   addCard(form: any){
-    debugger
+if(this.distance<=50){
     console.log("form",form);
     // if(!this.save) 
     // return this.helper.presentToast('Please select save card securely to save this card')
@@ -171,7 +179,11 @@ this.makeCheckoutPayemt('TOKEN',token.id);
       console.error(error)
      });
   }
-  
+}
+
+else{
+  this.helper.presentToast('Please visit store to make payment')
+}
   }
   // select(type,id ) {
   //   this.payment(type,id)
@@ -241,6 +253,7 @@ this.makeCheckoutPayemt('TOKEN',token.id);
   }
 
   make_payment(token_type){
+    if(this.distance<=50){
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id,source_token:this.selected_card_id.value,token_type:token_type };
       this.helper.postMethod('checkout', body, (res) => {
@@ -259,6 +272,11 @@ this.makeCheckoutPayemt('TOKEN',token.id);
       }
       });
     });  
+  }
+
+  else{
+    this.helper.presentToast('Please visit store to make payment')
+  }
   }
 
   async presentModal() {
@@ -388,5 +406,46 @@ this.update_list();
   }
   })
 
+  }
+
+  check_user_location(){
+    console.log('checking user location')
+    this.platform.ready().then(() => {
+      if (this.platform.is('android' || 'ios')) {
+ 
+       this.location_service.requestGPSPermission((data) => {
+         console.log('Location Services data----', data);
+         if (data.code == 4) {
+           this.helper.Alert('Please enable GPS', '/home');
+         } else {
+            this.user_location = {lat: data.coords.latitude, lng: data.coords.longitude}
+           if (this.user_location.lat && this.user_location.lng) {
+            this.distance =  this.calculate_distance(this.user_location.lat, this.user_location.lng, this.store_location.lat,this.store_location.lng);
+          console.log(this.distance);
+          } else {
+             this.helper.Alert('Check your GPS', '');
+           }
+         }
+       });
+ 
+        
+       }
+       else{
+         console.log("running in a browser on mobile!");
+ 
+         this.helper.get_location(data=>{
+          this.user_location = {lat: data.coords.latitude, lng: data.coords.longitude}
+          if (this.user_location.lat && this.user_location.lng) {
+         this.distance = this.calculate_distance(this.user_location.lat, this.user_location.lng, this.store_location.lat,this.store_location.lng);
+         console.log(this.distance);  
+        }
+ 
+     else{
+       this.helper.Alert('Check your GPS','');
+     }
+         })
+       }
+ 
+   });
   }
 }
