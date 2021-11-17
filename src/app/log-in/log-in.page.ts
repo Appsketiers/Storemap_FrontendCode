@@ -124,7 +124,7 @@ console.log(this.rem);
       email: this.loginForm.controls['email'].value,
 
       password: this.loginForm.controls['password'].value,
-      device_type: this.device_type,
+      device_type: this.device_type || 'WEB',
       device_token: this.device_token==null?'NOTFOUND':this.device_token,
     };
     this.helper.postMethod(

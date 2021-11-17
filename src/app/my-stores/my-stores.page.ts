@@ -21,10 +21,15 @@ export class MyStoresPage implements OnInit {
   cord: any;
   lat: any;
   lng: any;
+  math = Math;
   image_url = environment.image_baseurl;
   rating;
   selected_list: any;
   user_location:any;
+  only_half = false;
+  normal = false;
+  with_decimal = false;
+  blank = 0;
   constructor(public modalController: ModalController,
     private router: Router, private location_service: LocationService,
     private helper: HelperService,private ngZone:NgZone,private platform: Platform) { }
@@ -111,9 +116,14 @@ this.router.navigate(['/review-rating'], navigationExtras)
           this.helper.postMethod('my-stores', body, (res) => {
             console.log(res);
             this.data = [...this.data,...res.data.data];
+
+
+            //test case 
             // for (let i = 0; i < res.data.data.length; i++) {
-            //   this.data.push(res.data.data[i]);
+            //   this.data.push(res.data.data[i].avg_rating=1.5);
             // }
+            //this.rating = this.data.avg_rating
+            //this.check_ratings(this.rating);
             if (isFirstLoad) event.target.complete();
             this.page++;
             console.log('data', this.data);
@@ -170,6 +180,27 @@ this.router.navigate(['/review-rating'], navigationExtras)
         }
 
 
+        hasDecimal (num) {
+          return !!(num % 1);
+        }
+
+check_ratings(rating){
+  if(rating<1){
+this.only_half=true;
+this.blank = 4;
+  }
+  else if(rating % 1 != 0){
+    rating = Math.round(rating) - 1;
+    this.normal = true;
+    this.with_decimal = true;
+this.blank = 5 - rating + 1
+  }
+
+  else{
+    this.blank = 5 - rating;
+    this.normal = true;
+  }
+}
   async open_shopping_list(id) {
     const modal = await this.modalController.create({
       component: MealIdeasShoppingComponent,

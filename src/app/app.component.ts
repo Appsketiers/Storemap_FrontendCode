@@ -50,11 +50,10 @@ export class AppComponent {
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
-      console.log();
-      if(this.platform.is("cordova")){
-        this.fcmNotification();
-      }
      
+        this.fcmNotification();
+      
+      
      // this.check_internet_connection();
      if(localStorage.getItem("User")){
       let user = JSON.parse(localStorage.getItem("User"));
@@ -188,7 +187,7 @@ export class AppComponent {
               
                 let body: any = {
                   token: res,
-                  device_token:device_token ,
+                  device_token:device_token || "WEB" ,
                 };
                 this.helper.postMethod(
                   'logout',

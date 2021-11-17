@@ -153,7 +153,7 @@ console.log(this.Checked);
 
   cancelSearch(ev) {
     this.toggle();
-
+    this.someValue="";
   }
 
 

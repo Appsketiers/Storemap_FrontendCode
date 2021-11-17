@@ -219,6 +219,7 @@ export class ShoppingLists1Page implements OnInit {
   cancelSearch(ev) {
     this.toggle();
     this.shoping_item_list(false, '');
+    this.someValue="";
   }
 
   show_store() {

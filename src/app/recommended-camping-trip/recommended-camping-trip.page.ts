@@ -20,6 +20,7 @@ selected_shopping_list:any;
 update: any = [];
 my_list: any = [];
 shared_list: any = [];
+people;
   constructor(private helper: HelperService,
     private router: Router,
     private route: ActivatedRoute,
@@ -44,6 +45,7 @@ shared_list: any = [];
         this.ingredients_list=res.data.ingredient_list;
         this.title=res.data.title;
         this.thumbnail=res.data.thumbnail;
+        this.people = res.data.people;
       });
     });
   }

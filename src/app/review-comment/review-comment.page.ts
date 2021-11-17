@@ -25,22 +25,30 @@ export class ReviewCommentPage implements OnInit {
   list_id;
   title;
   user_location:any;
-
+  target_id;
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone,
     private cameraService: CameraService,) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      if(params['store_id']){
-      this.store_id = params['store_id'];
+      
+      
       this.type = params['type'];
+      if(this.type =='STORE'){
+        this.target_id = params['store_id'];
+        this.user_location = JSON.parse(params['user_location']);
+      }
+      else{
+        this.target_id = params['id'];
+      }
       this.review_type = params['review_type'];
-      this.list_id = params['id'];
+      this.store_id = params['store_id'];
+      this.list_id =  params['id'];
       this.title=params['title'];
       this.review_data = JSON.parse(params['review_data']);
-      this.user_location = JSON.parse(params['user_location']);
-      }
+      
+      
       console.log(this.store_id);
       console.log(this.type);
 
@@ -64,13 +72,19 @@ export class ReviewCommentPage implements OnInit {
 console.log(this.rating);
   }
 
+  setValue(value){
+    this.rating = value;
+    console.log(this.rating);
+    
+  }
+
   add_review(){
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = {
         token: res,
         review_type:this.review_type,
         review_for:this.type,
-        target_id:this.store_id,
+        target_id:this.target_id,
         comment:this.comment,
         rating:this.rating,
         review_images:this.image_path,
@@ -89,7 +103,13 @@ if (res.status){
       user_location:JSON.stringify(this.user_location)
     },
   };
+  if(this.type =='STORE'){
   this.router.navigate(['/store-detail'], navigationExtras);
+  }
+else{
+  this.router.navigate(['/meal-ideas-list'], navigationExtras);
+}
+
 }
       });
       console.log(body);

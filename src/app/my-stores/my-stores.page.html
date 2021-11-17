@@ -32,7 +32,17 @@
           size = "small"
           (ngModelChange)="onRateChange($event)">
     </rating>
-
+    
+    <!-- <div *ngFor="let item of [].constructor(math.round(item.avg_rating)- (!hasDecimal(item.avg_rating)?1:2)); let i = index">
+      <span *ngIf="!hasDecimal(item)">  <ion-icon name="star" ></ion-icon></span>
+    </div>
+    <div>
+      <span *ngIf="hasDecimal(item.avg_rating)"> <ion-icon name="star-half-outline" ></ion-icon></span>
+    </div>
+    <div *ngFor="let rate of [0,1,2,3,4]; let i = index">
+      <span *ngIf="item.avg_rating<i+1"> <ion-icon name="star-outline" ></ion-icon></span>    
+    </div> -->
+  
     
   </div>
         <span (click)="ratings(item.id)">({{item.review_count}} reviews)</span>

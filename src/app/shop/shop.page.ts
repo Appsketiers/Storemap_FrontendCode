@@ -87,17 +87,23 @@ export class ShopPage implements OnInit {
         if(item[0].item_detail.length > 0 && item[0].region_type == "PRODUCT"){
         // if(item[0].item_detail[0].is_match){
          let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId && ele2.is_match})
+         let Len2 =  item[0].item_detail.filter(ele2=>{return ele2.is_match})
         //  console.log(Len,i,j);
           if(Len.length > 0 ){
             return Len[0].images[0];
           }
-          // console.log("Len",Len,i,j);
-          if(_.isArray(item[0].item_detail[0].images)){
-            return item[0].item_detail[0].images.length > 0 ? item[0].item_detail[0].images[0] : '';
+         // console.log("Len",Len2,i,j);
+          if(Len2[0]){
+            if(_.isArray(Len2[0].images)){
+              return Len2[0].images.length > 0 ? Len2[0].images[0] : '';
+            }
+            else{
+              return Len2[0].images;
+            }
+          }else {
+            return ""
           }
-          else{
-            return item[0].item_detail[0].images;
-          }
+          
         // }
       }else if(item[0].item_detail.length > 0 && item[0].region_type == "INDOOR"){
         let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId})

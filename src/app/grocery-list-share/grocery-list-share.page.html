@@ -31,7 +31,8 @@
   <ion-list>
     <ion-item lines="none" *ngFor="let item of data let i = index"> 
       <ion-avatar slot="start">
-        <img src="{{image_url}}{{item.profile_image}}" onerror="this.src='../../assets/img/svg/Account.svg'" />
+        <img src="{{image_url}}{{item.profile_image_thumb}}" onerror="this.src='../../assets/img/svg/Account.svg'" />
+        <!-- <img src="assets/img/svg/Account.svg" /> -->
       </ion-avatar>
       <ion-label>{{item.name}}</ion-label>
       <ion-img src="assets/img/unchecked.png" alt="" *ngIf="!item.check" mode="md"  slot="end"  (click)="checked('add', item.id, i)"></ion-img>
