@@ -128,7 +128,7 @@ export class AccountPage implements OnInit {
     this.helper.getByKeynew('storetoken', res=>{
       let body: any = {
         token:res,
-        device_token: this.device_token,
+        device_token: this.device_token ==null?'NOTFOUND':this.device_token,
    
         
       }

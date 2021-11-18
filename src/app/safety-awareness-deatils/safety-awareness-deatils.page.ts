@@ -13,6 +13,7 @@ export class SafetyAwarenessDeatilsPage implements OnInit {
   title:any;
   image:any;
   image_url = environment.image_baseurl;
+  updated_at;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class SafetyAwarenessDeatilsPage implements OnInit {
         this.data= res.data.content;
         this.title= res.data.title;
         this.image= res.data.profile_image;
+        this.updated_at = res.data.updated_at;
       });
     });
   }

@@ -22,7 +22,7 @@
     <span slot="start"><img src="{{image_url}}{{item.profile_image}}" onerror="this.src='../../assets/img/svg/user.svg'" alt=""></span>
     <ion-label>
       <h4>{{item.title}}</h4>
-      <p>10 hrs ago</p>
+      <p>{{item.updated_at |dateAgo}}</p>
     </ion-label>
   </ion-item>
 

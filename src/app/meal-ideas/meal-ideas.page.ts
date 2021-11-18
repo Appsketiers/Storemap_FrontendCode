@@ -123,7 +123,7 @@ export class MealIdeasPage implements OnInit {
         if (res.status == true) {
           this.update=[];
           this.helper.Alert(
-            'ingredient Added to Shopping List successfully.',
+            'Item Added to Shopping List successfully.',
             ''
           );
         }

@@ -21,6 +21,7 @@ export class ShopPage implements OnInit {
   sliderTwo: any;
   sliderOne:any;
   page;
+  public_toilet;
   matched_products: any=[];
   arrangement: any=[];
   map_items:any=[];
@@ -55,6 +56,7 @@ export class ShopPage implements OnInit {
         this.store_id = params['store_id'];
         this.title = params['title'];
         this.page = params['page'];
+        this.public_toilet = params['public_toilet'];
         this.user_location = JSON.parse(params['user_location']);
         this.store_location = JSON.parse(params['store_location']);
         console.log('user_location', this.user_location);
@@ -63,6 +65,8 @@ export class ShopPage implements OnInit {
         console.log(this.store_id);
         console.log(this.title);
         console.log(this.page);
+        console.log(this.public_toilet);
+        
       });
    
 

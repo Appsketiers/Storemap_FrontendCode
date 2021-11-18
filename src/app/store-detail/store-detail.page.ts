@@ -20,6 +20,7 @@ store_address:any;
 matched_products:any=[];
 store_category: any=[];
 store_category_product: any=[];
+public_toilet;
 update: any=[];
 avg_rating;
 image_url = environment.image_baseurl;
@@ -71,6 +72,7 @@ this.store_image=res.data.store.store_images[0];
 this.store_distance=res.data.store.distance;
 this.matched_products=res.data.matched_products;
 this.store_address=res.data.store.address;
+this.public_toilet = res.data.store.have_public_toilet;
 this.store_category=res.data.store_category;
 this.review_count= res.data.store.review_count;
 this.avg_rating = res.data.store.avg_rating;
@@ -98,6 +100,7 @@ console.log('Update---',this.update);
         store_id:this.store_id,
         title:this.title,
         page:this.page,
+        public_toilet:this.public_toilet,
         user_location:JSON.stringify(this.user_location),
         store_location:JSON.stringify(this.store_location)
       },
@@ -121,6 +124,9 @@ if(this.store_category[i].open){
     let body: any = { token: res, shopping_list_id: this.list_id, store_id: this.store_id, category_id:id};
     this.helper.postMethod('store-category-product', body, (res) => {
       this.store_category_product=res.data;
+      if(res.data.length<1){
+        this.helper.presentToast('Items not Found');
+      }
       console.log('store-category-product ---',this.store_category_product);
       console.log(this.store_category);
     });

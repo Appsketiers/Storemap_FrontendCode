@@ -8,12 +8,15 @@ import { SafetyAwarenessDeatilsPageRoutingModule } from './safety-awareness-deat
 
 import { SafetyAwarenessDeatilsPage } from './safety-awareness-deatils.page';
 
+import { SharedModule } from '../providers/shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SafetyAwarenessDeatilsPageRoutingModule
+    SafetyAwarenessDeatilsPageRoutingModule,
+    SharedModule,
   ],
   declarations: [SafetyAwarenessDeatilsPage]
 })

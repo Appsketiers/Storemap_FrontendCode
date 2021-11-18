@@ -46,7 +46,10 @@ export class AppComponent {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      this.splashScreen.hide();
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 2000);
+      
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
