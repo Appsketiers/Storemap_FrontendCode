@@ -162,4 +162,8 @@ export class AccountPage implements OnInit {
   notification_toggle(ev){
     console.log(this.notify);
   }
+  ionViewDidEnter() {
+    this.imagebaseurl = environment.image_baseurl;
+    this. getDetail();
+  }
 }

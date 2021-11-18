@@ -16,13 +16,12 @@
         
         <ion-list *ngIf="data[i].open">
             <ion-item class="reds">
-                <span slot="start" class="icon-Shuffle"></span>
-                <ion-label>All Ingredients</ion-label>
+               <ion-label>All Items</ion-label>
             </ion-item>
             <ion-item *ngFor="let ingredient of ingredient_list let i =index">
                 <span slot="start">{{i+1}}</span>
                 <ion-label>{{ingredient.title}}</ion-label>
-                <span class="green">1 lbs</span>
+                <span class="green">1</span>
                 <span class="icon-add" slot="end" (click)="add_to_shopping_list(ingredient.id)"></span>
             </ion-item>
 

@@ -36,6 +36,11 @@ ion-content {
     padding: 5px;
     height: 80px; 
     width: 100px;
+    img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+    }
 }
 .plac{
     text-align: center;

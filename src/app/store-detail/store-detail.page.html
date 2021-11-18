@@ -5,7 +5,7 @@
         <ion-buttons slot="start">
             <ion-back-button icon="chevron-back-outline" text="" defaultHref="/"></ion-back-button>
         </ion-buttons>
-        <ion-title>Kroger Store</ion-title>
+        <ion-title>{{store_name}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -58,7 +58,7 @@
                     <ion-col><b>${{item.price}}</b></ion-col>
                     <ion-col class="ion-text-right">
                         <ion-icon name="remove-circle-outline" (click)="decrement(item.id, 'match',k)"></ion-icon>
-                        {{item.quantity}} kg
+                        {{item.quantity}}
                         <ion-icon name="add-circle-outline" (click)="increment(item.id, 'match',k)"></ion-icon>
                     </ion-col>
                 </ion-row>
@@ -96,7 +96,7 @@
 
                   <div *ngIf="checkForItem(items.id)" class="ion-text-right">
                     <ion-icon name="remove-circle-outline" (click)="decrement(items.id,'other',j)"></ion-icon>
-                     {{items.quantity}} kg
+                     {{items.quantity}}
                     <ion-icon name="add-circle-outline" (click)="increment(items.id, 'other',j)"></ion-icon>
                   </div>
 

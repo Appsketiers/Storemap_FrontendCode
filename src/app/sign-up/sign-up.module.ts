@@ -10,8 +10,8 @@ import { SignUpPage } from './sign-up.page';
 import { HttpClientModule } from '@angular/common/http';
 import { HelperService } from '../providers/helper.service';
 import { CameraService } from '../providers/camera.service';
-import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
-
+//import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
+import { SharedModule } from '../providers/shared/shared.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -19,9 +19,10 @@ import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-passw
     IonicModule,
     ReactiveFormsModule,
     HttpClientModule,
-    SignUpPageRoutingModule
+    SignUpPageRoutingModule,
+    SharedModule
   ],
   providers: [HelperService, CameraService],
-  declarations: [SignUpPage, ShowHidePasswordComponent]
+  declarations: [SignUpPage]
 })
 export class SignUpPageModule {}

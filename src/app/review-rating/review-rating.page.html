@@ -35,8 +35,10 @@
       </p> -->
     </ion-item>
     <ion-item *ngIf="data[i].open">
-      <img class="review_images" *ngFor="let image of review_images let i = index" src="{{image_url}}{{image}}">
-    </ion-item>
+      <div class="review_images"   *ngFor="let image of review_images let i = index">
+        <img src="{{image_url}}{{image}}">
+      </div>
+       </ion-item>
   </div>
   </ion-list>
   <div class="plac" *ngIf="data.length<=0"> 

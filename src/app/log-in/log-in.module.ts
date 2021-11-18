@@ -9,7 +9,8 @@ import { LogInPageRoutingModule } from './log-in-routing.module';
 import { LogInPage } from './log-in.page';
 import { HttpClientModule } from '@angular/common/http';
 import { HelperService } from '../providers/helper.service';
-import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
+import { SharedModule } from '../providers/shared/shared.module';
+//import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-password.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,9 +18,10 @@ import { ShowHidePasswordComponent } from '../show-hide-password/show-hide-passw
     IonicModule,
     ReactiveFormsModule,
     HttpClientModule,
-    LogInPageRoutingModule
+    LogInPageRoutingModule,
+    SharedModule
   ],
   providers: [HelperService],
-  declarations: [LogInPage, ShowHidePasswordComponent]
+  declarations: [LogInPage]
 })
 export class LogInPageModule {}
