@@ -27,11 +27,13 @@
           <ion-icon class="heart" name="heart" (click)="like(item.id,0,i)"></ion-icon>
         
     <div class="ratingCust" style="justify-content: flex-end">
-          <rating [rate]="item.avg_rating"
+          <!-- <rating [rate]="item.avg_rating"
           [readonly] = "true"
           size = "small"
           (ngModelChange)="onRateChange($event)">
-    </rating>
+    </rating> -->
+
+    <app-rating [rating]="item.avg_rating"></app-rating>
     
     <!-- <div *ngFor="let item of [].constructor(math.round(item.avg_rating)- (!hasDecimal(item.avg_rating)?1:2)); let i = index">
       <span *ngIf="!hasDecimal(item)">  <ion-icon name="star" ></ion-icon></span>

@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { HelperService } from '../providers/helper.service';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
@@ -26,6 +26,10 @@ export class ReviewCommentPage implements OnInit {
   title;
   user_location:any;
   target_id;
+
+  @ViewChild('abcde') abcde: ElementRef;
+
+
   constructor(private router: Router,private helper: HelperService,
     private route: ActivatedRoute, private ngZone:NgZone,
     private cameraService: CameraService,) { }
@@ -55,8 +59,49 @@ export class ReviewCommentPage implements OnInit {
       if(this.review_type =='EDIT'){
         this.comment = this.review_data.comment;
         this.rating = this.review_data.rating;
-        this.pictures = JSON.parse(this.review_data.pictures);
+        if(this.rating == 5){
+          let ele = document.getElementById("star5") as HTMLInputElement;
+          ele.checked = true;
+        }else if(this.rating < 5 && this.rating > 4){
+          let ele = document.getElementById("star4half") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating == 4){
+          let ele = document.getElementById("star4") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating < 4 && this.rating > 3){
+          let ele = document.getElementById("star3half") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating == 3){
+          let ele = document.getElementById("star3") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating < 3 && this.rating > 2){
+          let ele = document.getElementById("star2half") as HTMLInputElement;
+          ele.checked = true;
+        }
 
+        else if(this.rating == 2){
+          let ele = document.getElementById("star2") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating < 2 && this.rating > 1){
+          let ele = document.getElementById("star1half") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating == 1){
+          let ele = document.getElementById("star1") as HTMLInputElement;
+          ele.checked = true;
+        }
+        else if(this.rating < 1 && this.rating > 0){
+          let ele = document.getElementById("starhalf") as HTMLInputElement;
+          ele.checked = true;
+        }
+
+                this.pictures = JSON.parse(this.review_data.pictures);
+        
         for(let i=0; i<this.pictures.length; i++)
     {
       this.review_images.push({

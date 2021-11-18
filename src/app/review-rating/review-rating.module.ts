@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ReviewRatingPageRoutingModule } from './review-rating-routing.module';
 
 import { ReviewRatingPage } from './review-rating.page';
+import { RatingComponent } from '../rating/rating.component';
 import { IonicRatingModule } from 'ionic4-rating';
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { IonicRatingModule } from 'ionic4-rating';
     ReviewRatingPageRoutingModule,
     IonicRatingModule
   ],
-  declarations: [ReviewRatingPage]
+  declarations: [ReviewRatingPage,RatingComponent]
 })
 export class ReviewRatingPageModule {}

@@ -8,6 +8,7 @@ import { MealIdeasPageRoutingModule } from './meal-ideas-routing.module';
 
 import { MealIdeasPage } from './meal-ideas.page';
 import { IonicRatingModule } from 'ionic4-rating';
+import { RatingComponent } from '../rating/rating.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { IonicRatingModule } from 'ionic4-rating';
     MealIdeasPageRoutingModule,
     IonicRatingModule
   ],
-  declarations: [MealIdeasPage]
+  declarations: [MealIdeasPage,RatingComponent]
 })
 export class MealIdeasPageModule {}

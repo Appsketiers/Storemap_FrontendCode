@@ -50,8 +50,10 @@ export class AppComponent {
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
-     
+      if (this.platform.is('android') || this.platform.is('ios')) {
         this.fcmNotification();
+      } 
+        
       
       
      // this.check_internet_connection();
