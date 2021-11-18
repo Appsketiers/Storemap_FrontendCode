@@ -30,11 +30,13 @@
                             ({{review_count}}) reviews</p> -->
 
                             <div style="justify-content: flex-start;" class="ratingCust" (click)="review_ratings()">
-                                <rating [rate]="avg_rating"
+                                <!-- <rating [rate]="avg_rating"
                                 [readonly] = "true"
                                 size = "small"
                                 >
-                          </rating> <span class="rat">({{review_count}}) reviews</span>
+                          </rating>  -->
+                          <app-rating [rating]="avg_rating"></app-rating>
+                          <span class="rat">({{review_count}}) reviews</span>
                         </div>
                         <span *ngIf="!is_reviewed" class="add_review" (click)="review_comment('ADD')">Add Review</span>
                         <span *ngIf="is_reviewed" class="add_review" (click)="review_comment('EDIT')">Edit Review</span>

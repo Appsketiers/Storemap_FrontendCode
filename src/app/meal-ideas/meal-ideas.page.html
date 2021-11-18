@@ -24,11 +24,14 @@
                     <div class="rating" (click)="review_ratings()">
                         <h5>{{authentic}}</h5>
                         <div style=" justify-content: flex-start;" class="ratingCust">
-                            <rating [rate]="avg_rating"
+                            <!-- <rating [rate]="avg_rating"
                             [readonly] = "true"
                             size = "12"
                             >
-                      </rating>
+                      </rating> -->
+
+                      <app-rating [rating]="avg_rating"></app-rating>
+
                       <span >({{total_review}} reviews)</span>
                     </div>
                     

@@ -17,11 +17,8 @@
         <p>{{item.comment}}</p>
       </ion-label>
       <div style=" justify-content: flex-start;" class="ratingCust">
-        <rating [rate]="item.rating"
-        [readonly] = "true"
-        size = "12"
-        >
-  </rating>
+        <!-- <div [data-rating]="item.rating" ></div> -->
+        <app-rating [rating]="item.rating"></app-rating>
   
 </div>
 

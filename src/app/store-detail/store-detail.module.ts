@@ -8,6 +8,7 @@ import { StoreDetailPageRoutingModule } from './store-detail-routing.module';
 
 import { StoreDetailPage } from './store-detail.page';
 import { IonicRatingModule } from 'ionic4-rating';
+import { RatingComponent } from '../rating/rating.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -16,6 +17,6 @@ import { IonicRatingModule } from 'ionic4-rating';
     StoreDetailPageRoutingModule,
     IonicRatingModule
   ],
-  declarations: [StoreDetailPage]
+  declarations: [StoreDetailPage,RatingComponent]
 })
 export class StoreDetailPageModule {}

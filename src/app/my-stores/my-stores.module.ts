@@ -7,6 +7,7 @@ import { IonicRatingModule } from 'ionic4-rating';
 import { MyStoresPageRoutingModule } from './my-stores-routing.module';
 
 import { MyStoresPage } from './my-stores.page';
+import { RatingComponent } from '../rating/rating.component';
 
 
 
@@ -18,6 +19,6 @@ import { MyStoresPage } from './my-stores.page';
     MyStoresPageRoutingModule,
     IonicRatingModule,
   ],
-  declarations: [MyStoresPage]
+  declarations: [MyStoresPage,RatingComponent]
 })
 export class MyStoresPageModule {}

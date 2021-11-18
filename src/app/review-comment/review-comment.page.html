@@ -12,7 +12,8 @@
   <div class="rate_review">
     <h2>Rate Your Experience</h2>
     <div class="rating_star">
-      <fieldset class="rating" style="width:70%;margin: 0% 15%;">
+      <div style="width: 100%;height: 20px;display: flex;justify-content: center;">
+      <fieldset class="rating" style="width:70%;margin: 0% 15%;" >
         <input type="radio" id="star5" name="rating" value="5" (click)="setValue('5')" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
         <input type="radio" id="star4half" name="rating" value="4 and a half" (click)="setValue('4.5')" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
         <input type="radio" id="star4" name="rating" value="4" (click)="setValue('4')" /><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
@@ -24,6 +25,7 @@
         <input type="radio" id="star1" name="rating" value="1" (click)="setValue('1')" /><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
         <input type="radio" id="starhalf" name="rating" value="half" (click)="setValue('0.5')" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
     </fieldset>
+  </div>
       <!-- <rating [(ngModel)]="rating"
         
       size="default"
