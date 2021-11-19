@@ -43,7 +43,7 @@ export class GroceryListSharePage implements OnInit {
         console.log(res);
         for (let i = 0; i < res.data.data.length; i++) {
           this.data.push(res.data.data[i]);
-          this.data[i].check=false;
+         // this.data[i].check=false;
           
           
         }
