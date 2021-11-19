@@ -56,8 +56,12 @@ ion-content {
     }
 
     ion-icon{
-height: 15px;
-width:15px;
+
+&.icon-delete{
+    &::before{
+        color: #CDCED2;
+    }
+}
     }
 
 
@@ -66,6 +70,7 @@ width:15px;
 .share_btn{
     margin:10px;
     color: #fff;
+    width: 50px;
 }
 
 .plac{

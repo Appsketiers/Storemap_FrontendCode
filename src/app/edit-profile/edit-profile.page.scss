@@ -68,6 +68,17 @@ ion-content {
 }
 
 
+.imgbox {
+  width:80px !important;
+  height: 80px !important;
+  
+  img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+  }
+}
+
   ion-icon {
     color: green !important;
     

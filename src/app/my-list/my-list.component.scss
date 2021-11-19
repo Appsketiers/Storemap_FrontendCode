@@ -13,6 +13,11 @@
             justify-content: flex-end;
             ion-icon{
                 margin: 0 5px;
+                &.icon-delete{
+                &::before{
+                    color: #CDCED2;
+                }
+                }
             }
            }
         }

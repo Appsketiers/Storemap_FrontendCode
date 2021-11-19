@@ -24,9 +24,16 @@
             justify-content: flex-end;
             ion-icon{
                 margin: 0 10px;
+                &.icon-delete{
+                    &::before{
+                        color: #CDCED2;
+                    }
+                }
                 &.edit{
+                    &::before{
                     color: #9D4CDF;
                 }
+            }
             }
            }
         }

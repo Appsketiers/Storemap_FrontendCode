@@ -7,7 +7,7 @@ import { ModalController } from '@ionic/angular';
 import { FilterComponent } from '../filter/filter.component';
 import { LocationService } from '../providers/location.service';
 import {Platform } from '@ionic/angular';
-
+import { Storage } from "@ionic/storage";
 @Component({
   selector: 'app-stores-list',
   templateUrl: './stores-list.page.html',
@@ -38,6 +38,7 @@ export class StoresListPage implements OnInit {
     private location_service: LocationService,
     private platform: Platform,
     private ngZone:NgZone,
+    private storage: Storage,
   ) {}
 
   ngOnInit() {
@@ -47,6 +48,12 @@ export class StoresListPage implements OnInit {
       console.log(this.list_id);
       console.log(this.title);
     });
+    
+    this.storage.get("store_filter").then((res) => {
+      console.log(res);
+            this.filter_value =res || 'MMP';
+            
+          })
 
     this.platform.ready().then(() => {
      if (this.platform.is('android' || 'ios')) {
@@ -152,11 +159,15 @@ export class StoresListPage implements OnInit {
     const modal = await this.modalController.create({
       component: FilterComponent,
       cssClass: 'option_modal',
+      componentProps: {
+        'filter_key': this.filter_value,
+         }
     });
 
     modal.onDidDismiss().then((data) => {
       console.log(data);
       this.filter_value = data.data;
+      this.storage.set("store_filter", this.filter_value);
       console.log(this.filter_value);
       this.page=1;
       this.data=[];

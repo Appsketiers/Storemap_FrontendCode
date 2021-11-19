@@ -31,7 +31,7 @@
         <span class="icon-Star-unfill"></span>
       </p> -->
     </ion-item>
-    <ion-item *ngIf="data[i].open">
+    <ion-item *ngIf="data[i].open && data[i].pictures.length>2">    
       <div class="review_images"   *ngFor="let image of review_images let i = index">
         <img src="{{image_url}}{{image}}">
       </div>

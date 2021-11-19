@@ -252,7 +252,12 @@ export class AppComponent {
           if (user) {
             setTimeout(() => {
               if(data.action == "SAFETY_AWARENESS") {
-                this.router.navigateByUrl('safety-awareness');
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    id: data.id,
+                  },
+                };
+                this.router.navigate(['safety-awareness-deatils'], navigationExtras);
               } else if(data.action == "SHOPPING_LIST") {
                 let navigationExtras: NavigationExtras = {
                   queryParams: {
@@ -289,7 +294,12 @@ export class AppComponent {
           if (user) {
             setTimeout(() => {
               if(data.action == "SAFETY_AWARENESS") {
-                this.router.navigateByUrl('safety-awareness');
+                let navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    id: data.id,
+                  },
+                };
+                this.router.navigate(['safety-awareness-deatils'], navigationExtras);
               } else if(data.action == "SHOPPING_LIST") {
                 let navigationExtras: NavigationExtras = {
                   queryParams: {
@@ -327,10 +337,15 @@ export class AppComponent {
           let that = this;
           console.log(data);
           if(data.data == "SAFETY_AWARENESS") {
+            let navigationExtras: NavigationExtras = {
+              queryParams: {
+                id: data.id,
+              },
+            };
             if (that.platform.is("android")) 
             that.helper.localNotifiationToast(data.text,'safety-awareness',data,function(status){
               if(status){
-                that.router.navigateByUrl('safety-awareness');
+               that.router.navigate(['safety-awareness-deatils'], navigationExtras);
               
             }
             });
@@ -368,7 +383,12 @@ export class AppComponent {
           this.clickSub = this.localNotifications.on('click').subscribe(data => {
             console.log(data);
             if(data.data == "SAFETY_AWARENESS") {
-              this.router.navigateByUrl('safety-awareness');
+              let navigationExtras: NavigationExtras = {
+                queryParams: {
+                  id: data.id,
+                },
+              };
+              this.router.navigate(['safety-awareness-deatils'], navigationExtras);
             } else if(data.data == "SHOPPING_LIST") {
               let navigationExtras: NavigationExtras = {
                 queryParams: {

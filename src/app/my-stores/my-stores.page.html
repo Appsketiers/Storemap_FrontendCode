@@ -52,6 +52,11 @@
     </ion-item>
     
   </ion-list>
+
+  <div class="plac" *ngIf="data.length<=0"> 
+    <ion-label>Stores Not Found</ion-label>
+  </div>
+
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
