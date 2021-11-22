@@ -16,7 +16,7 @@ export class TermsConditionsPage implements OnInit {
     //const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no'}); 
   }
   sanitizeUrl() {
-    return this.sanitize.bypassSecurityTrustResourceUrl('http://dev9server.com/store-mapps/page/terms-&-conditions')
+    return this.sanitize.bypassSecurityTrustResourceUrl('https://storemapps.co/page/terms-&-conditions')
 
   }
 }

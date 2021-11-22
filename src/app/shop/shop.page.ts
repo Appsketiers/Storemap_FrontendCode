@@ -30,7 +30,7 @@ export class ShopPage implements OnInit {
   slideOptsTwo = {
     initialSlide: 0,  
     slidesPerView: 3,
-    loop: true,
+    loop: false,
     centeredSlides: true,
     spaceBetween: 10
   };
@@ -38,13 +38,13 @@ export class ShopPage implements OnInit {
   slideOptsone = {
     initialSlide: 0,
     slidesPerView: 1,
-    loop: true,
+    loop: false,
     centeredSlides: true,
     spaceBetween: 10
   };
   isBeginningSlide: true;
   isEndSlide: false;
-  store_products;
+  store_products: any=[];
   heighlightedItem;
   user_location:any;
   store_location:any;
