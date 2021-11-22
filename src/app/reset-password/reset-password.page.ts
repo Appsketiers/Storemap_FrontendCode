@@ -55,7 +55,7 @@ export class ResetPasswordPage implements OnInit {
     this.submmited = true;
     if(!(this.repasswordForm.controls['password'].value === this.repasswordForm.controls['repassword'].value)){
       
-      this.helper.presentToast("Re-Type passwprd should be same.");
+      this.helper.presentToast("Re-Type password should be same.");
       return ;
     }
     if (this.repasswordForm.invalid) {
