@@ -167,7 +167,7 @@ export class TwoFactorPage implements OnInit {
 
           let body: any = {
             token: res,
-            device_token: device_token,
+            device_token: device_token ==null?'NOTFOUND':device_token,
             dont_ask: this.otpForm.controls['checkData'].value ? 1 : 0,
             two_factor: two_factor,
           };

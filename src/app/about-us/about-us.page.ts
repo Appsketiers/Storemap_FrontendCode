@@ -17,7 +17,7 @@ export class AboutUsPage implements OnInit {
   }
 
   sanitizeUrl() {
-    return this.sanitize.bypassSecurityTrustResourceUrl('http://dev9server.com/store-mapps/page/about-us')
+    return this.sanitize.bypassSecurityTrustResourceUrl('https://storemapps.co/page/about-us')
 
   }
 

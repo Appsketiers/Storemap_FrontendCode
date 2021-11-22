@@ -7,7 +7,7 @@
         <!-- <ion-icon slot="end"  (click)="editProfile()">
         </ion-icon> -->
         <ion-buttons slot="end">
-            <ion-icon style="color: white; font-size: 25px;" class="fii-2 icon-edit" (click)="editProfile()"></ion-icon>
+            <ion-icon style="color: white; font-size: 20px;" class="fii-2 icon-edit" (click)="editProfile()"></ion-icon>
         </ion-buttons>
         <!-- <ion-img slot="end" src='assets/img/edit.png' (click)="editProfile()"></ion-img> -->
     </ion-toolbar>
@@ -32,7 +32,7 @@
 
         <ion-item  lines="none" >
             <ion-label class="lable" (click)="notifications()">Notifications
-                <ion-badge >{{notification_count}}</ion-badge> </ion-label>
+                <ion-badge *ngIf="notification_count>0">{{notification_count}}</ion-badge> </ion-label>
                 <span class="icon-Arrow-right" slot="end"></span>
             <!-- <ion-toggle slot="end"  checked></ion-toggle> -->
         </ion-item>

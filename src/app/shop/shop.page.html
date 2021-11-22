@@ -21,7 +21,7 @@
   </div>
 
   <h6 style="text-align: center;" *ngIf="public_toilet==1">This Store has Public Toilet</h6>
-  <ion-grid>
+  <ion-grid *ngIf="matched_products.length>0">
     
       <img src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
       <ion-slides pager="false" [options]="slideOptsone" #slideWithNav1
@@ -47,11 +47,11 @@
       <img src="assets/img/right.png" (click)="slideNext(sliderOne,slideWithNav1)" alt="">
    
   </ion-grid>
-<div class="checkout">
+<div *ngIf="matched_products.length>0" class="checkout">
   <span (click)="checkout()">CHECK OUT</span>
 </div>
   <h6 class="heading">Other Products on Your List:</h6>
-  <ion-grid class="other_pro">
+  <ion-grid *ngIf="store_products.length>0" class="other_pro">
         
 
         <img src="assets/img/left.png" alt="" (click)="slidePrev(sliderTwo,slideWithNav2)"alt="">

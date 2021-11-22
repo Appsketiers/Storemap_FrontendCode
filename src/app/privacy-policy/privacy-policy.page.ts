@@ -17,7 +17,7 @@ export class PrivacyPolicyPage implements OnInit {
   }
 
   sanitizeUrl() {
-    return this.sanitize.bypassSecurityTrustResourceUrl('http://dev9server.com/store-mapps/page/privacy-policy')
+    return this.sanitize.bypassSecurityTrustResourceUrl('https://storemapps.co/page/privacy-policy')
 
   }
 }
