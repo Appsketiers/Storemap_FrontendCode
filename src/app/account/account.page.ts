@@ -18,18 +18,15 @@ export class AccountPage implements OnInit {
   notify:any;
   device_type;
   device_token;
-  constructor(private helper: HelperService, private device: Device, 
-    private router: Router, private iab: InAppBrowser,private storage: Storage,) { 
+  constructor(private helper: HelperService, private device: Device,
+    private router: Router, private iab: InAppBrowser,private storage: Storage,) {
 
       this.storage.get("Platform").then((data) => {
         this.device_type = data;
         console.log('Device Type -------', this.device_type);
         });
-    
-        this.storage.get("fcmtoken").then((data) => {
-          this.device_token = data;
-          console.log('Device FCM Token -------', this.device_token);
-          });
+
+
   }
 
   ngOnInit() {
@@ -38,7 +35,12 @@ export class AccountPage implements OnInit {
   }
   ionViewWillEnter(){
     this.imagebaseurl = environment.image_baseurl;
-    this. getDetail();
+    this.storage.get("fcmtoken").then((data) => {
+      this.device_token = data;
+      console.log('Device FCM Token -------', this.device_token);
+      this. getDetail();
+      });
+
   }
   changePassword(){
     let navigationExtras: NavigationExtras = {
@@ -51,12 +53,12 @@ export class AccountPage implements OnInit {
   editProfile(){
     let navigationExtras: NavigationExtras = {
       queryParams: {
-          "user": JSON.stringify(this.userDetail) 
+          "user": JSON.stringify(this.userDetail)
       }
     };
     this.router.navigate(["/main-account/edit-profile"],  navigationExtras);
   }
-  
+
   changeCheckBox(event){
 
   //  if(!event.detail.checked)
@@ -68,18 +70,18 @@ export class AccountPage implements OnInit {
         // name: "",
         token:res,
           email: this.userDetail.email,
-        
+
           // device_type: 'ANDROID',
           // device_token: this.device.uuid ? this.device.uuid : 'asdfghjk1234rtyu',
-         
-          
+
+
         }
         this.helper.postMethod('two-factor', body, async res => {
           console.log(res)
           //alert("test "+JSON.stringify(res));
           if(res.status)
           {
-            
+
             let otp = res.data
                   let navigationExtras: NavigationExtras = {
                     queryParams: {
@@ -89,16 +91,16 @@ export class AccountPage implements OnInit {
                         "isLogin": false,
                         "two_factor":this.userDetail.two_factor,
                         page:"accounts"
-                        
+
                     }
                   };
-              
+
                   this.router.navigate(["/main-account/two-factor"],  navigationExtras);
-      
+
           }
         //  this.router.navigate(['/auth/otp-verification'])
-          
-       
+
+
           this.helper.presentToast(res.message);
          // debugger
         }, err => {
@@ -110,18 +112,18 @@ export class AccountPage implements OnInit {
       })
   }
   aboutus(){
-   // const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', fullscreen: "no", toolbar:'yes'}); 
+   // const browser = this.iab.create('http://dev9server.com/store-mapps/page/about-us','_self',{location:'no', fullscreen: "no", toolbar:'yes'});
    // debugger
    // this.router.navigate(['/terms-conditions'])
    this.router.navigate(['/about-us']);
   }
   tandc(){
-    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/terms-&-conditions','_self',{location:'no'}); 
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/terms-&-conditions','_self',{location:'no'});
    // debugger
    this.router.navigate(['/terms-conditions'])
   }
   pandp(){
-    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'}); 
+    //const browser = this.iab.create('http://dev9server.com/store-mapps/page/privacy-policy','_self',{location:'no'});
     this.router.navigate(['/privacy-policy'])
   }
   getDetail(){
@@ -129,28 +131,28 @@ export class AccountPage implements OnInit {
       let body: any = {
         token:res,
         device_token: this.device_token ==null?'NOTFOUND':this.device_token,
-   
-        
+
+
       }
       this.helper.getMethod('get-profile', body, res => {
         console.log(res)
       if(res.status){
       this.userDetail = res.data;
       this.notification_count = this.userDetail.notification;
-      localStorage.setItem("User",JSON.stringify(res.data)); 
+      localStorage.setItem("User",JSON.stringify(res.data));
       this.helper.setKeyValueNew('storeuser',res.data);
       this.helper.setsocketObs(res.data);
       this.two_factor = res.data.two_factor
         //this.helper.clearStorageNew();
       //  this.router.navigate(['/auth'])
       }
-     
+
        // this.helper.presentToast(res.message);
-      
+
        // debugger
       }, err => {
         console.log(err)
-    
+
       });
     })
   }

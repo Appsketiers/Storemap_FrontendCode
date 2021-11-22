@@ -135,7 +135,8 @@
       },
       "cordova-plugin-nativeaudio": {},
       "cordova-plugin-stripe": {},
-      "cordova-plugin-local-notification": {}
+      "cordova-plugin-local-notification": {},
+      "cordova-plugin-fcm-with-dependecy-updated": {}
     },
     "platforms": [
       "ios",

@@ -49,16 +49,19 @@ export class AppComponent {
       setTimeout(() => {
         this.splashScreen.hide();
       }, 2000);
-      
+
       this.backbuttonhandalService.init();
       this.statusBar.backgroundColorByHexString('#9D4CDF');
       this.savePlatformType();
       if (this.platform.is('android') || this.platform.is('ios')) {
-        this.fcmNotification();
-      } 
-        
-      
-      
+        setTimeout(() => {
+          this.fcmNotification();
+        }, 500);
+
+      }
+
+
+
      // this.check_internet_connection();
      if(localStorage.getItem("User")){
       let user = JSON.parse(localStorage.getItem("User"));
@@ -68,14 +71,14 @@ export class AppComponent {
         this.router.navigate(["/main-home"]);
       }else{
         this.router.navigate(["/auth"]);
-       
+
       }
      }
-     
+
      this.nativeStorage.getItem("storeuser").then(
        data => {
          console.log("sam",data);
-         
+
          console.log("Hello 11" );
          console.log(data)
          this.router.navigate(["/main-home"]);
@@ -90,9 +93,9 @@ export class AppComponent {
            this.router.navigate(["/main-home"]);
          }else{
            this.router.navigate(["/auth"]);
-          
+
          }
-   
+
        }
      );
       window.addEventListener('offline', () => {
@@ -172,7 +175,7 @@ export class AppComponent {
   logout() {
     this.helper.getByKeynew('storetoken', (res) => {
       this.storage.get("fcmtoken").then(async(device_token) => {
-        
+
         const alert = await this.alertController.create({
           cssClass: 'logoutcss',
           header: 'Confirm!',
@@ -189,7 +192,7 @@ export class AppComponent {
             {
               text: 'Okay',
               handler: () => {
-              
+
                 let body: any = {
                   token: res,
                   device_token:device_token || "WEB" ,
@@ -227,7 +230,7 @@ export class AppComponent {
 
 
   fcmNotification() {
-    console.log("FCM IN");
+    console.log("FCM IN");debugger;
     this.fcm.requestPushPermission().then((data)=> {
       console.log("request permission", data);
       this.storage.get("fcmtoken").then((token) => {
@@ -247,44 +250,47 @@ export class AppComponent {
     });
     this.fcm.getInitialPushPayload().then((data) => {
       console.log('kill mode ---------',data);
-      if (data.wasTapped) {
-        this.nativeStorage.getItem("storeuser").then((user) => {
-          if (user) {
-            setTimeout(() => {
-              if(data.action == "SAFETY_AWARENESS") {
-                let navigationExtras: NavigationExtras = {
-                  queryParams: {
-                    id: data.id,
-                  },
-                };
-                this.router.navigate(['safety-awareness-deatils'], navigationExtras);
-              } else if(data.action == "SHOPPING_LIST") {
-                let navigationExtras: NavigationExtras = {
-                  queryParams: {
-                    page: 'app_com',
-                  },
-                };
-                this.router.navigate(['shopping-lists'], navigationExtras);
-            
-              } 
+      if(data) {
+        if (data.wasTapped) {
+          this.nativeStorage.getItem("storeuser").then((user) => {
+            if (user) {
+              setTimeout(() => {
+                if(data.action == "SAFETY_AWARENESS") {
+                  let navigationExtras: NavigationExtras = {
+                    queryParams: {
+                      id: data.id,
+                    },
+                  };
+                  this.router.navigate(['safety-awareness-deatils'], navigationExtras);
+                } else if(data.action == "SHOPPING_LIST") {
+                  let navigationExtras: NavigationExtras = {
+                    queryParams: {
+                      page: 'app_com',
+                    },
+                  };
+                  this.router.navigate(['shopping-lists'], navigationExtras);
 
-              else if(data.action== "COMPLETE_ORDER"){
-                let navigationExtras: NavigationExtras = {
-                  queryParams: {
-                    id: data.id,
-                  },
-                };
-                this.router.navigate(['past-orders1'], navigationExtras);
-              }
-            }, 2000);
-           
+                }
 
-            console.log("usre, data",user,data);
-          } else {
-            this.router.navigate(['/auth']);
-          }
-        });
+                else if(data.action== "COMPLETE_ORDER"){
+                  let navigationExtras: NavigationExtras = {
+                    queryParams: {
+                      id: data.id,
+                    },
+                  };
+                  this.router.navigate(['past-orders1'], navigationExtras);
+                }
+              }, 2000);
+
+
+              console.log("usre, data",user,data);
+            } else {
+              this.router.navigate(['/auth']);
+            }
+          });
+        }
       }
+
     });
     this.fcm.onNotification().subscribe((data) => {
       console.log(data);
@@ -307,8 +313,8 @@ export class AppComponent {
                   },
                 };
                 this.router.navigate(['shopping-lists'], navigationExtras);
-            
-              } 
+
+              }
 
               else if(data.action== "COMPLETE_ORDER"){
                 let navigationExtras: NavigationExtras = {
@@ -319,7 +325,7 @@ export class AppComponent {
                 this.router.navigate(['past-orders1'], navigationExtras);
               }
             }, 2000);
-           
+
 
             console.log("usre, data",user,data);
           } else {
@@ -331,8 +337,8 @@ export class AppComponent {
         console.info("Received in foreground", data);
        // if (!this.platform.is("android")) {
         //  this.helper.presentToast(data.aps.alert.body);
-         
-        
+
+
         let listenSub = this.localNotifications.on('trigger').subscribe(data => {
           let that = this;
           console.log(data);
@@ -342,36 +348,36 @@ export class AppComponent {
                 id: data.id,
               },
             };
-            if (that.platform.is("android")) 
+            if (that.platform.is("android"))
             that.helper.localNotifiationToast(data.text,'safety-awareness',data,function(status){
               if(status){
                that.router.navigate(['safety-awareness-deatils'], navigationExtras);
-              
+
             }
             });
-            
+
           } else if(data.data == "SHOPPING_LIST") {
             let navigationExtras: NavigationExtras = {
               queryParams: {
                 page: 'app_com',
               },
             };
-            
-            if (that.platform.is("android")) 
+
+            if (that.platform.is("android"))
             that.helper.localNotifiationToast(data.text,'shopping-lists',navigationExtras, function(status){
               if(status){
                 that.router.navigate(['shopping-lists'], navigationExtras);
               }
             });
-          } 
+          }
           else if(data.data== "COMPLETE_ORDER"){
             let navigationExtras: NavigationExtras = {
               queryParams: {
                 id: data.id,
               },
             };
-            
-            if (that.platform.is("android")) 
+
+            if (that.platform.is("android"))
             that.helper.localNotifiationToast(data.text,'past-orders1',navigationExtras, function(status){
               if(status){
                 that.router.navigate(['past-orders1'], navigationExtras);
@@ -396,7 +402,7 @@ export class AppComponent {
                 },
               };
               this.router.navigate(['shopping-lists'], navigationExtras);
-            } 
+            }
             else if(data.data== "COMPLETE_ORDER"){
               let navigationExtras: NavigationExtras = {
                 queryParams: {
@@ -416,10 +422,10 @@ export class AppComponent {
           // text: 'Single Local Notification',
           // data: { secret: 'secret' }
           // });
-          
 
 
-      
+
+
 
         // } else {
         //   this.helper.presentToast(data.body);
@@ -438,7 +444,7 @@ export class AppComponent {
     } else if (this.platform.is("ios")) {
       this.storage.set("Platform", "IOS");
       //this.Config.setConf("device_type", "IOS");
-    } 
+    }
   }
 
   sample() {
