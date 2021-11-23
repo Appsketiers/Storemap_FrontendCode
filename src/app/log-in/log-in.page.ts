@@ -40,15 +40,7 @@ export class LogInPage implements OnInit {
   ) {
     this.helper.clearStorageNew();
 
-    this.storage.get("Platform").then((data) => {
-      this.device_type = data;
-      console.log('Device Type -------', this.device_type);
-      });
-  
-      this.storage.get("fcmtoken").then((data) => {
-        this.device_token = data;
-        console.log('Device FCM Token -------', this.device_token);
-        });
+
   }
 
   ngOnInit() {
@@ -59,6 +51,10 @@ console.log(this.rem);
     })
   }
   ionViewWillEnter() {
+    this.storage.get("Platform").then((data) => {
+      this.device_type = data;
+      console.log('Device Type -------', this.device_type);
+      });
     this.routerOutlet.swipeGesture = false;
     //this.createForm();
     this.helper.clearStorageNew();
@@ -107,6 +103,10 @@ console.log(this.rem);
   }
 
   loginSubmit() {
+      this.storage.get("fcmtoken").then((data) => {
+        this.device_token = data;
+        console.log('Device FCM Token -------', this.device_token);
+
     if (this.loginForm.controls['email'].value == '') {
       this.email_req = true;
     }
@@ -219,7 +219,7 @@ console.log(this.rem);
                   console.log(res1);
                   //alert("test "+JSON.stringify(res));
                   if (res1.status) {
-                    localStorage.setItem("User",JSON.stringify(res.data)); 
+                    localStorage.setItem("User",JSON.stringify(res.data));
                     this.helper.setKeyValueNew('storeuser', res.data);
                     this.helper.setKeyValueNew('storetoken', res.data.token);
                     let otp = res1.data;
@@ -270,6 +270,7 @@ console.log(this.rem);
         // debugger
       }
     );
+  });
   }
   getFormControl(name) {
     return this.loginForm.get(name);

@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>764866105536-bets79a8ot04b8tvj8im1ogqgjrp75vf.apps.googleusercontent.com</string>
+	<string>764866105536-5biloahj9bvqd31r4lngqpo6c6ecrulp.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.764866105536-bets79a8ot04b8tvj8im1ogqgjrp75vf</string>
+	<string>com.googleusercontent.apps.764866105536-5biloahj9bvqd31r4lngqpo6c6ecrulp</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCWwR1TU4f1PUVgwfMxu2JiF765ys3hJPQ</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.storemap.iosapp</string>
+	<string>com.nhz.storemapp</string>
 	<key>PROJECT_ID</key>
 	<string>werzat-storemapps</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:764866105536:ios:45fa8d463877b49505dd25</string>
+	<string>1:764866105536:ios:fe9c1676108e671f05dd25</string>
 </dict>
 </plist>

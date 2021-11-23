@@ -56,7 +56,7 @@ export class AppComponent {
       if (this.platform.is('android') || this.platform.is('ios')) {
         setTimeout(() => {
           this.fcmNotification();
-        }, 500);
+        }, 200);
 
       }
 
@@ -245,9 +245,10 @@ export class AppComponent {
             console.log(error);
           });
       } else {
-       // this.Config.setConf("device_id", token);
+        this.storage.set("fcmtoken", token);
       }
     });
+  });
     this.fcm.getInitialPushPayload().then((data) => {
       console.log('kill mode ---------',data);
       if(data) {
@@ -434,7 +435,7 @@ export class AppComponent {
       }
     });
     this.fcm.onTokenRefresh().subscribe((token) => {});
-  })
+  // })
   }
 
   savePlatformType() {

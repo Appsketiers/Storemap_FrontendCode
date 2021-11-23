@@ -33,7 +33,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot({animated:false}), 
+  imports: [BrowserModule, IonicModule.forRoot({animated:false}),
     IonicStorageModule.forRoot({
       driverOrder: [Drivers.IndexedDB, Drivers.LocalStorage]
     }),
