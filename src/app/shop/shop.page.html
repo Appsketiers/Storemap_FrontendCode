@@ -23,8 +23,8 @@
   <h6 style="text-align: center;" *ngIf="public_toilet==1">This Store has Public Toilet</h6>
   <ion-grid *ngIf="matched_products.length>0">
     
-      <img src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
-      <ion-slides pager="false" [options]="slideOptsone" #slideWithNav1
+      <img [style.filter]="matched_products.length==1 ? 'opacity(0.5)': 'opacity(1)'" style="position: absolute;z-index: 9999;left: 4px;" src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
+      <ion-slides style="margin: 0px 23px;" pager="false" [options]="slideOptsone" #slideWithNav1
 (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav1)">
 <ion-slide *ngFor="let s of matched_products" (click)="highlight(s.id)">
     <ion-row *ngIf="s.is_match">
@@ -44,28 +44,32 @@
     </ion-row>
   </ion-slide>
 </ion-slides>
-      <img src="assets/img/right.png" (click)="slideNext(sliderOne,slideWithNav1)" alt="">
+      <img [style.filter]="matched_products.length==1 ? 'opacity(0.5)': 'opacity(1)'" style="position: absolute;z-index: 9999;right: 4px;" src="assets/img/right.png" (click)="slideNext(sliderOne,slideWithNav1)" alt="">
    
   </ion-grid>
 <div *ngIf="matched_products.length>0" class="checkout">
   <span (click)="checkout()">CHECK OUT</span>
 </div>
-  <h6 class="heading">Other Products on Your List:</h6>
-  <ion-grid *ngIf="store_products.length>0" class="other_pro">
+  <h6 *ngIf="store_products.length>0" class="heading">Other Products on Your List:</h6>
+  <div *ngIf="store_products.length>0" style="position: relative;">
         
 
-        <img src="assets/img/left.png" alt="" (click)="slidePrev(sliderTwo,slideWithNav2)"alt="">
-    <ion-row>
-
-      <ion-col size="12">
-  <ion-slides pager="false" [options]="slideOptsTwo" #slideWithNav2
+        <img [style.filter]="store_products.length==1 ? 'opacity(0.5)': 'opacity(1)'" style="    position: absolute;
+        z-index: 9999;
+        left: 4px; top: 25px;" src="assets/img/left.png" alt="" (click)="slidePrev(sliderTwo,slideWithNav2)"alt="">
+   
+  <ion-slides style="margin: 0px 25px;" pager="false" [options]="slideOptsTwo" #slideWithNav2
 (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)">
 <ion-slide *ngFor="let s of store_products">
-<img (click)="shopping_list()" style="height: 80px; width: 80px;"  src="{{image_url}}{{s.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'">
+  <div style="height: 80px; width: 80px; object-fit: fill;">
+    <img (click)="shopping_list()" style="height: 100%; width: 100%;"  src="{{image_url}}{{s.images[0]}}" onerror="this.src='../../assets/img/item_placeholder.png'">
+  </div>
 </ion-slide>
 </ion-slides>
-      </ion-col>
-    </ion-row>
-    <img src="assets/img/right.png" alt="" (click)="slideNext(sliderTwo,slideWithNav2)">
-  </ion-grid>
+   
+    <img [style.filter]="store_products.length==1 ? 'opacity(0.5)': 'opacity(1)'" style="    position: absolute;
+    z-index: 9999;
+    right: 4px;
+    top: 25px;" src="assets/img/right.png" alt="" (click)="slideNext(sliderTwo,slideWithNav2)">
+</div>
 </ion-content>

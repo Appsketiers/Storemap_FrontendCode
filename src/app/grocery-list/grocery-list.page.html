@@ -47,7 +47,7 @@
             
             <ion-label>
                 <span slot="start"><img class="img" src={{image_url}}{{item.images[0]}} onerror="this.src='../../assets/img/item_placeholder.png'" alt=""></span>
-                {{item.name}} ({{item.quantity}})</ion-label>
+                {{item.name}} <span *ngIf="item?.quantity">({{item.quantity}})</span></ion-label>
                 <span (click)="add_item(item.id,i)" *ngIf="!checkForItem(item.id)" class="icon-add" slot="end"></span>
                 <ion-icon slot="end" class="fii-2 icon-delete" (click)="confirm(item.id)" *ngIf="checkForItem(item.id)"></ion-icon>
         </ion-item>
