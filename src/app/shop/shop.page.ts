@@ -28,7 +28,7 @@ export class ShopPage implements OnInit {
   heighlightId = 0;
   image_url = environment.image_baseurl;
   slideOptsTwo = {
-    initialSlide: 0,  
+    initialSlide: 1,  
     slidesPerView: 3,
     loop: false,
     centeredSlides: true,
