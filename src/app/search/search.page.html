@@ -38,7 +38,12 @@
 
    <div *ngIf="data.length>0" class="listing">
     <div class="list_box">
-      <p *ngFor="let item of data" (click)="open_details(item.id, item.type)">{{item.title}}</p>
+      <p *ngFor="let item of data" (click)="open_details(item.id, item.type)">{{item.title}}
+
+        <span *ngIf="item.type == 'MEAL' " style="float: right; color: grey;" slot="end">In Meal Ideas</span>
+        <span *ngIf="item.type == 'RECOMMENDED_MEAL' " style="float: right; color: grey;" slot="end">In Recommended List</span>
+        <span *ngIf="item.type == 'SHOPPING_LIST' " style="float: right; color: grey;" slot="end">In Shopping List</span>
+      </p>
     </div>
     </div>
 

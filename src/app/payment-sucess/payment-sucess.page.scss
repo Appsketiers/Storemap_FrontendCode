@@ -1,7 +1,7 @@
 ion-content{
     .payment_se {
         text-align: center;
-        padding: 90px 0 0;
+        margin-top: 50%;
         h4 {
             font-size: 16px;
             font-weight: bold;
@@ -12,4 +12,8 @@ ion-content{
             color: #000;
         }
     }
+}
+.fir{
+    position: relative;
+    
 }

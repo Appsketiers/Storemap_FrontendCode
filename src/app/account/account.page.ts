@@ -138,11 +138,12 @@ export class AccountPage implements OnInit {
         console.log(res)
       if(res.status){
       this.userDetail = res.data;
-      this.notification_count = this.userDetail.notification;
+      this.notification_count = this.userDetail.notification_count;
       localStorage.setItem("User",JSON.stringify(res.data));
       this.helper.setKeyValueNew('storeuser',res.data);
       this.helper.setsocketObs(res.data);
-      this.two_factor = res.data.two_factor
+      this.two_factor = res.data.two_factor;
+      this.notify = res.data.notification;
         //this.helper.clearStorageNew();
       //  this.router.navigate(['/auth'])
       }
@@ -162,7 +163,34 @@ export class AccountPage implements OnInit {
   }
 
   notification_toggle(ev){
-    console.log(this.notify);
+    let status;
+console.log(ev.detail.checked);
+if(ev.detail.checked){
+status =1;
+}
+else{
+  status=0;
+}
+this.helper.getByKeynew('storetoken', res=>{
+  let body: any = {
+    token:res,
+    status:status,
+    device_token: this.device_token ==null?'NOTFOUND':this.device_token,
+
+
+  }
+  this.helper.postMethod('toggle-notification', body, res => {
+    console.log(res)
+  if(res.status){
+ 
+  }
+
+  }, err => {
+    console.log(err)
+
+  });
+})
+
   }
   ionViewDidEnter() {
     this.imagebaseurl = environment.image_baseurl;

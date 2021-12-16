@@ -32,9 +32,9 @@
 
         <ion-item  lines="none" >
             <ion-label class="lable" (click)="notifications()">Notifications
-                <ion-badge *ngIf="notification_count>0">{{notification_count}}</ion-badge> </ion-label>
-                <span class="icon-Arrow-right" slot="end"></span>
-            <!-- <ion-toggle slot="end"  checked></ion-toggle> -->
+                <ion-badge style="display: flex; justify-content: center; text-align: center;" *ngIf="notification_count>0">{{notification_count}}</ion-badge> </ion-label>
+                <!-- <span class="icon-Arrow-right" slot="end"></span> -->
+            <ion-toggle slot="end"  [(ngModel)]="notify" (ionChange)="notification_toggle($event)"></ion-toggle>
         </ion-item>
         
         <!-- <ion-item lines="none" routerLink="/manage-payments">
