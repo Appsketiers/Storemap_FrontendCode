@@ -143,8 +143,8 @@ this.router.navigate(['/stores-list'], navigationExtras)
       let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id };
       this.helper.postMethod('store-blueprint', body, (res) => {
         console.log(res);
-        this.row = res.data.grid.row+1;
-        this.col = res.data.grid.col+1;
+        this.row = res.data.grid.row;
+        this.col = res.data.grid.col;
         this.request = res.data;
         this.arrangement = this.request.arrangement;
         console.log(this.arrangement);
