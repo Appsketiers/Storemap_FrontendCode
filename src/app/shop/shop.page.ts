@@ -138,7 +138,7 @@ this.router.navigate(['/stores-list'], navigationExtras)
     }
   }
   ngOnInit() {
-
+// changes
     this.helper.getByKeynew('storetoken', (res) => {
       let body: any = { token: res, store_id: this.store_id, shopping_list_id: this.list_id };
       this.helper.postMethod('store-blueprint', body, (res) => {
