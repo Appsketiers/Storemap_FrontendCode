@@ -29,7 +29,7 @@
       <ion-label slot="end" style="text-align: right">
         <ion-icon *ngIf="item.is_favourite==0" name="heart-outline" (click)="like(item.id,1, i)"></ion-icon>  
         <ion-icon class="heart" *ngIf="item.is_favourite==1" name="heart" (click)="like(item.id,0,i)"></ion-icon> 
-        <p>{{item.match_count}} products match</p>
+        <p>{{item.match_count}}/{{total_items}} products match</p>
       </ion-label>
     </ion-item>
   </ion-list>

@@ -29,6 +29,7 @@ export class StoresListPage implements OnInit {
   FTN: any = false;
   filter_value = 'MMP';
   user_location:any;
+  total_items;
   constructor(
     public alertController: AlertController,
     private router: Router,
@@ -45,8 +46,10 @@ export class StoresListPage implements OnInit {
     this.route.queryParams.subscribe((params) => {
       this.list_id = params['id'];
       this.title = params['title'];
+      this.total_items = params['total_items'];
       console.log(this.list_id);
       console.log(this.title);
+      console.log(this.total_items);
     });
     
     this.storage.get("store_filter").then((res) => {
