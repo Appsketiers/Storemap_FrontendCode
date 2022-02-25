@@ -8,13 +8,26 @@
 
 <ion-content>
 
+  <!-- <div class="map">
+    <ion-row *ngFor="let item of [].constructor(row) let i = index">
+      <ion-col
+        style="height: 30px"
+        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData3(i,j)=='ISLE' ? '#eaa800' : '' && getData3(i,j)=='PRODUCT' ? '#31be9f' : '' && getData3(i,j)=='INDOOR' ? '#f9cbb6' : ''"  >
+        <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
+         <img (click)="show_details(i)" [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
+        </div> 
+      </ion-col>
+    </ion-row>
+  </div> -->
+
   <div class="map">
     <ion-row *ngFor="let item of [].constructor(row) let i = index">
       <ion-col
         style="height: 30px"
-        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData(i,j) ? '#301934' : ''"  >
+        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData3(i,j)=='ISLE' ? '#FFD700' : getData3(i,j)=='PRODUCT' ? '#301934' : getData3(i,j)=='INDOOR' ? '#964B00' : ''"  >
         <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
-         <img [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
+         <img (click)="show_details(i, j)" [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
+         <h6 class="count" *ngIf="getData2(i,j) != '' && count(i,j)>1">{{count(i,j)}}</h6>
         </div> 
       </ion-col>
     </ion-row>

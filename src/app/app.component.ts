@@ -230,7 +230,7 @@ export class AppComponent {
 
 
   fcmNotification() {
-    console.log("FCM IN");debugger;
+    console.log("FCM IN");
     this.fcm.requestPushPermission().then((data)=> {
       console.log("request permission", data);
       this.storage.get("fcmtoken").then((token) => {

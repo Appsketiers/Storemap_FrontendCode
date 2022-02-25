@@ -120,7 +120,8 @@ export class StoresListPage implements OnInit {
         id:this.list_id,
         title:this.title,
         store_id:id,
-        user_location:JSON.stringify(this.user_location)
+        user_location:JSON.stringify(this.user_location),
+        total_items:this.total_items
       },
     };
     this.router.navigate(['/store-detail'], navigationExtras);

@@ -3,6 +3,8 @@ import { environment } from 'src/environments/environment';
 import { HelperService } from '../providers/helper.service';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { ProductDetailsComponent } from '../product-details/product-details.component';
 import * as _ from "lodash";
 @Component({
   selector: 'app-shop',
@@ -15,6 +17,7 @@ export class ShopPage implements OnInit {
   row: any;
   col: any;
   request;
+  color = '#b68e41';
   list_id: any;
   store_id: any;
   title:any;
@@ -48,8 +51,10 @@ export class ShopPage implements OnInit {
   heighlightedItem;
   user_location:any;
   store_location:any;
+  total_items:any;
   constructor(private helper: HelperService,   private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    public modalController: ModalController,) {
 
       this.route.queryParams.subscribe((params) => {
         this.list_id = params['id'];
@@ -59,6 +64,8 @@ export class ShopPage implements OnInit {
         this.public_toilet = params['public_toilet'];
         this.user_location = JSON.parse(params['user_location']);
         this.store_location = JSON.parse(params['store_location']);
+this.total_items = JSON.parse(params['total_items']);
+console.log('total_items', this.total_items);
         console.log('user_location', this.user_location);
         console.log('store location', this.store_location);
         console.log(this.list_id);
@@ -75,10 +82,30 @@ export class ShopPage implements OnInit {
    getData(i, j) {
     if(this.request){
       return this.request.arrangement.findIndex((el)=>{
+        // console.log('type test -----', el.region_type);
         return (el.row == i && el.col == j)
+
+        
       }) != -1 ? true : false; 
+      
     }
   return false;    
+  }
+
+   getData3(i, j) {
+      //console.log( i, j,);
+     
+    if(this.request){
+      for (const iterator of this.request.arrangement) {
+        if(iterator.row == i && iterator.col == j) {
+        return  iterator.region_type
+        }
+      }
+      // return this.request.arrangement.findIndex((el)=>{
+      //   console.log('type test -----', el.region_type);
+      
+      // })
+    }
   }
   getData2(i,j){
     if(this.request){
@@ -116,6 +143,13 @@ export class ShopPage implements OnInit {
         }
         return item[0].item_detail[0].image ? item[0].item_detail[0].image : '';
       }
+      else if(item[0].item_detail.length > 0 && item[0].region_type == "ISLE"){
+        let Len =  item[0].item_detail.filter(ele2=>{return ele2.id === this.heighlightId})
+        if(Len.length > 0 ){
+          return Len[0].image;
+        }
+        return item[0].item_detail[0].image ? item[0].item_detail[0].image : '';
+      }
        
         } 
       }
@@ -127,7 +161,8 @@ export class ShopPage implements OnInit {
       queryParams: {
         id: this.list_id,
         store_id: this.store_id,
-        title:this.title
+        title:this.title,
+        total_items:this.total_items
       },
     };
     if(this.page == 'my_store'){
@@ -263,5 +298,49 @@ highlight(id){
         this.isEndSlide = istrue;
       });
     }
+
+  async show_details(i, j){
+    
+
+
+
+      let item = this.request.arrangement.filter((el)=>{
+        return (el.row == i && el.col == j)
+      }); 
+      // console.log(item,i,j);
+      if(item.length > 0){
+        if(item[0].item_detail.length > 0 && item[0].region_type == "PRODUCT"){
+      const modal = await this.modalController.create({
+        component: ProductDetailsComponent,
+        cssClass: 'option_modal',
+        componentProps: {
+          'products': JSON.stringify(item[0]),
+           }
+      });
+  
+      modal.onDidDismiss().then((data) => {
+        console.log(data);
+       
+      });
+  
+      return await modal.present();
+      }
+    }
+
+}
+
+count(i,j){
+  let item = this.request.arrangement.filter((el)=>{
+    return (el.row == i && el.col == j)
+  }); 
+  if(item.length > 0){
+  if(item[0].item_detail.length>1 && item[0].region_type=="PRODUCT"){
+    return item[0].item_detail.length
+  }
+  }
+{
+
+}
+}
 
 }

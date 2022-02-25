@@ -30,6 +30,7 @@ is_reviewed;
 review: any;
 user_location:any;
 store_location:any;
+total_items:any;
   constructor(private router: Router,
     private helper: HelperService,
     private route: ActivatedRoute,) { }
@@ -41,6 +42,7 @@ store_location:any;
       this.title=params['title'];
 this.page = params['page'];
 this.user_location = JSON.parse(params['user_location']);
+this.total_items = JSON.parse(params['total_items']);
       console.log(this.list_id, this.title, this.store_id);
 console.log('user location', this.user_location);
       this.helper.get_location((data) => {
@@ -102,7 +104,8 @@ console.log('Update---',this.update);
         page:this.page,
         public_toilet:this.public_toilet,
         user_location:JSON.stringify(this.user_location),
-        store_location:JSON.stringify(this.store_location)
+        store_location:JSON.stringify(this.store_location),
+        total_items:this.total_items,
       },
     };
 

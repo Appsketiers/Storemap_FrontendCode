@@ -16,12 +16,12 @@ ion-header {
 
 ion-content {
     .map {
-        padding: 20px;
-        background-color:plum;
+       // padding: 20px;
+        background-color:black;
         img {
             width:100%;
             height:100%;
-            border-radius: 50%;
+           // border-radius: 50%;
             position: absolute;
             top: 0;
             left: 0;
@@ -75,7 +75,7 @@ ion-content {
                     }
                     h4 {
                         font-size: 13px;
-                        text-align: left;
+                        text-align: center;
                         color: #4a4a4a;
                         margin: 10px 0px 0;
                     }
@@ -149,4 +149,17 @@ ion-content {
 .scrl{
     overflow-y: scroll;
     height: 92px;
+}
+
+.count{
+    position: absolute !important;
+    right: 0px;
+    top: 0px;
+    background: white;
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    display: inline-table;
+    font-size: 0.8rem;
 }
