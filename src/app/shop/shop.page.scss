@@ -17,7 +17,7 @@ ion-header {
 ion-content {
     .map {
        // padding: 20px;
-        background-color:black;
+        background-color:lightgray;
         img {
             width:100%;
             height:100%;
@@ -148,7 +148,7 @@ ion-content {
 
 .scrl{
     overflow-y: scroll;
-    height: 92px;
+    height: 52px;
 }
 
 .count{
@@ -162,4 +162,10 @@ ion-content {
     text-align: center;
     display: inline-table;
     font-size: 0.8rem;
+}
+
+.check_isle{
+    background:  #FFD700;
+    text-align: center;
+    
 }

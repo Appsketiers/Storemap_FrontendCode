@@ -26,6 +26,7 @@ export class ShopPage implements OnInit {
   page;
   public_toilet;
   matched_products: any=[];
+  matched_products_index:any=[];
   arrangement: any=[];
   map_items:any=[];
   heighlightId = 0;
@@ -52,6 +53,7 @@ export class ShopPage implements OnInit {
   user_location:any;
   store_location:any;
   total_items:any;
+  last_iale_row_col = {row:[],col:[]};
   constructor(private helper: HelperService,   private router: Router,
     private route: ActivatedRoute,
     public modalController: ModalController,) {
@@ -94,18 +96,44 @@ console.log('total_items', this.total_items);
 
    getData3(i, j) {
       //console.log( i, j,);
-     
-    if(this.request){
+      //console.log(this.last_iale_row_col,"last_iale_row_col");
+      if(this.request){
+      let tempvar = 0;  
+      let last_index_row = 0 ;
+      let last_index_col = 0;
       for (const iterator of this.request.arrangement) {
         if(iterator.row == i && iterator.col == j) {
-        return  iterator.region_type
+          console.log(iterator,"last_index")
+          this.request.arrangement[tempvar].side = (last_index_col < j && last_index_row == i) ? "row" : "col";
+          last_index_col = iterator.col;
+          last_index_row = iterator.row;
+          /*if(iterator.region_type == 'ISLE'){
+            this.last_iale_row_col.row.push(i);
+            this.last_iale_row_col.col.push(j); 
+          }*/
+         return  iterator.region_type;
         }
+        tempvar++;
+      }
       }
       // return this.request.arrangement.findIndex((el)=>{
       //   console.log('type test -----', el.region_type);
       
       // })
+    
+  }
+
+
+  getData4(i,j){
+    if(this.request){
+    let item = this.request.arrangement.filter((el)=>{
+      return (el.row == i && el.col == j)
+    }); 
+    if(item.length>0){
+      return item[0].side == "row" ? "-" : "|"
     }
+  }
+  return '|';
   }
   getData2(i,j){
     if(this.request){
@@ -181,6 +209,12 @@ this.router.navigate(['/stores-list'], navigationExtras)
         this.row = res.data.grid.row;
         this.col = res.data.grid.col;
         this.request = res.data;
+        this.request.arrangement = this.request.arrangement.map(el=>{
+          let o = Object.assign({},el);
+          o.side = '';
+          return o;
+        });
+        console.log(this.request.arrangement,"this.request.arrangement");
         this.arrangement = this.request.arrangement;
         console.log(this.arrangement);
         console.log(this.row, this.col);
@@ -194,18 +228,26 @@ this.router.navigate(['/stores-list'], navigationExtras)
               if(this.arrangement[i].item_detail[j].is_match)
               {
                 this.matched_products.push(this.arrangement[i].item_detail[j]);
+                this.matched_products_index.push(this.arrangement[i])
               }
             }
            
           }
 
         }
-        console.log(this.matched_products);
+        console.log('matched products ----',this.matched_products);
+        console.log('matched products index----',this.matched_products_index);
       });
     });
   }
 
+find_row(i){
+  return this.matched_products_index[i].row +1;
+}
 
+find_col(i){
+  return this.matched_products_index[i].col +1;
+}
 checkout(){
 
   let navigationExtras: NavigationExtras = {
@@ -252,10 +294,13 @@ highlight(id){
       
       // console.log("Col-"+data[0].row+""+data[0].col)
       setTimeout(() => {
-        this.heighlightedItem = data; 
-        console.log(data);
-        console.log(document.getElementById("Col-"+data[0].row+""+data[0].col));
-        document.getElementById("Col-"+data[0].row+""+data[0].col).style.border = "3px solid #0000FF"  
+        let data2 = data.filter(el2=>{
+          return el2.region_type == "PRODUCT"
+        })
+        this.heighlightedItem = data2; 
+        console.log(data2);
+        console.log(document.getElementById("Col-"+data2[0].row+""+data2[0].col));
+        document.getElementById("Col-"+data2[0].row+""+data2[0].col).style.border = "3px solid #0000FF"  
       }, 10);
       
       // console.log()
@@ -340,6 +385,23 @@ count(i,j){
   }
 {
 
+}
+}
+
+shell_position(l){
+  if (this.matched_products[l].shail_position == "Top"){
+    return 'T';
+  }
+else if (this.matched_products[l].shail_position == "Medium")
+{
+  return 'M';
+}
+else if (this.matched_products[l].shail_position == "Bottom"){
+return 'B';
+}
+
+else{
+  return
 }
 }
 

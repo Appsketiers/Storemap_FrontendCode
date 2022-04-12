@@ -24,9 +24,11 @@
     <ion-row *ngFor="let item of [].constructor(row) let i = index">
       <ion-col
         style="height: 30px"
-        *ngFor="let item of [].constructor(col) let j = index" [style.background]="getData3(i,j)=='ISLE' ? '#FFD700' : getData3(i,j)=='PRODUCT' ? '#301934' : getData3(i,j)=='INDOOR' ? '#964B00' : ''"  >
+        *ngFor="let item of [].constructor(col) let j = index" [style.background]=" getData3(i,j)=='PRODUCT' ? '#36373a' : getData3(i,j)=='INDOOR' ? '#964B00' : ''"  >
         <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
-         <img (click)="show_details(i, j)" [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
+         <!-- <div style="text-align: center; background: #FFD700;" *ngIf="getData3(i,j)=='ISLE'">|</div> -->
+         <p class="check_isle" *ngIf="getData3(i,j) == 'ISLE'">{{getData4(i,j)}}</p>
+          <img (click)="show_details(i, j)" [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
          <h6 class="count" *ngIf="getData2(i,j) != '' && count(i,j)>1">{{count(i,j)}}</h6>
         </div> 
       </ion-col>
@@ -39,7 +41,7 @@
       <img [style.filter]="matched_products.length==1 ? 'opacity(0.5)': 'opacity(1)'" style="position: absolute;z-index: 9999;left: 4px;" src="assets/img/left.png" (click)="slidePrev(sliderOne,slideWithNav1)"alt="">
       <ion-slides style="margin: 0px 23px;" pager="false" [options]="slideOptsone" #slideWithNav1
 (ionSlideDidChange)="SlideDidChange(sliderOne,slideWithNav1)">
-<ion-slide *ngFor="let s of matched_products" (click)="highlight(s.id)">
+<ion-slide *ngFor="let s of matched_products let l = index" (click)="highlight(s.id)">
     <ion-row *ngIf="s.is_match">
 
       <ion-col size="6">
@@ -50,9 +52,10 @@
           <h2>{{s.name}}</h2>
           <!-- <p>Also see Aisle 7 - End cap</p> -->
           <h4  class="scrl">{{s.description}}</h4>
-          
+          <h3 style="font-weight: bold;">{{shell_position(l)}}</h3>
+<h6>Rack:-{{find_row(l)}}</h6>
 
-        </div>
+</div>
       </ion-col>
     </ion-row>
   </ion-slide>
