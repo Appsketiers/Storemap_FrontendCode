@@ -27,7 +27,10 @@
         *ngFor="let item of [].constructor(col) let j = index" [style.background]=" getData3(i,j)=='PRODUCT' ? '#36373a' : getData3(i,j)=='INDOOR' ? '#964B00' : ''"  >
         <div [style.display]="getData(i,j) ? 'block' : 'none'"  style="height: 100%;width: 100%;">
          <!-- <div style="text-align: center; background: #FFD700;" *ngIf="getData3(i,j)=='ISLE'">|</div> -->
-         <p class="check_isle" *ngIf="getData3(i,j) == 'ISLE'">{{getData4(i,j)}}</p>
+         <!--<p class="check_isle" *ngIf="getData3(i,j) == 'ISLE'">{{getData4(i,j)}}</p><!-->
+
+          <p class="check_isle" *ngIf="getData3(i,j) == 'ISLE'">|</p>
+
           <img (click)="show_details(i, j)" [src]="image_url + getData2(i,j)" *ngIf="getData2(i,j) != ''" onerror="this.src='../../assets/img/item_placeholder.png'" id="Col-{{i}}{{j}}"/>
          <h6 class="count" *ngIf="getData2(i,j) != '' && count(i,j)>1">{{count(i,j)}}</h6>
         </div> 

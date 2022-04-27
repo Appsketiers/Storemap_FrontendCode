@@ -103,7 +103,7 @@ console.log('total_items', this.total_items);
       let last_index_col = 0;
       for (const iterator of this.request.arrangement) {
         if(iterator.row == i && iterator.col == j) {
-          console.log(iterator,"last_index")
+          //console.log(iterator,"last_index")
           this.request.arrangement[tempvar].side = (last_index_col < j && last_index_row == i) ? "row" : "col";
           last_index_col = iterator.col;
           last_index_row = iterator.row;
